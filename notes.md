@@ -15,21 +15,46 @@
 
 ```ts
 class PushdownAutomata{
-    states: string[];
-    inputSymbols: string[];
-    pushdownSymbols: string[];
-    initialState: string;
-    initialPushdownSymbol: string;
-    finalStates: string[];
-    transitionFunction: TransitionFunction[] | Null;
+    states: State[];
+    inputSymbols: InputSymbol[];
+    stackSymbols: StackSymbol[];
+    initialState: State;
+    initialStackSymbol: StackSymbol;
+    finalStates: State[] | Null;
+    /*
+    *   TransitionFunction will be changed later
+    *   Depending on what will be best for future code
+    *   For now, 1D array will be used, can be changed to 2D, 3D array, map, ...
+    */
+    transitionFunction: TransitionFunction[];
 }
 
 class TransitionFunction{
-    initialState: string;
-    initialSymbol: string;
-    transitionSymbol: string;
-    finalState: string;
-    finalSymbol: string;
+    fromState: State;
+    startSymbol: StackSymbol;
+    inputSymbol: InputSymbol | Epsylon;
+    toState: State;
+    pushedSymbol: StackSymbol[];
+}
+
+class State{
+    id: number;
+    value: string;
+}
+
+class InputSymbol
+{
+    value: string;
+}
+
+class StackSymbol
+{
+    value:string
+}
+
+class Epsylon extends InputSymbol
+{
+    
 }
 ```
 
@@ -75,6 +100,8 @@ class TransitionFunction{
 - [Tailwind](https://tailwindcss.com/)
 
 ### Grafické návrhy
+
+## Poznámky ze schůzky
 
 ## Odkazy
 
