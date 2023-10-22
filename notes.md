@@ -14,47 +14,41 @@
 ## Zásobníkový automat v TS
 
 ```ts
+interface StackSymbol{
+    value: string;
+}
+
+interface InputSymbol{
+    isEpsylon: false;
+    value: string;
+}
+
+interface EpsylonSymbol{
+    isEmpsylon: true;
+}
+
+interface State{
+    id: number;
+    value: string;
+}
+
+class TransitionFunction{
+    fromState: State;
+    startSymbol: StackSymbol;
+    inputSymbol: InputSymbol | EpsylonSymbol;
+    toState: State;
+    pushedSymbols: StackSymbol[];
+}
+
 class PushdownAutomata{
     states: State[];
     inputSymbols: InputSymbol[];
     stackSymbols: StackSymbol[];
     initialState: State;
     initialStackSymbol: StackSymbol;
-    finalStates: State[] | Null;
-    /*
-    *   TransitionFunction will be changed later
-    *   Depending on what will be best for future code
-    *   For now, 1D array will be used, can be changed to 2D, 3D array, map, ...
-    */
+    finalStates: State[] | null;
+    //Array for now, might change later
     transitionFunction: TransitionFunction[];
-}
-
-class TransitionFunction{
-    fromState: State;
-    startSymbol: StackSymbol;
-    inputSymbol: InputSymbol | Epsylon;
-    toState: State;
-    pushedSymbol: StackSymbol[];
-}
-
-class State{
-    id: number;
-    value: string;
-}
-
-class InputSymbol
-{
-    value: string;
-}
-
-class StackSymbol
-{
-    value:string
-}
-
-class Epsylon extends InputSymbol
-{
-    
 }
 ```
 
