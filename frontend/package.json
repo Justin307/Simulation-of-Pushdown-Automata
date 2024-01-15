@@ -1,19 +1,26 @@
 {
-  "name": "simulation-of-pushdown-automata",
+  "name": "simulation_of_pushdown_automata",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "npx tsc --watch",
-    "compile": "npx tsc",
-    "clean": "rm -rf public/js/*",
-    "build": "run-s clean compile"
+    "script": "webpack",
+    "script-watch": "webpack -watch",
+    "style": "tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "style-watch": "tailwindcss -i ./src/input.css -o ./dist/output.css -watch",
+    "build": "npm run script && npm run style",
+    "clear": "rm ./dist/app-bundle.js ./dist/output.css"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^5.0.5",
-    "typescript": "^5.2.2"
+    "tailwindcss": "^3.4.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "flowbite": "^2.2.1"
+  },
+  "dependencies": {
   }
 }

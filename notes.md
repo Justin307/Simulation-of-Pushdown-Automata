@@ -71,7 +71,7 @@ class PushdownAutomata{
 - [TypeScript](https://www.typescriptlang.org/)
 - Databáze ???
 
-# Front end
+## Front end
 
 ### Funkce
 
@@ -91,7 +91,10 @@ class PushdownAutomata{
 
 ### Technologie
 
+- [Typescript](https://www.typescriptlang.org/)
 - [Tailwind](https://tailwindcss.com/)
+- [Flowbite](https://flowbite.com/)
+- [Webpack](https://webpack.js.org/)
 
 ### Grafické návrhy
 
@@ -102,3 +105,11 @@ class PushdownAutomata{
 1. https://www.geeksforgeeks.org/introduction-of-pushdown-automata/
 1. https://www.cs.vsb.cz/sawa/uti/slides/uti-05-cz.pdf
 1. https://www.geeksforgeeks.org/data-types-in-typescript/
+
+## TO DOs
+
+### 15.01.2024
+
+- nastavení npx scriptů ✓
+- vytvoření a definice datových tříd a typů (překopírování a upravení pushdown automata a vytvoření nových)
+- návrh potřebných funkcí pro manipulaci s automatem
