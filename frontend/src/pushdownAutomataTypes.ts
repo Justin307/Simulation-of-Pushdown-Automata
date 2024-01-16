@@ -1,5 +1,11 @@
+import { Stack } from "./stack";
+
 export type StackSymbol = {
     value: string;
+}
+
+export function compareStackSymbol(a: StackSymbol, b: StackSymbol): boolean{
+    return a.value == b.value;
 }
 
 export type InputSymbol = {
@@ -7,9 +13,24 @@ export type InputSymbol = {
     value?: string;
 }
 
+export function compareInputSymbol(a: InputSymbol, b: InputSymbol): boolean{
+    if(a.isEpsylon == b.isEpsylon){
+        if(a.isEpsylon == false){
+            return a.value == b.value;
+        }
+        else{
+            return true;
+        }
+    }
+    return false;
+}
+
 export type State = {
-    id: number;
     value: string;
+}
+
+export function compareState(a: State, b: State): boolean{
+    return a.value == b.value;
 }
 
 export type TransitionFunction = {
@@ -18,4 +39,38 @@ export type TransitionFunction = {
     startSymbol: StackSymbol | null;
     toState: State;
     pushedSymbols: StackSymbol[];
+}
+
+export function compareTransitionFunction(a: TransitionFunction, b: TransitionFunction): boolean{
+    //fromState
+    if(!compareState(a.fromState, b.fromState)){
+        return false;
+    }
+
+    //imputSymbol
+    if(!compareInputSymbol(a.inputSymbol, b.inputSymbol)){
+        return false;
+    }
+
+    //startSymbol
+    if(typeof(a.startSymbol) != typeof(b.startSymbol)){
+        return false;
+    }
+    if(a.startSymbol != null && !compareStackSymbol(a.startSymbol, b.startSymbol)){
+        return false;
+    }
+
+    //toState
+    if(!compareState(a.toState, b.toState)){
+        return false;
+    }
+
+    //pushedSymbols
+    for(let i = 0; i < a.pushedSymbols.length; i++){
+        if(!compareStackSymbol(a.pushedSymbols[i], b.pushedSymbols[i])){
+            return false;
+        }
+    }
+
+    return true;
 }

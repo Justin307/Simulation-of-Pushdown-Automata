@@ -111,5 +111,14 @@ class PushdownAutomata{
 ### 15.01.2024
 
 - nastavení npx scriptů ✓
-- vytvoření a definice datových tříd a typů (překopírování a upravení pushdown automata a vytvoření nových)
-- návrh potřebných funkcí pro manipulaci s automatem
+- vytvoření a definice datových tříd a typů (překopírování a upravení pushdown automata a vytvoření nových) ✓
+- návrh potřebných funkcí pro manipulaci s automatem ✓
+
+### 16.01.2024
+
+- definice a otestování kontrolních funkcí ✓ 
+- práce na TODOs z minulého dne ✓
+
+### 17.01.2024
+
+- Návrh UI a rozvržení
