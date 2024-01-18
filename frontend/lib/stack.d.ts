@@ -1,18 +1,19 @@
-interface IStack<I> {
+interface IStack<T> {
     pop(): void;
-    push(item: I): void;
-    top(): I | undefined;
+    push(item: T): void;
+    top(): T | null;
     empty(): boolean;
     size(): number;
     clear(): void;
 }
-export declare class Stack<I> implements IStack<I> {
+export declare class Stack<T> implements IStack<T> {
     private data;
     pop(): void;
-    push(item: I): void;
-    top(): I | undefined;
+    push(item: T): void;
+    top(): T | null;
     empty(): boolean;
     size(): number;
     clear(): void;
+    print(): void;
 }
 export {};

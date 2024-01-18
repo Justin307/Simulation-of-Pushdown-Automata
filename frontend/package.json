@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "script": "webpack",
-    "script-watch": "webpack -watch",
+    "script-watch": "webpack --watch",
     "style": "tailwindcss -i ./src/input.css -o ./dist/output.css",
-    "style-watch": "tailwindcss -i ./src/input.css -o ./dist/output.css -watch",
+    "style-watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "build": "npm run script && npm run style",
     "clear": "rm ./dist/app-bundle.js ./dist/output.css"
   },

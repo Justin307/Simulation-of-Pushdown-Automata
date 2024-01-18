@@ -11,20 +11,32 @@ export class FrontEndStructure{
     automata: PushdownAutomata;
     history: TransitionFunction[] = [];
 
-    FrontEndStructure(automata: PushdownAutomata){
+    constructor(automata: PushdownAutomata){
         this.automata = automata;
-        this.reset();
+        this.inputTape = "";
+        this.stack = new Stack<StackSymbol>();
+        if(this.automata.initialStackSymbol != null){
+            this.stack.push(this.automata.initialStackSymbol);
+        }
+        this.currentState = this.automata.initialState;
+        this.acceptingState = this.automata.acceptingState;
+        this.history = [];
     }
 
     reset(): void{
         this.inputTape = "";
         this.stack.clear();
+        if(this.automata.initialStackSymbol != null){
+            this.stack.push(this.automata.initialStackSymbol);
+        }
         this.currentState = this.automata.initialState;
         this.acceptingState = this.automata.acceptingState;
         this.history = [];
     }
 
     applyTransitionFunction(f: TransitionFunction): void{
+        console.log("Applying transition function:");
+        console.log(f);
         this.inputTape = this.inputTape.substring(1);
         this.stack.pop();
         for(let s of f.pushedSymbols){
@@ -101,7 +113,7 @@ export class FrontEndStructure{
             this.stack.pop();
         }
         this.stack.push(last.startSymbol);
-        this.inputTape = last.inputSymbol + this.inputTape;
+        this.inputTape = last.inputSymbol?.value + this.inputTape;
         //TODO modify UI
     }
 

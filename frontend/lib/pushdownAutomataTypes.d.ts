@@ -1,7 +1,7 @@
 export type StackSymbol = {
     value: string;
 };
-export declare function compareStackSymbol(a: StackSymbol, b: StackSymbol): boolean;
+export declare function compareStackSymbol(a: StackSymbol | null, b: StackSymbol | null): boolean;
 export type InputSymbol = {
     isEpsylon: boolean;
     value?: string;

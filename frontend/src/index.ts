@@ -44,9 +44,65 @@ const automata = new PushdownAutomata(
             inputSymbol: {isEpsylon: false, value: "b"},
             startSymbol: {value: "I"},
             toState: {value: "q2"},
-            pushedSymbols: [{value: "I"}]
+            pushedSymbols: []
         },
     ]
 );
+
+let frontEndStructure = new FrontEndStructure(automata);
+
+console.log(frontEndStructure.inputTape);
+console.log(JSON.stringify(frontEndStructure.stack));
+console.log(frontEndStructure.currentState);
+console.log(frontEndStructure.acceptingState);
+console.log(frontEndStructure.history);
+
+frontEndStructure.setNewInput("aabb");
+console.log("Setting new input");
+
+console.log(frontEndStructure.inputTape);
+console.log(JSON.stringify(frontEndStructure.stack));
+console.log(frontEndStructure.currentState);
+console.log(frontEndStructure.acceptingState);
+console.log(frontEndStructure.history);
+
+console.log("Checking input validity");
+frontEndStructure.checkInputTapeValidity();
+
+try{
+    while(!frontEndStructure.acceptedInput())
+    {
+        frontEndStructure.nextStep();
+        console.log(frontEndStructure.inputTape);
+        console.log(JSON.stringify(frontEndStructure.stack));
+        console.log(frontEndStructure.currentState);
+        console.log(frontEndStructure.acceptingState);
+        console.log(frontEndStructure.history);
+    }
+    console.log("Accepted input");
+}
+catch(e)
+{
+    console.log(e);
+}
+
+
+frontEndStructure.backStep();
+console.log("Back step");
+console.log(frontEndStructure.inputTape);
+console.log(JSON.stringify(frontEndStructure.stack));
+console.log(frontEndStructure.currentState);
+console.log(frontEndStructure.acceptingState);
+console.log(frontEndStructure.history);
+
+console.log("New input");
+frontEndStructure.setNewInput("a");
+frontEndStructure.nextStep();
+console.log("Is accepted: " + frontEndStructure.acceptedInput());
+frontEndStructure.nextStep();
+
+
+
+
 
 

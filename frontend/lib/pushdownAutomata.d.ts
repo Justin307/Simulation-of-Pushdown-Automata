@@ -15,4 +15,5 @@ export declare class PushdownAutomata {
     checkSymbolExistence(): [string, StackSymbol][];
     checkTransitionFunctions(): [string, TransitionFunction][];
     checkInputTapeValidity(inputTape: string): string[];
+    getTransitionFunctions(tapeSymbol: string, state: State, stackSymbol: StackSymbol | null): TransitionFunction[];
 }

@@ -8,9 +8,12 @@ export declare class FrontEndStructure {
     acceptingState: State[] | null;
     automata: PushdownAutomata;
     history: TransitionFunction[];
-    FrontEndStructure(automata: PushdownAutomata): void;
+    constructor(automata: PushdownAutomata);
     reset(): void;
+    applyTransitionFunction(f: TransitionFunction): void;
     checkInputTapeValidity(): void;
     acceptedInput(): boolean;
+    nextStep(): void;
+    backStep(): void;
     setNewInput(input: string): void;
 }

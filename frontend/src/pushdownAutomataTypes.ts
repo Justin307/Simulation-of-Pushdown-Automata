@@ -4,8 +4,14 @@ export type StackSymbol = {
     value: string;
 }
 
-export function compareStackSymbol(a: StackSymbol, b: StackSymbol): boolean{
-    return a.value == b.value;
+export function compareStackSymbol(a: StackSymbol | null, b: StackSymbol | null): boolean{
+    if(a != null && typeof(a) == typeof(b)){
+        return a.value == b.value;
+    }
+    if(a == null && b == null){
+        return true;
+    }
+    return false;
 }
 
 export type InputSymbol = {

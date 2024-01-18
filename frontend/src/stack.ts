@@ -1,25 +1,25 @@
-interface IStack<I> {
+interface IStack<T> {
     pop(): void;
-    push(item: I): void;
-    top(): I | undefined;
+    push(item: T): void;
+    top(): T | null;
     empty(): boolean;
     size(): number;
     clear(): void;
 }
 
-export class Stack<I> implements IStack<I> {
-    private data: I[] = [];
+export class Stack<T> implements IStack<T> {
+    private data: T[] = [];
 
     pop(): void {
         this.data.pop();
     }
 
-    push(item: I): void {
+    push(item: T): void {
         this.data.push(item);
     }
 
-    top(): I | undefined {
-        return this.data[this.data.length - 1];
+    top(): T | null {
+        return this.data[this.data.length - 1] ?? null;
     }
 
     empty(): boolean {
@@ -32,5 +32,9 @@ export class Stack<I> implements IStack<I> {
 
     clear(): void {
         this.data = [];
+    }
+
+    print(): void {
+        console.log(JSON.stringify(this.data));
     }
 }

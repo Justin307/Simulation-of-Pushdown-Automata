@@ -131,8 +131,7 @@ export class PushdownAutomata{
         return invalidSymbols;
     }
 
-    //TODO Check if this is correct
-    getTransitionFunctions(tapeSymbol: string, state: State, stackSymbol:  StackSymbol): TransitionFunction[]{
+    getTransitionFunctions(tapeSymbol: string, state: State, stackSymbol:  StackSymbol | null): TransitionFunction[]{
         let possibleTransitionFunctions: TransitionFunction[] = [];
 
         let inputSymbol: InputSymbol;
@@ -142,23 +141,19 @@ export class PushdownAutomata{
         else{
             inputSymbol = {isEpsylon: false, value: tapeSymbol};
         }
-
         for(let transitionFunction of this.transitionFunction){
             if(!compareInputSymbol(inputSymbol, transitionFunction.inputSymbol)){
                 continue;
             }
-
             if(!compareState(state, transitionFunction.fromState)){
                 continue;
             }
-
             if(!compareStackSymbol(stackSymbol, transitionFunction.startSymbol)){
                 continue;
             }
-
             possibleTransitionFunctions.push(transitionFunction);
         }
 
-        return this.transitionFunction;
+        return possibleTransitionFunctions;
     }
 }
