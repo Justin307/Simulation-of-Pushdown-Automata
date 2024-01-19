@@ -125,6 +125,14 @@ class PushdownAutomata{
 
 ### 18.01.2024
 
-- návrh UI a rozložení
+- návrh UI a rozložení ✗
 - kontrola vytvořených funkcí ✓
-- začátek práce na UI (html, css)
+- začátek práce na UI (html, css) ✓
+
+### 19.01.2024
+
+- pokračování práce na UI ✓
+
+### 20.01.2024
+
+- pokračivání práce na UI (current State, automata overview)
