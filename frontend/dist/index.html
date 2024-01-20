@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simulation of Pushdown Automata</title>
     <link rel="stylesheet" href="./output.css">
 </head>
 <body>
@@ -53,8 +53,58 @@
             <div class="absolute top-0 right-0 w-20 flex justify-center items-center">
                 <div class="text-sm font-bold">STACK</div>
             </div>
-            <div class="grow bg-yellow-200">
-                
+            <div class="grow bg-yellow-200 relative flex flex-row">
+                <div class="flex flex-col justify-between grow md:grow-0">
+                    <div class="bg-orange-200">
+                        Q_ack
+                    </div>
+                    <div class="md:hidden">
+                        show info
+                    </div>
+                    <div class="bg-purple-200">
+                        <div class="flex flex-col items-center p-2 md:p-5">
+                            <div class="flex flex-row justify-center max-h-52">
+                                <button class="p-1 sm:m-1">
+                                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 12 16">
+                                        <path d="M10.819.4a1.974 1.974 0 0 0-2.147.33l-6.5 5.773A2.014 2.014 0 0 0 2 6.7V1a1 1 0 0 0-2 0v14a1 1 0 1 0 2 0V9.3c.055.068.114.133.177.194l6.5 5.773a1.982 1.982 0 0 0 2.147.33A1.977 1.977 0 0 0 12 13.773V2.227A1.977 1.977 0 0 0 10.819.4Z"/>
+                                    </svg>
+                                </button>
+                                <button class="p-1 sm:p-2">
+                                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 10 16">
+                                        <path d="M8.766.566A2 2 0 0 0 6.586 1L1 6.586a2 2 0 0 0 0 2.828L6.586 15A2 2 0 0 0 10 13.586V2.414A2 2 0 0 0 8.766.566Z"/>
+                                    </svg>
+                                </button>
+                                <button class="p-1 sm:p-2">
+                                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 12 16">
+                                        <path d="M3 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm7 0H9a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Z"/>
+                                    </svg>
+                                </button>
+                                <button class="p-1 sm:p-2">
+                                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 10 16">
+                                        <path d="M3.414 1A2 2 0 0 0 0 2.414v11.172A2 2 0 0 0 3.414 15L9 9.414a2 2 0 0 0 0-2.828L3.414 1Z"/>
+                                    </svg>
+                                </button>
+                                <button class="p-1 sm:p-2">
+                                    <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 12 16">
+                                        <path d="M11 0a1 1 0 0 0-1 1v5.7a2.028 2.028 0 0 0-.177-.194L3.33.732A2 2 0 0 0 0 2.227v11.546A1.977 1.977 0 0 0 1.181 15.6a1.982 1.982 0 0 0 2.147-.33l6.5-5.773A1.88 1.88 0 0 0 10 9.3V15a1 1 0 1 0 2 0V1a1 1 0 0 0-1-1Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="relative mb-6 mx-2 max-w-40 flex flex-col items-center">
+                                <label for="speed-control" class="pb-3">Auto-play speed</label>
+                                <input id="speed-control" type="range" value="0" min="0" max="2000" step="500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                                <span class="text-sm absolute start-0 -bottom-7">0s</span>
+                                <span class="text-sm absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-7">0.5s</span>
+                                <span class="text-sm absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-7">1s</span>
+                                <span class="text-sm absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-7">1.5s</span>
+                                <span class="text-sm absolute end-0 -bottom-7">2s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grow hidden md:block bg-cyan-200">
+
+                </div>
             </div>
             <div class="flex flex-col flex-nowrap overflow-scroll items-center bg-green-200 max-h-full shrink-0 mt-5" id="items">
                 <div class="bg-green-500 h-16 w-16 m-2 flex-shrink-0">1</div>
