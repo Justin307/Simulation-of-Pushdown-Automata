@@ -16,4 +16,5 @@ export declare class FrontEndStructure {
     nextStep(): void;
     backStep(): void;
     setNewInput(input: string): void;
+    uiSetAutomataInformation(): void;
 }

@@ -1,5 +1,6 @@
 import { FrontEndStructure } from "./frontEndStructure";
 import { PushdownAutomata } from "./pushdownAutomata";
+import { registerEvents } from "./events";
 
 const automata = new PushdownAutomata(
     [
@@ -99,10 +100,8 @@ console.log("New input");
 frontEndStructure.setNewInput("a");
 frontEndStructure.nextStep();
 console.log("Is accepted: " + frontEndStructure.acceptedInput());
-frontEndStructure.nextStep();
 
-
-
-
-
-
+document.addEventListener("DOMContentLoaded", () => {
+    registerEvents();
+    frontEndStructure.uiSetAutomataInformation();
+});

@@ -135,4 +135,12 @@ class PushdownAutomata{
 
 ### 20.01.2024
 
-- pokračivání práce na UI (current State, automata overview, move buttons)
+- pokračivání práce na UI (current State, automata overview, move buttons) ✓
+
+### 21.01.2024
+
+- Pokračoivání práce na UI (current state, automata overview) ✓
+
+### 22.02.2024
+
+- Dokončení UI (automata overview, transition function history), začátek práce na propojení TS a UI 
