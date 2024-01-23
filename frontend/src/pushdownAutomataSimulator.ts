@@ -3,7 +3,7 @@ import { StackSymbol, State, TransitionFunction } from "./pushdownAutomataTypes"
 import { compareState } from "./pushdownAutomataTypes";
 import { PushdownAutomata } from "./pushdownAutomata";
 
-export class FrontEndStructure{
+export class PushdownAutomataSimulator{
     inputTape: string;
     stack: Stack<StackSymbol>;
     currentState: State;
@@ -123,21 +123,4 @@ export class FrontEndStructure{
     }
 
     //TODO Check Automata validity
-
-    uiSetAutomataInformation(): void{
-        //States
-        document.getElementById("infoStates")!.innerHTML = this.automata.states.map((s) => s.value).join(", ");
-        //Input symbols
-        document.getElementById("infoInputSymbols")!.innerHTML = this.automata.inputSymbols.map((s) => s.value).join(", ");
-        //Stack symbols
-        document.getElementById("infoStackSymbols")!.innerHTML = this.automata.stackSymbols.map((s) => s.value).join(", ");
-        //Initial state
-        document.getElementById("infoInitialState")!.innerHTML = this.automata.initialState.value;
-        //Initial stack symbol
-        document.getElementById("infoInitialStackSymbol")!.innerHTML = this.automata.initialStackSymbol?.value ?? "Empty stack";
-        //Accepting states
-        document.getElementById("infoAcceptingState")!.innerHTML = this.automata.acceptingState?.map((s) => s.value).join(", ") ?? "Acceptance by Empty Stack";
-        //Transition functions
-        document.getElementById("infoTranstionFunction")!.innerHTML = this.automata.transitionFunction.map((f) => JSON.stringify(f)).join("<br>");
-    }
 }

@@ -18,7 +18,7 @@ export function registerEvents(): void {
     divTransitionHistory = document.getElementById("transitionHistoryDiv") as HTMLDivElement;
 
     document.getElementById("automataDefinitionButton")?.addEventListener("click", () => {
-        divAutomataDefinition.style.display = "flex";
+        divAutomataDefinition.style.display = "block";
         divTransitionHistory.style.display = "none";
     });
 

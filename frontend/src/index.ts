@@ -1,4 +1,5 @@
-import { FrontEndStructure } from "./frontEndStructure";
+import { UI } from "./ui";
+import { PushdownAutomataSimulator } from "./pushdownAutomataSimulator";
 import { PushdownAutomata } from "./pushdownAutomata";
 import { registerEvents } from "./events";
 
@@ -50,7 +51,16 @@ const automata = new PushdownAutomata(
     ]
 );
 
-let frontEndStructure = new FrontEndStructure(automata);
+const ui: UI = new UI();
+ui.setAutomata(automata);
+
+ui.addToStack({value: "I"});
+ui.addToTape({isEpsylon: false, value: "a"});
+ui.changeState({value: "q1"});
+ui.removeFromStack();
+ui.removeFromTape();
+
+/*let frontEndStructure = new PushdownAutomataSimulator(automata);
 
 console.log(frontEndStructure.inputTape);
 console.log(JSON.stringify(frontEndStructure.stack));
@@ -100,8 +110,8 @@ console.log("New input");
 frontEndStructure.setNewInput("a");
 frontEndStructure.nextStep();
 console.log("Is accepted: " + frontEndStructure.acceptedInput());
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
     registerEvents();
-    frontEndStructure.uiSetAutomataInformation();
 });

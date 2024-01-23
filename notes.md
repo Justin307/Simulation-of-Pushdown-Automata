@@ -143,4 +143,12 @@ class PushdownAutomata{
 
 ### 22.02.2024
 
-- Dokončení UI (automata overview, transition function history), začátek práce na propojení TS a UI 
+- Dokončení UI (automata overview, transition function history), začátek práce na propojení TS a UI ✓
+
+### 23.01.2024
+
+- Transition function, ui manipulation functions ✓
+
+### 24.01.2024
+
+- Step front/back functionality

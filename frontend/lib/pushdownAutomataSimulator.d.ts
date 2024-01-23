@@ -16,5 +16,4 @@ export declare class PushdownAutomataSimulator {
     nextStep(): void;
     backStep(): void;
     setNewInput(input: string): void;
-    uiSetAutomataInformation(): void;
 }
