@@ -1,0 +1,17 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'BachelorThesis.blg'
+[85] biber-MSWIN64:340> INFO - === 
+[111] Biber.pm:419> INFO - Reading 'BachelorThesis.bcf'
+[195] Biber.pm:979> INFO - Found 28 citekeys in bib section 0
+[207] Biber.pm:4419> INFO - Processing section 0
+[216] Biber.pm:4610> INFO - Looking for bibtex file 'biblatex-examples.bib' for section 0
+[260] bibtex.pm:1713> INFO - LaTeX decoding ...
+[398] bibtex.pm:1519> INFO - Found BibTeX data source 'biblatex-examples.bib'
+[530] Biber.pm:4610> INFO - Looking for bibtex file 'coffee.bib' for section 0
+[560] bibtex.pm:1713> INFO - LaTeX decoding ...
+[563] bibtex.pm:1519> INFO - Found BibTeX data source 'coffee.bib'
+[591] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
+[591] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[592] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'cs-CZ'
+[609] bbl.pm:660> INFO - Writing 'BachelorThesis.bbl' with encoding 'UTF-8'
+[622] bbl.pm:763> INFO - Output to BachelorThesis.bbl
