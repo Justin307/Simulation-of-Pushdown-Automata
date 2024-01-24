@@ -35,16 +35,13 @@ export class PushdownAutomataSimulator{
     }
 
     applyTransitionFunction(f: TransitionFunction): void{
-        console.log("Applying transition function:");
-        console.log(f);
         this.inputTape = this.inputTape.substring(1);
         this.stack.pop();
-        for(let s of f.pushedSymbols){
-            this.stack.push(s);
+        for(let i = f.pushedSymbols.length-1; i >= 0; i--){
+            this.stack.push(f.pushedSymbols[i]);
         }
         this.currentState = f.toState;
         this.history.push(f);
-        //TODO modify UI
     }
 
     checkInputTapeValidity(): void{
@@ -72,39 +69,19 @@ export class PushdownAutomataSimulator{
         return false;
     }
 
-    nextStep(): void{
-        let result: boolean = this.acceptedInput();
-
-        if(result){
-            //TODO raise alert - accepted
-            throw new Error("Input already accepted");
-        }
-
-        if(this.inputTape === ""){
-            //TODO raise alert - no more input / not accepted
-            throw new Error("No more input");
+    nextStep(): TransitionFunction[]{
+        if(this.acceptedInput()){
+            return [];
         }
 
         let possibleTransitionFunctions: TransitionFunction[] = this.automata.getTransitionFunctions(this.inputTape[0], this.currentState, this.stack.top());
 
-        if(possibleTransitionFunctions.length === 0){
-            //TODO raise alert - no possible transition function
-            throw new Error("No possible transition function");
-        }
-        else if(possibleTransitionFunctions.length == 1){
-            this.applyTransitionFunction(possibleTransitionFunctions[0]);
-        }
-        else{
-            //TODO raise alert - multiple transition functions
-            // And let the user choose
-            throw new Error("Multiple transition functions");
-        }
+        return possibleTransitionFunctions;
     }
 
-    backStep(): void{
+    backStep(): TransitionFunction | null{
         if(this.history.length === 0){
-            //TODO raise alert - no history available
-            throw new Error("No previous step");
+            return null;
         }
 
         let last: TransitionFunction = this.history.pop();
@@ -114,7 +91,8 @@ export class PushdownAutomataSimulator{
         }
         this.stack.push(last.startSymbol);
         this.inputTape = last.inputSymbol?.value + this.inputTape;
-        //TODO modify UI
+        
+        return last;
     }
 
     setNewInput(input: string): void{

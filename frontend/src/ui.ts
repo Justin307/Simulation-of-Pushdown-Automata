@@ -8,6 +8,8 @@ export class UI{
     tape?: HTMLDivElement;
     stack?: HTMLDivElement;
     state?: HTMLDivElement;
+    infoButton?: HTMLButtonElement;
+    transitionOptions?: HTMLDivElement;
 
     constructor(automata?: PushdownAutomata){
         if(automata){
@@ -18,11 +20,19 @@ export class UI{
         this.tape = document.getElementById("tapeDiv") as HTMLDivElement;
         this.stack = document.getElementById("stackDiv") as HTMLDivElement;
         this.state = document.getElementById("stateDiv") as HTMLDivElement;
+        this.infoButton = document.getElementById("showInfoButton") as HTMLButtonElement;
+        this.transitionOptions = document.getElementById("transitionOptions") as HTMLDivElement;
     }
 
     setAutomata(automata: PushdownAutomata): void{
         this.simulator = new PushdownAutomataSimulator(automata);
         this.fillInformation();
+        this.resetUI();
+    }
+
+    registerEvents(): void{
+        document.getElementById("buttonNext")?.addEventListener("click", this.nextStep.bind(this));
+        document.getElementById("buttonBack")?.addEventListener("click", this.backStep.bind(this));
     }
 
     private generateTransitionFunction(f: TransitionFunction): HTMLDivElement {
@@ -67,7 +77,6 @@ export class UI{
         let tFunction =  document.getElementById("infoTranstionFunction") as HTMLDivElement;
         tFunction.innerHTML = "";
         for(let f of this.simulator?.automata.transitionFunction ?? []){
-            console.log(f);
             tFunction.append(this.generateTransitionFunction(f));
         }
     }
@@ -84,12 +93,16 @@ export class UI{
         }
     }
 
-    addToTape(s: InputSymbol): void{
+    addToTape(s: InputSymbol, append?: boolean): void{
         let symbol = document.createElement("div") as HTMLDivElement;
         symbol.classList.add("bg-red-500","h-16","w-16","m-2","flex-shrink-0","flex","justify-center","items-center")
         symbol.innerText = s.value;
-
-        this.tape?.prepend(symbol);
+        if(append && append == true){
+            this.tape?.append(symbol);
+        }
+        else{
+            this.tape?.prepend(symbol);
+        }
     }
 
     removeFromTape(): void{
@@ -108,13 +121,122 @@ export class UI{
         let symbol = document.createElement("div") as HTMLDivElement;
         symbol.classList.add("bg-green-500","h-16","w-16","m-2","flex-shrink-0","flex","justify-center","items-center","first:mt-auto")
         symbol.innerText = s.value;
-
         this.stack?.prepend(symbol);
     }
 
     removeFromStack(): void{
         if(this.stack && this.stack.childElementCount > 0){
             this.stack.removeChild(this.stack.firstChild);
+        }
+    }
+
+    resetUI(): void{
+        if(this.stack){
+            this.stack.innerHTML = "";
+        }
+
+        if(this.state){
+            this.state.innerHTML = ""
+        }
+
+        if(this.tape){
+            this.tape.innerHTML = "";
+        }
+
+        if(this.transtitionHistory){
+            this.transtitionHistory.innerHTML = "";
+        }
+
+        if(this.simulator)
+        {
+            this.state.innerText = this.simulator.automata.initialState.value;
+            if(this.simulator.automata.initialStackSymbol){
+                this.addToStack(this.simulator.automata.initialStackSymbol);
+            }
+        }
+    }
+
+    setTape(tape: string): void{
+        this.simulator?.setNewInput(tape);
+        this.resetUI();
+        if(this.tape){
+            this.tape.innerHTML = "";
+            for(let s of tape){
+                this.addToTape({isEpsylon: false, value: s}, true);
+            }
+        }
+    }
+
+    useTransition(f: TransitionFunction): void{
+        this.simulator?.applyTransitionFunction(f);
+        this.changeState(f.toState);
+        if(!f.inputSymbol.isEpsylon){
+            this.removeFromTape();
+        }
+        if(f.startSymbol != null){
+            this.removeFromStack();
+        }
+        for(let i = f.pushedSymbols.length-1; i >= 0; i--){
+            this.addToStack(f.pushedSymbols[i]);
+        }
+        this.addToHistory(f);
+    }
+
+    private generateOptions(options: TransitionFunction[]): void{
+        if(this.infoButton){
+            this.infoButton.classList.remove("flex");
+            this.infoButton.classList.add("hidden");
+        }
+        if(this.transitionOptions){
+            this.transitionOptions.innerHTML = "";
+        }
+        for(let o of options){
+            let option = document.createElement("button") as HTMLButtonElement;
+            option.classList.add("px-2","py-1","mx-auto");
+            option.append(this.generateTransitionFunction(o));
+            option.addEventListener("click", () => {
+                this.useTransition(o);
+                if(this.transitionOptions){
+                    this.transitionOptions.innerHTML = "";
+                }
+                this.infoButton.classList.add("flex");
+                this.infoButton.classList.remove("hidden");
+            });
+            this.transitionOptions?.append(option);
+        }
+    }
+
+    nextStep(): void{
+        if(this.simulator){
+            let possibleTranstions: TransitionFunction[] = this.simulator.nextStep();
+            if(possibleTranstions.length == 0){
+                throw new Error("No possible transitions");
+            }
+            else if(possibleTranstions.length == 1){
+                this.useTransition(possibleTranstions[0]);
+            }
+            else{
+                this.generateOptions(possibleTranstions);
+            }
+        }
+    }
+
+    backStep(): void{
+        if(this.simulator){
+            let last = this.simulator.backStep();
+            if(last){
+                this.removeFromHistory();
+                this.changeState(last.fromState);
+                if(!last.inputSymbol.isEpsylon){
+                    this.addToTape(last.inputSymbol, false);
+                }
+                for(let i = 0; i < last.pushedSymbols.length; i++){ 
+                    this.removeFromStack();
+                }
+                if(last.startSymbol != null){
+                    this.addToStack(last.startSymbol);
+                }
+            }
         }
     }
 }

@@ -29,6 +29,13 @@ const automata = new PushdownAutomata(
         },
         {
             fromState: {value: "q1"},
+            inputSymbol: {isEpsylon: true},
+            startSymbol: {value: "O"},
+            toState: {value: "q1"},
+            pushedSymbols: [{value: "I"}, {value: "O"}]
+        },
+        {
+            fromState: {value: "q1"},
             inputSymbol: {isEpsylon: false, value: "a"},
             startSymbol: {value: "I"},
             toState: {value: "q1"},
@@ -53,65 +60,9 @@ const automata = new PushdownAutomata(
 
 const ui: UI = new UI();
 ui.setAutomata(automata);
-
-ui.addToStack({value: "I"});
-ui.addToTape({isEpsylon: false, value: "a"});
-ui.changeState({value: "q1"});
-ui.removeFromStack();
-ui.removeFromTape();
-
-/*let frontEndStructure = new PushdownAutomataSimulator(automata);
-
-console.log(frontEndStructure.inputTape);
-console.log(JSON.stringify(frontEndStructure.stack));
-console.log(frontEndStructure.currentState);
-console.log(frontEndStructure.acceptingState);
-console.log(frontEndStructure.history);
-
-frontEndStructure.setNewInput("aabb");
-console.log("Setting new input");
-
-console.log(frontEndStructure.inputTape);
-console.log(JSON.stringify(frontEndStructure.stack));
-console.log(frontEndStructure.currentState);
-console.log(frontEndStructure.acceptingState);
-console.log(frontEndStructure.history);
-
-console.log("Checking input validity");
-frontEndStructure.checkInputTapeValidity();
-
-try{
-    while(!frontEndStructure.acceptedInput())
-    {
-        frontEndStructure.nextStep();
-        console.log(frontEndStructure.inputTape);
-        console.log(JSON.stringify(frontEndStructure.stack));
-        console.log(frontEndStructure.currentState);
-        console.log(frontEndStructure.acceptingState);
-        console.log(frontEndStructure.history);
-    }
-    console.log("Accepted input");
-}
-catch(e)
-{
-    console.log(e);
-}
-
-
-frontEndStructure.backStep();
-console.log("Back step");
-console.log(frontEndStructure.inputTape);
-console.log(JSON.stringify(frontEndStructure.stack));
-console.log(frontEndStructure.currentState);
-console.log(frontEndStructure.acceptingState);
-console.log(frontEndStructure.history);
-
-console.log("New input");
-frontEndStructure.setNewInput("a");
-frontEndStructure.nextStep();
-console.log("Is accepted: " + frontEndStructure.acceptedInput());
-*/
+ui.setTape("aaaaabbbbb");
 
 document.addEventListener("DOMContentLoaded", () => {
     registerEvents();
+    ui.registerEvents();
 });

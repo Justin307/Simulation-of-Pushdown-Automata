@@ -142,7 +142,7 @@ export class PushdownAutomata{
             inputSymbol = {isEpsylon: false, value: tapeSymbol};
         }
         for(let transitionFunction of this.transitionFunction){
-            if(!compareInputSymbol(inputSymbol, transitionFunction.inputSymbol)){
+            if(!compareInputSymbol(inputSymbol, transitionFunction.inputSymbol) && !transitionFunction.inputSymbol.isEpsylon){
                 continue;
             }
             if(!compareState(state, transitionFunction.fromState)){

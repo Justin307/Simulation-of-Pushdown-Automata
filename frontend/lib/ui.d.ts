@@ -7,15 +7,24 @@ export declare class UI {
     tape?: HTMLDivElement;
     stack?: HTMLDivElement;
     state?: HTMLDivElement;
+    infoButton?: HTMLButtonElement;
+    transitionOptions?: HTMLDivElement;
     constructor(automata?: PushdownAutomata);
     setAutomata(automata: PushdownAutomata): void;
+    registerEvents(): void;
     private generateTransitionFunction;
     fillInformation(): void;
     addToHistory(f: TransitionFunction): void;
     removeFromHistory(): void;
-    addToTape(s: InputSymbol): void;
+    addToTape(s: InputSymbol, append?: boolean): void;
     removeFromTape(): void;
     changeState(s: State): void;
     addToStack(s: StackSymbol): void;
     removeFromStack(): void;
+    resetUI(): void;
+    setTape(tape: string): void;
+    useTransition(f: TransitionFunction): void;
+    private generateOptions;
+    nextStep(): void;
+    backStep(): void;
 }

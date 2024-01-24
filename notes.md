@@ -151,4 +151,8 @@ class PushdownAutomata{
 
 ### 24.01.2024
 
-- Step front/back functionality
+- Step front/back functionality ✓
+
+### 25.01.2024
+
+- Automatic steps

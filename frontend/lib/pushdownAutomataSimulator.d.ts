@@ -13,7 +13,7 @@ export declare class PushdownAutomataSimulator {
     applyTransitionFunction(f: TransitionFunction): void;
     checkInputTapeValidity(): void;
     acceptedInput(): boolean;
-    nextStep(): void;
-    backStep(): void;
+    nextStep(): TransitionFunction[];
+    backStep(): TransitionFunction | null;
     setNewInput(input: string): void;
 }
