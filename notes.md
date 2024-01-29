@@ -98,6 +98,22 @@ class PushdownAutomata{
 
 ### Grafické návrhy
 
+## Otázky na schůzku
+
+- Definice přepisové funkce 
+	- strana 132 https://fuuu.be/polytech/INFOF408/Introduction-To-The-Theory-Of-Computation-Michael-Sipser.pdf
+	- https://link.springer.com/chapter/10.1007/978-1-4612-1844-9_27
+- Rozložení UI/Layout
+- Volba následující přepisové funkce
+	- Ruční pohyb
+	- Automatický pohyb
+- Způsoby definice automatu
+	- Formulář
+	- Načtení/uložení z/do souboru
+	- Local storage
+	- Server s přihlášením ????
+- Zápočet
+
 ## Poznámky ze schůzky
 
 ## Odkazy
