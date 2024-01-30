@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { PushdownAutomataSimulator } from "./pushdownAutomataSimulator";
 import { PushdownAutomata } from "./pushdownAutomata";
 import { TransitionFunction, InputSymbol, StackSymbol, State } from "./pushdownAutomataTypes";
@@ -9,6 +10,11 @@ export declare class UI {
     state?: HTMLDivElement;
     infoButton?: HTMLButtonElement;
     transitionOptions?: HTMLDivElement;
+    isChoosing: boolean;
+    isRunnig: boolean;
+    directionForward: boolean;
+    speed: number;
+    timeout: NodeJS.Timeout | null;
     constructor(automata?: PushdownAutomata);
     setAutomata(automata: PushdownAutomata): void;
     registerEvents(): void;

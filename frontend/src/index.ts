@@ -29,13 +29,6 @@ const automata = new PushdownAutomata(
         },
         {
             fromState: {value: "q1"},
-            inputSymbol: {isEpsylon: true},
-            startSymbol: {value: "O"},
-            toState: {value: "q1"},
-            pushedSymbols: [{value: "I"}, {value: "O"}]
-        },
-        {
-            fromState: {value: "q1"},
             inputSymbol: {isEpsylon: false, value: "a"},
             startSymbol: {value: "I"},
             toState: {value: "q1"},
@@ -60,7 +53,7 @@ const automata = new PushdownAutomata(
 
 const ui: UI = new UI();
 ui.setAutomata(automata);
-ui.setTape("aaaaabbbbb");
+ui.setTape("aaaaaaaaaabbbbbbbbbb");
 
 document.addEventListener("DOMContentLoaded", () => {
     registerEvents();

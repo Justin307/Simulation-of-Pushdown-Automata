@@ -11,6 +11,14 @@ export class UI{
     infoButton?: HTMLButtonElement;
     transitionOptions?: HTMLDivElement;
 
+    isChoosing: boolean = false;
+    isRunnig: boolean = false;
+    directionForward: boolean = true;
+    speed: number = 1000;
+
+    timeout: NodeJS.Timeout | null = null;
+
+
     constructor(automata?: PushdownAutomata){
         if(automata){
             this.setAutomata(automata);
@@ -33,6 +41,35 @@ export class UI{
     registerEvents(): void{
         document.getElementById("buttonNext")?.addEventListener("click", this.nextStep.bind(this));
         document.getElementById("buttonBack")?.addEventListener("click", this.backStep.bind(this));
+        document.getElementById("speed-control")?.addEventListener('input', (event: InputEvent) => {
+            this.speed = parseInt((event.target as HTMLInputElement).value);
+        });
+        document.getElementById("buttonNextAuto")?.addEventListener("click", () => {
+            if(this.timeout) {
+                clearTimeout(this.timeout);
+                this.timeout = null;
+            }
+            this.isRunnig = true;
+            this.directionForward = true;
+            this.nextStep();
+        });
+        document.getElementById("buttonBackAuto")?.addEventListener("click", () => {
+            if(this.timeout) {
+                clearTimeout(this.timeout);
+                this.timeout = null;
+            }
+            this.isRunnig = true;
+            this.directionForward = false;
+            this.backStep();
+        });
+        document.getElementById("buttonStop")?.addEventListener("click", () => {
+            if(this.timeout) {
+                clearTimeout(this.timeout);
+                this.timeout = null;
+            }
+            this.isRunnig = false;
+        });
+            
     }
 
     private generateTransitionFunction(f: TransitionFunction): HTMLDivElement {
@@ -168,6 +205,7 @@ export class UI{
     }
 
     useTransition(f: TransitionFunction): void{
+        console.log(f);
         this.simulator?.applyTransitionFunction(f);
         this.changeState(f.toState);
         if(!f.inputSymbol.isEpsylon){
@@ -180,6 +218,7 @@ export class UI{
             this.addToStack(f.pushedSymbols[i]);
         }
         this.addToHistory(f);
+        this.isChoosing = false;
     }
 
     private generateOptions(options: TransitionFunction[]): void{
@@ -201,29 +240,59 @@ export class UI{
                 }
                 this.infoButton.classList.add("flex");
                 this.infoButton.classList.remove("hidden");
+                if(this.isRunnig && this.directionForward)
+                {
+                    let dir = this.directionForward;
+                    this.timeout = setTimeout(() => {
+                        if(this.isRunnig && this.directionForward == dir)
+                            this.nextStep();
+                    }, this.speed);
+                }
             });
             this.transitionOptions?.append(option);
         }
     }
 
     nextStep(): void{
-        if(this.simulator){
-            let possibleTranstions: TransitionFunction[] = this.simulator.nextStep();
-            if(possibleTranstions.length == 0){
-                throw new Error("No possible transitions");
-            }
-            else if(possibleTranstions.length == 1){
-                this.useTransition(possibleTranstions[0]);
-            }
-            else{
-                this.generateOptions(possibleTranstions);
+        if(!this.isChoosing){
+            if(this.simulator){
+                console.log(this.simulator?.inputTape);
+                let possibleTranstions: TransitionFunction[] = this.simulator.nextStep();
+                if(possibleTranstions.length == 0){
+                    throw new Error("No possible transitions");
+                }
+                else if(possibleTranstions.length == 1){
+                    this.useTransition(possibleTranstions[0]);
+                    if(this.isRunnig && this.directionForward)
+                    {
+                        let dir = this.directionForward;
+                        this.timeout = setTimeout(() => {
+                            if(this.isRunnig && this.directionForward == dir)
+                                this.nextStep();
+                        }, this.speed);
+                    }
+                }
+                else{
+                    this.isChoosing = true;
+                    this.generateOptions(possibleTranstions);
+                }
             }
         }
     }
 
     backStep(): void{
+        if(this.isChoosing){
+            this.isChoosing = false;
+            if(this.transitionOptions){
+                this.transitionOptions.innerHTML = "";
+            }
+            this.infoButton.classList.add("flex");
+            this.infoButton.classList.remove("hidden");
+            return;
+        }
         if(this.simulator){
             let last = this.simulator.backStep();
+            console.log(last);
             if(last){
                 this.removeFromHistory();
                 this.changeState(last.fromState);
@@ -236,6 +305,14 @@ export class UI{
                 if(last.startSymbol != null){
                     this.addToStack(last.startSymbol);
                 }
+            }
+            if(this.isRunnig && !this.directionForward)
+            {
+                let dir = this.directionForward;
+                this.timeout = setTimeout(() => {
+                    if(this.isRunnig && this.directionForward == dir)
+                        this.backStep();
+                }, this.speed);
             }
         }
     }

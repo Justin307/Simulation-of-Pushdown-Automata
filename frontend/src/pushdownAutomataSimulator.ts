@@ -90,7 +90,8 @@ export class PushdownAutomataSimulator{
             this.stack.pop();
         }
         this.stack.push(last.startSymbol);
-        this.inputTape = last.inputSymbol?.value + this.inputTape;
+        if(!last.inputSymbol.isEpsylon)
+            this.inputTape = last.inputSymbol.value + this.inputTape;
         
         return last;
     }
