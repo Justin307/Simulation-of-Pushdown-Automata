@@ -176,4 +176,4 @@ class PushdownAutomata{
 ### 30.01.2024
 
 - Automatic steps ✓
-- Změna chování pásky
+- Změna chování pásky ✓

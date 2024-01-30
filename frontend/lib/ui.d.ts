@@ -10,6 +10,7 @@ export declare class UI {
     state?: HTMLDivElement;
     infoButton?: HTMLButtonElement;
     transitionOptions?: HTMLDivElement;
+    tapePosition: number;
     isChoosing: boolean;
     isRunnig: boolean;
     directionForward: boolean;
@@ -24,6 +25,8 @@ export declare class UI {
     removeFromHistory(): void;
     addToTape(s: InputSymbol, append?: boolean): void;
     removeFromTape(): void;
+    setSymbolToState(s: HTMLDivElement, state: number): void;
+    moveTape(backward?: boolean): void;
     changeState(s: State): void;
     addToStack(s: StackSymbol): void;
     removeFromStack(): void;

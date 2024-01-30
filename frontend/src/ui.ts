@@ -11,6 +11,8 @@ export class UI{
     infoButton?: HTMLButtonElement;
     transitionOptions?: HTMLDivElement;
 
+    tapePosition: number = 0;
+
     isChoosing: boolean = false;
     isRunnig: boolean = false;
     directionForward: boolean = true;
@@ -148,6 +150,58 @@ export class UI{
         }
     }
 
+    /*
+    0 -> read
+    1 -> reading
+    2 -> not read
+    */
+    setSymbolToState(s: HTMLDivElement, state: number){
+        switch(state){
+            case 0:{
+                s.classList.remove("bg-red-500");
+                s.classList.remove("bg-red-900");
+                s.classList.add("bg-red-300");
+                return
+            }
+            case 1:{
+                s.classList.remove("bg-red-300");
+                s.classList.remove("bg-red-500");
+                s.classList.add("bg-red-900");
+                return;
+            }
+            default:{
+                s.classList.remove("bg-red-300");
+                s.classList.remove("bg-red-900");
+                s.classList.add("bg-red-500");
+                return;
+            }
+        }
+    }
+
+    moveTape(backward: boolean = false): void{
+        let symbols = this.tape?.children;
+        if(symbols && symbols.length > 1){
+            if(backward == true){
+                this.tapePosition--;
+                this.setSymbolToState(symbols[this.tapePosition+1] as HTMLDivElement, 2);
+                console.log(this.tapePosition+1, 2);
+                if(this.tapePosition >= 0){
+                    this.setSymbolToState(symbols[this.tapePosition] as HTMLDivElement, 1);
+                    console.log(this.tapePosition, 1);
+                }
+            }
+            else{
+                this.tapePosition++;
+                this.setSymbolToState(symbols[this.tapePosition-1] as HTMLDivElement, 0);
+                console.log(this.tapePosition-1, 0);
+                if(this.tapePosition < symbols.length){
+                    this.setSymbolToState(symbols[this.tapePosition] as HTMLDivElement, 1);
+                    console.log(this.tapePosition, 1);
+                }
+            }
+        }
+    }
+
     changeState(s: State): void{
         if(this.state){
             this.state.innerText = s.value;
@@ -202,6 +256,11 @@ export class UI{
                 this.addToTape({isEpsylon: false, value: s}, true);
             }
         }
+        let temp = this.tape?.children[0] as HTMLDivElement;
+        if(temp)
+        {
+            this.setSymbolToState(temp, 1);
+        }
     }
 
     useTransition(f: TransitionFunction): void{
@@ -209,7 +268,7 @@ export class UI{
         this.simulator?.applyTransitionFunction(f);
         this.changeState(f.toState);
         if(!f.inputSymbol.isEpsylon){
-            this.removeFromTape();
+            this.moveTape();
         }
         if(f.startSymbol != null){
             this.removeFromStack();
@@ -256,7 +315,6 @@ export class UI{
     nextStep(): void{
         if(!this.isChoosing){
             if(this.simulator){
-                console.log(this.simulator?.inputTape);
                 let possibleTranstions: TransitionFunction[] = this.simulator.nextStep();
                 if(possibleTranstions.length == 0){
                     throw new Error("No possible transitions");
@@ -292,12 +350,11 @@ export class UI{
         }
         if(this.simulator){
             let last = this.simulator.backStep();
-            console.log(last);
             if(last){
                 this.removeFromHistory();
                 this.changeState(last.fromState);
                 if(!last.inputSymbol.isEpsylon){
-                    this.addToTape(last.inputSymbol, false);
+                    this.moveTape(true);
                 }
                 for(let i = 0; i < last.pushedSymbols.length; i++){ 
                     this.removeFromStack();
