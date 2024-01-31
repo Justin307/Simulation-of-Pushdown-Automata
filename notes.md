@@ -177,3 +177,14 @@ class PushdownAutomata{
 
 - Automatic steps ✓
 - Změna chování pásky ✓
+
+### 31.01.2024
+
+- Landing page (výběr nový automat/načíst ze souboru/načíst uložený) hidden
+- Výběr z uložených automatů
+
+### 1.2.2024
+
+- Načtení automatu z paměti
+- Načtení automatu ze souboru
+- Uložení automatu do souboru
