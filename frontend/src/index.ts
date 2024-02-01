@@ -2,6 +2,7 @@ import { UI } from "./ui";
 import { PushdownAutomataSimulator } from "./pushdownAutomataSimulator";
 import { PushdownAutomata } from "./pushdownAutomata";
 import { registerEvents } from "./events";
+import { Storage } from "./storage";
 
 const automata = new PushdownAutomata(
     [
@@ -55,7 +56,13 @@ const ui: UI = new UI();
 ui.setAutomata(automata);
 ui.setTape("aaaaaaaaaabbbbbbbbbb");
 
+var storage: Storage;
+
 document.addEventListener("DOMContentLoaded", () => {
     registerEvents();
     ui.registerEvents();
+    storage = new Storage();
+    storage.registerEvents();
+    //storage.saveAutomata("test", automata);
+    storage.printAutomatas();
 });

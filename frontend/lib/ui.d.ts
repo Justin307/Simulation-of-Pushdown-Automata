@@ -19,7 +19,7 @@ export declare class UI {
     constructor(automata?: PushdownAutomata);
     setAutomata(automata: PushdownAutomata): void;
     registerEvents(): void;
-    private generateTransitionFunction;
+    static generateTransitionFunction(f: TransitionFunction): HTMLDivElement;
     fillInformation(): void;
     addToHistory(f: TransitionFunction): void;
     removeFromHistory(): void;

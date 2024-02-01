@@ -74,7 +74,7 @@ export class UI{
             
     }
 
-    private generateTransitionFunction(f: TransitionFunction): HTMLDivElement {
+    static generateTransitionFunction(f: TransitionFunction): HTMLDivElement {
         let res = document.createElement("div") as HTMLDivElement;
         res.classList.add("flex", "flex-row", "flex-nowrap", "justify-center", "pt-3");
 
@@ -109,20 +109,20 @@ export class UI{
         //Initial state
         document.getElementById("infoInitialState")!.innerText = this.simulator?.automata.initialState.value;
         //Initial stack symbol
-        document.getElementById("infoInitialStackSymbol")!.innerText = this.simulator?.automata.initialStackSymbol?.value ?? "Empty stack";
+        document.getElementById("infoInitialStackSymbol")!.innerText = this.simulator?.automata.initialStackSymbol?.value;
         //Accepting states
         document.getElementById("infoAcceptingState")!.innerText = this.simulator?.automata.acceptingState?.map((s) => s.value).join(", ") ?? "Acceptance by Empty Stack";
         //Transition functions
         let tFunction =  document.getElementById("infoTranstionFunction") as HTMLDivElement;
         tFunction.innerHTML = "";
         for(let f of this.simulator?.automata.transitionFunction ?? []){
-            tFunction.append(this.generateTransitionFunction(f));
+            tFunction.append(UI.generateTransitionFunction(f));
         }
     }
 
     addToHistory(f: TransitionFunction): void{
         if(this.transtitionHistory){
-            this.transtitionHistory.prepend(this.generateTransitionFunction(f));
+            this.transtitionHistory.prepend(UI.generateTransitionFunction(f));
         }
     }
 
@@ -291,7 +291,7 @@ export class UI{
         for(let o of options){
             let option = document.createElement("button") as HTMLButtonElement;
             option.classList.add("px-2","py-1","mx-auto");
-            option.append(this.generateTransitionFunction(o));
+            option.append(UI.generateTransitionFunction(o));
             option.addEventListener("click", () => {
                 this.useTransition(o);
                 if(this.transitionOptions){

@@ -180,11 +180,18 @@ class PushdownAutomata{
 
 ### 31.01.2024
 
-- Landing page (výběr nový automat/načíst ze souboru/načíst uložený) hidden
-- Výběr z uložených automatů
+- Landing page (výběr nový automat/načíst ze souboru/načíst uložený) ✓
+- Výběr z uložených automatů ✓
 
 ### 1.2.2024
 
-- Načtení automatu z paměti
-- Načtení automatu ze souboru
-- Uložení automatu do souboru
+- Načtení automatu z paměti ✓
+- Načtení automatu ze souboru ✓
+- Uložení automatu do souboru ✓
+
+### 2.2.2024
+
+- Modal - confirm
+- Modal - Error
+- Nastavení automatu do simulátoru
+- Nastylování main page

@@ -1,10 +1,12 @@
 var divAutomataDefinition: HTMLDivElement;
 var divTransitionHistory: HTMLDivElement;
 var infoDiv: HTMLDivElement;
-var mainPage: HTMLDivElement;
-var newAutomataPage: HTMLDivElement;
-var savedAutomatasPage: HTMLDivElement;
-var simulatorPage: HTMLDivElement;
+export var mainPage: HTMLDivElement;
+export var newAutomataPage: HTMLDivElement;
+export var savedAutomatasPage: HTMLDivElement;
+export var simulatorPage: HTMLDivElement;
+export var automataOverviewPage: HTMLDivElement
+export var loadAutomataPage: HTMLDivElement;
 
 function infoDivSwitch(): void {
     infoDiv.classList.toggle("hidden");
@@ -26,6 +28,8 @@ export function registerEvents(): void {
     newAutomataPage = document.getElementById("newAutomataPage") as HTMLDivElement;
     savedAutomatasPage = document.getElementById("savedAutamatasPage") as HTMLDivElement;
     simulatorPage = document.getElementById("simulatorPage") as HTMLDivElement;
+    automataOverviewPage = document.getElementById("automataOverviewPage") as HTMLDivElement;
+    loadAutomataPage = document.getElementById("loadAutomataPage") as HTMLDivElement;
 
     document.getElementById("automataDefinitionButton")?.addEventListener("click", () => {
         divAutomataDefinition.style.display = "block";
@@ -46,6 +50,11 @@ export function registerEvents(): void {
         newAutomataPage.style.display = "flex";
     });
 
+    document.getElementById("uploadAutomataButton")?.addEventListener("click", () => {
+        mainPage.style.display = "none";
+        loadAutomataPage.style.display = "flex";
+    });
+
     document.getElementById("savedAutomatasButton")?.addEventListener("click", () => {
         mainPage.style.display = "none";
         savedAutomatasPage.style.display = "flex";
@@ -54,5 +63,15 @@ export function registerEvents(): void {
     document.getElementById("savedAutomatasBackButton")?.addEventListener("click", () => {
         mainPage.style.display = "flex";
         savedAutomatasPage.style.display = "none";
+    });
+
+    document.getElementById("hideOverviewButton")?.addEventListener("click", () => {
+        savedAutomatasPage.style.display = "flex";
+        automataOverviewPage.style.display = "none";
+    });
+
+    document.getElementById("hideLoadButton")?.addEventListener("click", () => {
+        mainPage.style.display = "flex";
+        loadAutomataPage.style.display = "none";
     });
 }
