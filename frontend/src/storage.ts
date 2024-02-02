@@ -19,8 +19,11 @@ export class Storage{
 
     private loadFile(e: SubmitEvent) {
         e.preventDefault();
-        const key = (document.getElementById("loadKeyInput") as HTMLInputElement).value;
-        const file = (document.getElementById("loadFileInput") as HTMLInputElement).files?.[0];
+        let keyInput = document.getElementById("loadKeyInput") as HTMLInputElement
+        let key = keyInput?.value;
+        
+        let fileInput = document.getElementById("loadFileInput") as HTMLInputElement
+        let file = fileInput?.files?.[0];
         if(!key || !file){
             //TODO Error
             console.log("Key or file does not exists");
@@ -49,6 +52,8 @@ export class Storage{
                 //TODO Switch to simulator instead
                 savedAutomatasPage.style.display = "flex";
                 loadAutomataPage.style.display = "none";
+                keyInput.value = "";
+                fileInput.value = "";
             }
             reader.readAsText(file);
 

@@ -75,5 +75,7 @@ export function registerEvents(): void {
     document.getElementById("hideLoadButton")?.addEventListener("click", () => {
         menuPage.style.display = "flex";
         loadAutomataPage.style.display = "none";
+        (document.getElementById("loadKeyInput") as HTMLInputElement).value = "";
+        (document.getElementById("loadFileInput") as HTMLInputElement).value = "";
     });
 }

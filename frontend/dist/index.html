@@ -102,7 +102,7 @@
                     </tr>
                     <tr>
                         <th class="font-bold p-2 pl-4 md:pl-8 text-left border border-black">Transition Functions</th>
-                        <td class="p-2 pl-4 md:pl-8 text-left border flex flex-col justify-start items-start" id="overviewTranstionFunction"></td>
+                        <td class="p-2 px-4 border flex flex-col justify-center items-center" id="overviewTranstionFunction"></td>
                     </tr>
                 </tbody>
             </table>
@@ -117,13 +117,15 @@
                     <span>Automata name/key:</span>
                     <input id="loadKeyInput" type="text" required class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black">
                 </label>
-                <label for="loadFileInput" class="mb-2">
+                <label for="loadFileInput" class="mb-4">
                     <span>File:</span>
-                    <input type="file" name="file" id="loadFileInput" required>
+                    <input type="file" name="file" id="loadFileInput" required class="block w-full text-sm border-b border-gray-300 rounded rounded-r-none cursor-pointer focus:outline-none">
                 </label>
-                <input type="submit" value="Load" class="mx-auto w-36 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold">
+                <div class="flex flex-row">
+                    <button class="mx-auto w-36 py-2 rounded bg-slate-200 hover:bg-slate-300 font-bold mr-1" id="hideLoadButton" type="button">Cancel</button>
+                    <input type="submit" value="Load" class="ml-1 w-36 py-2 rounded bg-green-500 hover:bg-green-700 text-white font-bold">
+                </div>
             </form>
-            <button class="mx-auto w-36 py-2 rounded bg-red-500 hover:bg-red-700 text-white font-bold" id="hideLoadButton">Cancel</button>
         </div>
 
     </div>
