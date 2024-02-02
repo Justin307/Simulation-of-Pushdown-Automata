@@ -1,12 +1,16 @@
 import { PushdownAutomata } from "./pushdownAutomata"
 import { UI } from "./ui" 
-import { automataOverviewPage, savedAutomatasPage, loadAutomataPage } from "./events";
+import { automataOverviewPage, savedAutomatasPage, loadAutomataPage, mainPage, simulatorPage } from "./events";
 
 export class Storage{
     savedAutomatasTable?: HTMLTableElement;
+    ui: UI;
 
-    constructor(){
+    constructor(ui: UI){
         this.savedAutomatasTable = document.getElementById("savedAutomatasTable") as HTMLTableElement;
+        if(ui){
+            this.ui = ui;
+        }
     }
 
     registerEvents(){
@@ -122,7 +126,9 @@ export class Storage{
             button = document.createElement("button");
             button.innerHTML = '<svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19V6c0-.6.4-1 1-1h4c.3 0 .6.1.8.4l1.9 2.2c.2.3.5.4.8.4H16c.6 0 1 .4 1 1v1M3 19l3-8h15l-3 8H3Z"/></svg>';
             button.addEventListener("click", () => {
-                //TODO Button open
+                mainPage.style.display = "none";
+                simulatorPage.style.display = "flex";
+                this.ui.setAutomata(this.loadAutomata(key));
             });
             cell.append(button);
 

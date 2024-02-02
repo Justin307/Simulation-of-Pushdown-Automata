@@ -7,11 +7,11 @@
     <title>Simulation of Pushdown Automata</title>
 <link rel="stylesheet" href="./output.css">
 </head>
-<body>
-    <div class="h-screen w-screen flex justify-center items-center relative">
+<body class="bg-white text-slate-950 ">
+    <div class="h-screen w-screen flex justify-center items-center relative" id="mainPage">
         <!--Main/Landing page-->
-        <div class="bg-blue-200 p-6 flex flex-col justify-center items-center" id="mainPage">
-            <h1 class="text-xl font-bold">Simulation of pushdown automata</h1>
+        <div class= "p-6 flex flex-col justify-center items-center" id="menuPage">
+            <h1 class="text-xl md:text-2xl font-bold mb-4">Simulation of pushdown automata</h1>
             <div class="flex flex-row">
                 <button class="aspect-square bg-slate-200 mx-2 sm:mx-4 mt-4 p-4 h-20 rounded-md flex flex-col justify-center items-center" id="newAutomataButton">
                     <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -25,7 +25,7 @@
                     </svg>
                     <span>Upload</span>
                 </button>
-                <button class="aspect-square bg-slate-200 mx-2 sm:mx-4 mt-4  p-4 h-20 rounded-md flex flex-col justify-center items-center" id="savedAutomatasButton">
+                <button class="aspect-square bg-slate-200 mx-2 sm:mx-4 mt-4 p-4 h-20 rounded-md flex flex-col justify-center items-center" id="savedAutomatasButton">
                     <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12.6l3-8a1 1 0 0 1 1-.6h12V9a2 2 0 0 0-2-2h-4.5l-2-2.3A2 2 0 0 0 8 4H4Zm2.7 8h-.2l-3 8H18l3-8H6.7Z" clip-rule="evenodd"/>
                     </svg>
@@ -35,16 +35,16 @@
         </div>
 
         <!--New automata definition-->
-        <div class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-20 w-20 bg-black" id="newAutomataPage">
+        <div class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-20 w-20 bg-blue-300" id="newAutomataPage">
 
         </div>
 
         <!--Saved automata-->
-        <div class="hidden flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-white max-h-[100vh]" id="savedAutamatasPage">
+        <div class="hidden flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 max-h-[100vh]" id="savedAutamatasPage">
             <div class="flex flex-row justify-between">
-                <h1 class="text-xl font-bold mb-4">Saved automatas</h1>
-                <button class="flex flex-row" id="savedAutomatasBackButton">
-                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <h1 class="text-xl md:text-2xl font-bold mb-4">Saved automatas</h1>
+                <button class="flex flex-row mb-4 justify-center items-center" id="savedAutomatasBackButton">
+                    <svg class="w-6 h-6 pr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
                     </svg>
                     Go back
@@ -66,9 +66,9 @@
         </div>
 
         <!--Automata overview-->
-        <div class="hidden flex-col absolute z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-white max-h-[100vh]" id="automataOverviewPage">
-            <h1 class="text-xl font-bold mb-2 mx-auto" id="overviewName"></h1>
-            <table class="border-collapse table-auto m-5 border border-black">
+        <div class="hidden flex-col absolute z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 max-h-[100vh]" id="automataOverviewPage">
+            <h1 class="text-xl md:text-2xl font-bold mb-2 mx-auto" id="overviewName"></h1>
+            <table class="border-collapse table-auto m-2 md:m-4 mx-auto border border-black">
                 <thead>
                     <tr>
                         <th class="font-bold p-2 pl-4 md:pl-8 text-left border border-black">Property</th>
@@ -102,7 +102,7 @@
                     </tr>
                     <tr>
                         <th class="font-bold p-2 pl-4 md:pl-8 text-left border border-black">Transition Functions</th>
-                        <td class="p-2 pl-4 md:pl-8 text-left border border-black" id="overviewTranstionFunction"></td>
+                        <td class="p-2 pl-4 md:pl-8 text-left border flex flex-col justify-start items-start" id="overviewTranstionFunction"></td>
                     </tr>
                 </tbody>
             </table>
@@ -112,13 +112,18 @@
         <!--Load file-->
         <div class="hidden flex-col absolute z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-white max-h-[100vh]" id="loadAutomataPage">
             <h1 class="text-xl font-bold mb-2 mx-auto">Load automata from file</h1>
-            <form method=POST enctype=multipart/form-data id="loadFileForm" class="flex flex-col">
-                <label for="loadKeyInput">Automata name/key:</label>
-                <input id="loadKeyInput" type="text" required>
-                <input type="file" name="file" id="loadFileInput" required>
-                <input type="submit" value="Load">
+            <form method=POST enctype=multipart/form-data id="loadFileForm" class="flex flex-col m-4">
+                <label for="loadKeyInput" class="mb-2">
+                    <span>Automata name/key:</span>
+                    <input id="loadKeyInput" type="text" required class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black">
+                </label>
+                <label for="loadFileInput" class="mb-2">
+                    <span>File:</span>
+                    <input type="file" name="file" id="loadFileInput" required>
+                </label>
+                <input type="submit" value="Load" class="mx-auto w-36 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold">
             </form>
-            <button class="mx-auto px-4 py-2 rounded-full bg-blue-600" id="hideLoadButton">Go back</button>
+            <button class="mx-auto w-36 py-2 rounded bg-red-500 hover:bg-red-700 text-white font-bold" id="hideLoadButton">Cancel</button>
         </div>
 
     </div>
@@ -262,6 +267,5 @@
     </div>
     
 <script src="./app-bundle.js"></script>
-
 </body>
 </html>

@@ -2,6 +2,7 @@ var divAutomataDefinition: HTMLDivElement;
 var divTransitionHistory: HTMLDivElement;
 var infoDiv: HTMLDivElement;
 export var mainPage: HTMLDivElement;
+export var menuPage: HTMLDivElement;
 export var newAutomataPage: HTMLDivElement;
 export var savedAutomatasPage: HTMLDivElement;
 export var simulatorPage: HTMLDivElement;
@@ -25,6 +26,7 @@ export function registerEvents(): void {
     divTransitionHistory = document.getElementById("transitionHistoryDiv") as HTMLDivElement;
     infoDiv = document.getElementById("infoDiv") as HTMLDivElement;
     mainPage = document.getElementById("mainPage") as HTMLDivElement;
+    menuPage = document.getElementById("menuPage") as HTMLDivElement;
     newAutomataPage = document.getElementById("newAutomataPage") as HTMLDivElement;
     savedAutomatasPage = document.getElementById("savedAutamatasPage") as HTMLDivElement;
     simulatorPage = document.getElementById("simulatorPage") as HTMLDivElement;
@@ -46,22 +48,22 @@ export function registerEvents(): void {
     document.getElementById("hideInfoButton")?.addEventListener("click", infoDivSwitch);
 
     document.getElementById("newAutomataButton")?.addEventListener("click", () => {
-        mainPage.style.display = "none";
+        menuPage.style.display = "none";
         newAutomataPage.style.display = "flex";
     });
 
     document.getElementById("uploadAutomataButton")?.addEventListener("click", () => {
-        mainPage.style.display = "none";
+        menuPage.style.display = "none";
         loadAutomataPage.style.display = "flex";
     });
 
     document.getElementById("savedAutomatasButton")?.addEventListener("click", () => {
-        mainPage.style.display = "none";
+        menuPage.style.display = "none";
         savedAutomatasPage.style.display = "flex";
     });
 
     document.getElementById("savedAutomatasBackButton")?.addEventListener("click", () => {
-        mainPage.style.display = "flex";
+        menuPage.style.display = "flex";
         savedAutomatasPage.style.display = "none";
     });
 
@@ -71,7 +73,7 @@ export function registerEvents(): void {
     });
 
     document.getElementById("hideLoadButton")?.addEventListener("click", () => {
-        mainPage.style.display = "flex";
+        menuPage.style.display = "flex";
         loadAutomataPage.style.display = "none";
     });
 }

@@ -1,0 +1,112 @@
+{
+    "states": [
+      {
+        "value": "q1"
+      },
+      {
+        "value": "q2"
+      }
+    ],
+    "inputSymbols": [
+      {
+        "isEpsylon": false,
+        "value": "a"
+      },
+      {
+        "isEpsylon": false,
+        "value": "b"
+      }
+    ],
+    "stackSymbols": [
+      {
+        "value": "O"
+      },
+      {
+        "value": "I"
+      }
+    ],
+    "initialState": {
+      "value": "q1"
+    },
+    "initialStackSymbol": {
+      "value": "O"
+    },
+    "acceptingState": null,
+    "transitionFunction": [
+      {
+        "fromState": {
+          "value": "q1"
+        },
+        "inputSymbol": {
+          "isEpsylon": false,
+          "value": "a"
+        },
+        "startSymbol": {
+          "value": "O"
+        },
+        "toState": {
+          "value": "q1"
+        },
+        "pushedSymbols": [
+          {
+            "value": "I"
+          }
+        ]
+      },
+      {
+        "fromState": {
+          "value": "q1"
+        },
+        "inputSymbol": {
+          "isEpsylon": false,
+          "value": "a"
+        },
+        "startSymbol": {
+          "value": "I"
+        },
+        "toState": {
+          "value": "q1"
+        },
+        "pushedSymbols": [
+          {
+            "value": "I"
+          },
+          {
+            "value": "I"
+          }
+        ]
+      },
+      {
+        "fromState": {
+          "value": "q1"
+        },
+        "inputSymbol": {
+          "isEpsylon": false,
+          "value": "b"
+        },
+        "startSymbol": {
+          "value": "I"
+        },
+        "toState": {
+          "value": "q2"
+        },
+        "pushedSymbols": []
+      },
+      {
+        "fromState": {
+          "value": "q2"
+        },
+        "inputSymbol": {
+          "isEpsylon": false,
+          "value": "b"
+        },
+        "startSymbol": {
+          "value": "I"
+        },
+        "toState": {
+          "value": "q2"
+        },
+        "pushedSymbols": []
+      }
+    ]
+  }

@@ -1,4 +1,5 @@
 export declare var mainPage: HTMLDivElement;
+export declare var menuPage: HTMLDivElement;
 export declare var newAutomataPage: HTMLDivElement;
 export declare var savedAutomatasPage: HTMLDivElement;
 export declare var simulatorPage: HTMLDivElement;

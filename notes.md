@@ -191,7 +191,13 @@ class PushdownAutomata{
 
 ### 2.2.2024
 
-- Modal - confirm
-- Modal - Error
-- Nastavení automatu do simulátoru
-- Nastylování main page
+- Modal - confirm ✗
+- Modal - Error ✗
+- Nastavení automatu do simulátoru ✓
+- Nastylování main page 
+
+### 3.2.2024
+
+- Možnost nastavení pásky
+- Přepnutí zpět ze simulátoru do menu
+- URL - menu vs automat
