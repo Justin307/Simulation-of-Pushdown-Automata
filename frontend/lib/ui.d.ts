@@ -10,6 +10,8 @@ export declare class UI {
     state?: HTMLDivElement;
     infoButton?: HTMLButtonElement;
     transitionOptions?: HTMLDivElement;
+    tapeFormError?: HTMLParagraphElement;
+    tapeForm?: HTMLDivElement;
     tapePosition: number;
     isChoosing: boolean;
     isRunnig: boolean;
@@ -19,6 +21,8 @@ export declare class UI {
     constructor(automata?: PushdownAutomata);
     setAutomata(automata: PushdownAutomata): void;
     registerEvents(): void;
+    private setTapeForm;
+    private checkTapeInputValidity;
     static generateTransitionFunction(f: TransitionFunction): HTMLDivElement;
     fillInformation(): void;
     addToHistory(f: TransitionFunction): void;

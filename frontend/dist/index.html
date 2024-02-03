@@ -127,11 +127,26 @@
                 </div>
             </form>
         </div>
-
     </div>
 
     <div class="hidden container mx-auto md:py-10 flex-row md:flex-col h-screen max-h-screen relative" id="simulatorPage">
-        <div class="absolute top-0 md:top-10 left-0 md:h-20 w-20 md:w-auto md:right-auto flex md:p-1 flex-row md:flex-col justify-center items-center">
+        <div class="absolute top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center bg-[rgba(255,255,255,0.5)]" id="tapeFormModal">
+            <div class="bg-white flex flex-col justify-center items-center min-w-52 sm:min-w-64 md:min-w-80 p-4">
+                <form method="POST" id="setTape">
+                    <label for="tapeInput">
+                        <span>Tape:</span>
+                        <input id="tapeInput" type="text" required class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black mb-2">
+                        <p class="hidden font-bold text-red-600" id="tapeFormError">Error: Invalid symbol</p>                   
+                    </label>
+                    <div class="flex flex-row mt-4">
+                        <button class="mx-auto w-36 py-2 rounded bg-slate-200 hover:bg-slate-300 font-bold mr-1" id="hideSetTapeButton" type="button">Close</button>
+                        <input type="submit" value="Set" class="ml-1 w-36 py-2 rounded bg-green-500 hover:bg-green-700 text-white font-bold">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="absolute top-0 md:top-10 left-0 z-5 md:h-20 w-20 md:w-auto md:right-auto flex md:p-1 flex-row md:flex-col justify-center items-center">
             <div class="text-sm font-bold">T</div>
             <div class="text-sm font-bold">A</div>
             <div class="text-sm font-bold">P</div>
@@ -170,6 +185,16 @@
                     </div>
                     <div class="bg-purple-200">
                         <div class="flex flex-col items-center p-2 md:p-5">
+                            <div class="w-full mb-2">
+                                <button class="w-full flex py-4 justify-center items-center bg-red-200 font-bold" id="closeSimulatorButton">
+                                    End simulation
+                                </button>
+                            </div>
+                            <div class="w-full mb-2">
+                                <button class="w-full flex py-4 justify-center items-center bg-teal-200 font-bold" id="showTapeModalButton">
+                                    Set new tape
+                                </button>
+                            </div>
                             <div class="flex flex-row justify-center max-h-52">
                                 <button class="p-1 sm:m-1" id="buttonBackAuto">
                                     <svg class="w-[24px] h-[24px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 12 16">
@@ -209,7 +234,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grow hidden md:flex flex-col bg-cyan-200 z-50" id="infoDiv">
+                <div class="grow hidden md:flex flex-col bg-cyan-200 z-10" id="infoDiv">
                     <div class="w-full flex flex-row">
                         <button class="basis-1/2 flex justify-center items-center bg-neutral-400 h-10" id="automataDefinitionButton">Automata</button>
                         <button class="basis-1/2 flex justify-center items-center bg-neutral-600 h-10" id="transitionHistoryButton">History</button>

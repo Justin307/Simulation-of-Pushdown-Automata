@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ui = new UI();
     storage = new Storage(ui);
     registerEvents();
-    ui.registerEvents
+    ui.registerEvents();
     storage.registerEvents();
     storage.printAutomatas();
     ui.setTape("aabb");

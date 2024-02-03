@@ -198,9 +198,9 @@ class PushdownAutomata{
 
 ### 3.2.2024
 
-- Možnost nastavení pásky
-- Přepnutí zpět ze simulátoru do menu
-- URL - menu vs automat
+- Možnost nastavení pásky ✓
+- Přepnutí zpět ze simulátoru do menu ✓
+- URL - menu vs automat ✗
 
 ### 4.2.2024
 - Začátek práce na formuláři Zadání nového automatu

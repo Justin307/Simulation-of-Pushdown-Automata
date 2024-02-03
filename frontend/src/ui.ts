@@ -1,6 +1,7 @@
 import { PushdownAutomataSimulator } from "./pushdownAutomataSimulator";
 import { PushdownAutomata } from "./pushdownAutomata";
 import { TransitionFunction, InputSymbol, StackSymbol, State } from "./pushdownAutomataTypes";
+import { mainPage, simulatorPage } from "./events";
 
 export class UI{
     simulator?: PushdownAutomataSimulator;
@@ -10,6 +11,8 @@ export class UI{
     state?: HTMLDivElement;
     infoButton?: HTMLButtonElement;
     transitionOptions?: HTMLDivElement;
+    tapeFormError?: HTMLParagraphElement;
+    tapeForm?: HTMLDivElement;
 
     tapePosition: number = 0;
 
@@ -32,12 +35,17 @@ export class UI{
         this.state = document.getElementById("stateDiv") as HTMLDivElement;
         this.infoButton = document.getElementById("showInfoButton") as HTMLButtonElement;
         this.transitionOptions = document.getElementById("transitionOptions") as HTMLDivElement;
+        this.tapeFormError = document.getElementById("tapeFormError") as HTMLParagraphElement;
+        this.tapeForm = document.getElementById("tapeFormModal") as HTMLDivElement;
     }
 
     setAutomata(automata: PushdownAutomata): void{
         this.simulator = new PushdownAutomataSimulator(automata);
         this.fillInformation();
         this.resetUI();
+        if(this.tapeForm){
+            this.tapeForm.style.display = "flex";
+        }
     }
 
     registerEvents(): void{
@@ -71,8 +79,62 @@ export class UI{
             }
             this.isRunnig = false;
         });
+        document.getElementById("showTapeModalButton").addEventListener("click", () => {
+            if(this.tapeForm)
+            {
+                this.tapeForm.style.display = "flex";
+            }
+        });
+        document.getElementById("hideSetTapeButton")?.addEventListener("click", () => {
+            if(this.tapeForm)
+            {
+                this.tapeForm.style.display = "none";
+            }
+        });
+        document.getElementById("setTape").addEventListener("submit", this.setTapeForm.bind(this));
+        document.getElementById("tapeInput")?.addEventListener("input", (event: InputEvent) => {
+            let tapeInput: string = (event.target as HTMLInputElement).value;
+            this.checkTapeInputValidity(tapeInput);
+        });
+        document.getElementById("closeSimulatorButton")?.addEventListener("click", () => {
             
+            simulatorPage.style.display = "none";
+            mainPage.style.display = "flex";
+            if(this.timeout){
+                clearTimeout(this.timeout);
+                this.timeout = null;
+            }
+        });
     }
+
+    private setTapeForm(event: SubmitEvent): void{
+        event.preventDefault();
+        let form = event.target as HTMLFormElement;
+        let tapeInput = form.elements.namedItem("tapeInput") as HTMLInputElement;
+        if(this.checkTapeInputValidity(tapeInput.value)){
+            this.setTape(tapeInput.value);
+            if(this.tapeForm){
+                this.tapeForm.style.display = "none";
+            }
+        }
+        return;
+    }
+
+    private checkTapeInputValidity(tapeInput: string): boolean{
+        console.log("Checking tape input");
+        if(!this.simulator)
+            return false;
+        let allowed = this.simulator.automata.inputSymbols.map((s) => s.value);
+        for(let s of tapeInput){
+            if(!allowed.includes(s)){
+                this.tapeFormError?.classList.remove("hidden");
+                //TODO Print valid symbols
+                return false;
+            }
+        }
+        this.tapeFormError?.classList.add("hidden");
+        return true;
+    };
 
     static generateTransitionFunction(f: TransitionFunction): HTMLDivElement {
         let res = document.createElement("div") as HTMLDivElement;
@@ -244,6 +306,16 @@ export class UI{
             if(this.simulator.automata.initialStackSymbol){
                 this.addToStack(this.simulator.automata.initialStackSymbol);
             }
+        }
+
+        this.isChoosing = false;
+        this.isRunnig = false;
+        this.directionForward = true;
+        this.speed = 1000;
+        if(this.timeout)
+        {
+            clearTimeout(this.timeout);
+            this.timeout = null;
         }
     }
 

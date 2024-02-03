@@ -74,8 +74,17 @@ export class PushdownAutomataSimulator{
             return [];
         }
 
-        let possibleTransitionFunctions: TransitionFunction[] = this.automata.getTransitionFunctions(this.inputTape[0], this.currentState, this.stack.top());
-
+        console.log(this.inputTape[0], this.currentState, this.stack.top());
+        console.log(this.automata);
+        console.log(typeof this.automata);
+        console.log(typeof this.automata.getTransitionFunctions);
+        let possibleTransitionFunctions: TransitionFunction[]
+        if(this.inputTape === ""){
+            possibleTransitionFunctions = this.automata.getTransitionFunctions("", this.currentState, this.stack.top());
+        }
+        else{
+            possibleTransitionFunctions = this.automata.getTransitionFunctions(this.inputTape[0], this.currentState, this.stack.top());
+        }
         return possibleTransitionFunctions;
     }
 

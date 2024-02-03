@@ -106,7 +106,7 @@ export class Storage{
     }
 
     loadAutomata(key: string): PushdownAutomata | null{
-        return this.load<PushdownAutomata>(key);
+        return Object.setPrototypeOf(this.load<PushdownAutomata>(key),PushdownAutomata.prototype);
     }
 
     private insertRow(key: string){
