@@ -203,4 +203,10 @@ class PushdownAutomata{
 - URL - menu vs automat ✗
 
 ### 4.2.2024
-- Začátek práce na formuláři Zadání nového automatu
+
+- Začátek práce na formuláři Zadání nového automatu ✓
+
+### 5.2.2024
+
+- Práce na TODOes z přechozího dne (form/select handlery, výppis výsledků, validace, ...)
+

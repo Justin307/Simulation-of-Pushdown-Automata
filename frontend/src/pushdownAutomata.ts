@@ -6,6 +6,7 @@ export class PushdownAutomata{
     inputSymbols: InputSymbol[];
     stackSymbols: StackSymbol[];
     initialState: State;
+    //FIX Delete null and fix coresponding functions
     initialStackSymbol: StackSymbol | null;
     acceptingState: State[] | null;
     transitionFunction: TransitionFunction[];
