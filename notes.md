@@ -208,5 +208,9 @@ class PushdownAutomata{
 
 ### 5.2.2024
 
-- Práce na TODOes z přechozího dne (form/select handlery, výppis výsledků, validace, ...)
+- Práce na TODOes z přechozího dne (form/select handlery, výppis výsledků, validace, ...) ✓
+
+### 6.2.2024
+
+- Práce na zbylých TODOes ve formuláři
 
