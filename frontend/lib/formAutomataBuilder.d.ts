@@ -22,6 +22,9 @@ export declare class FormAutomataBuilder {
     private initialStackSymbolError;
     private acceptingStateError;
     private transitionFunctionError;
+    private keyboardState;
+    private keyboardInputSymbol;
+    private keyboardStackSymbol;
     constructor();
     registerEvents(): void;
     reset(): void;
@@ -32,15 +35,18 @@ export declare class FormAutomataBuilder {
     initialStackSymbolChangeHandler(event: Event): void;
     acceptingStateEmptyChangeHandler(event: Event): void;
     acceptingStatesChangeHandler(event: Event): void;
+    transitionFunctionAddHandler(event: Event): void;
     newItem<T extends itemType>(compareFunction: (arg1: T, arg2: T) => boolean, item: T, type: string): void;
-    deleteState(item: State, div: HTMLDivElement): void;
-    deleteInputSymbol(item: InputSymbol, div: HTMLDivElement): void;
-    deleteStackSymbol(item: StackSymbol, div: HTMLDivElement): void;
-    stateAdded(item: State): void;
-    inputSymbolAdded(item: InputSymbol): void;
-    stackSymbolAdded(item: StackSymbol): void;
+    deleteState(item: State, div: HTMLDivElement, keyboardButton: HTMLButtonElement): void;
+    deleteInputSymbol(item: InputSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement): void;
+    deleteStackSymbol(item: StackSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement): void;
+    stateAdded(item: State, keyboardButton: HTMLButtonElement): void;
+    inputSymbolAdded(item: InputSymbol, keyboardButton: HTMLButtonElement): void;
+    stackSymbolAdded(item: StackSymbol, keyboardButton: HTMLButtonElement): void;
     stateDeleted(item: State): void;
     inputSymbolDeleted(item: InputSymbol): void;
     stackSymbolDeleted(item: StackSymbol): void;
+    createKeyboardButton(item: itemType): HTMLButtonElement;
+    keyboardButtonPressed(event: Event): void;
 }
 export {};

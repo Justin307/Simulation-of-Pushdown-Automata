@@ -28,6 +28,10 @@ export class FormAutomataBuilder {
     private acceptingStateError: HTMLParagraphElement;
     private transitionFunctionError: HTMLParagraphElement;
 
+    private keyboardState: HTMLDivElement;
+    private keyboardInputSymbol: HTMLDivElement;
+    private keyboardStackSymbol: HTMLDivElement;
+
 
     constructor(){
         this.states = [];
@@ -44,7 +48,6 @@ export class FormAutomataBuilder {
         this.initialStateSelect = document.getElementById('newAutomataInitialStateSelect') as HTMLSelectElement;
         this.initialStackSymbolSelect = document.getElementById('newAutomataInitialStackSymbolSelect') as HTMLSelectElement;
         this.acceptingStatesSelect = document.getElementById('newAutomataAcceptingStatesSelect') as HTMLSelectElement;
-        //TODO: Transition functions
 
         this.stateError = document.getElementById('stateError') as HTMLParagraphElement;
         this.inputSymbolError = document.getElementById('inputSymbolError') as HTMLParagraphElement;
@@ -53,6 +56,10 @@ export class FormAutomataBuilder {
         this.initialStackSymbolError = document.getElementById('initialStackSymbolError') as HTMLParagraphElement;
         this.acceptingStateError = document.getElementById('acceptingStateError') as HTMLParagraphElement;
         this.transitionFunctionError = document.getElementById('transitionFunctionError') as HTMLParagraphElement;
+    
+        this.keyboardState = document.getElementById('keyboardState') as HTMLDivElement;
+        this.keyboardInputSymbol = document.getElementById('keyboardInputSymbol') as HTMLDivElement;
+        this.keyboardStackSymbol = document.getElementById('keyboardStackSymbol') as HTMLDivElement;
     }
 
     registerEvents(){
@@ -63,6 +70,7 @@ export class FormAutomataBuilder {
         this.initialStackSymbolSelect.addEventListener('change', this.initialStackSymbolChangeHandler.bind(this));
         document.getElementById('acceptanceEmptyStackCheckBox')?.addEventListener('click', this.acceptingStateEmptyChangeHandler.bind(this));
         this.acceptingStatesSelect.addEventListener('change', this.acceptingStatesChangeHandler.bind(this));
+        document.getElementById("addTransitionFunction")?.addEventListener('click', this.transitionFunctionAddHandler.bind(this));
     }
 
     reset(){
@@ -135,7 +143,6 @@ export class FormAutomataBuilder {
             value: inputValue,
         };
         this.newItem<StackSymbol>(compareStackSymbol, item, 'StackSymbol');
-        
     };
 
     initialStateChangeHandler(event: Event){
@@ -200,6 +207,11 @@ export class FormAutomataBuilder {
         console.log(this.acceptingStates);
     };
 
+    transitionFunctionAddHandler(event: Event){
+        event.preventDefault();
+        //TODO: Check all five parts and save
+    }
+
     newItem<T extends itemType>(compareFunction: (arg1: T, arg2: T) => boolean, item: T, type: string): void{
         let arr : T[];
         let error: HTMLParagraphElement;
@@ -236,21 +248,21 @@ export class FormAutomataBuilder {
             button.classList.add('rounded-full', 'bg-slate-300', 'w-6', 'h-6');
             button.innerText = 'X';
             div.append(button);
+            let keyboardButton = this.createKeyboardButton(item);
             if(type === 'State'){
-                button.addEventListener('click', this.deleteState.bind(this, item, div));
+                button.addEventListener('click', this.deleteState.bind(this, item, div, keyboardButton));
                 this.statesDiv.append(div);
-                this.stateAdded(item as State);
+                this.stateAdded(item as State, keyboardButton);
             } else if(type === 'InputSymbol'){
-                button.addEventListener('click', this.deleteInputSymbol.bind(this, item, div));
+                button.addEventListener('click', this.deleteInputSymbol.bind(this, item, div, keyboardButton));
                 this.inputSymbolDiv.append(div);
-                this.inputSymbolAdded(item as InputSymbol);
+                this.inputSymbolAdded(item as InputSymbol, keyboardButton);
             } else if(type === 'StackSymbol'){
-                button.addEventListener('click', this.deleteStackSymbol.bind(this, item, div));
+                button.addEventListener('click', this.deleteStackSymbol.bind(this, item, div, keyboardButton));
                 this.stackSymbolDiv.append(div);
-                this.stackSymbolAdded(item as StackSymbol);
+                this.stackSymbolAdded(item as StackSymbol, keyboardButton);
             }
             error.style.display = 'none';
-            //TODO: Update others
         }
         else{
             error.style.display = 'block';
@@ -258,53 +270,58 @@ export class FormAutomataBuilder {
         }
     }
 
-    deleteState(item: State, div: HTMLDivElement){
+    deleteState(item: State, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
         this.statesDiv.removeChild(div);
         this.states.splice(this.states.indexOf(item), 1);
         this.stateDeleted(item);
-        //TODO: Update others
+        keyboardButton.remove();
+        //TODO: Clear div
     }
 
-    deleteInputSymbol(item: InputSymbol, div: HTMLDivElement){
+    deleteInputSymbol(item: InputSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
         this.inputSymbolDiv.removeChild(div);
         this.inputSymbols.splice(this.inputSymbols.indexOf(item), 1);
         this.inputSymbolDeleted(item);
-        //TODO: Update others
+        keyboardButton.remove();
+        //TODO: Clear div
     }
 
-    deleteStackSymbol(item: StackSymbol, div: HTMLDivElement){
+    deleteStackSymbol(item: StackSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
         this.stackSymbolDiv.removeChild(div);
         this.stackSymbols.splice(this.stackSymbols.indexOf(item), 1);
         this.stackSymbolDeleted(item);
-        //TODO: Update others
+        keyboardButton.remove();
+        //TODO: Clear div
     }
 
-    stateAdded(item: State){
+    stateAdded(item: State, keyboardButton: HTMLButtonElement){
         let option = document.createElement('option');
         option.value = item.value;
         option.innerText = item.value;
         option.id = "initialStateOption" + item.value;
         this.initialStateSelect.append(option);
+
         option = document.createElement('option');
         option.value = item.value;
         option.innerText = item.value;
         option.id = "acceptingStateOption" + item.value;
         this.acceptingStatesSelect.append(option);
-        //TODO: Add to transition function
+
+        this.keyboardState.append(keyboardButton);
     };
     
-    inputSymbolAdded(item: InputSymbol){
-        //TODO: Add to transition function
+    inputSymbolAdded(item: InputSymbol, keyboardButton: HTMLButtonElement){
+        this.keyboardInputSymbol.append(keyboardButton);
     };
 
-    stackSymbolAdded(item: StackSymbol){
+    stackSymbolAdded(item: StackSymbol, keyboardButton: HTMLButtonElement){
         let option = document.createElement('option');
         option.value = item.value;
         option.innerText = item.value;
         option.id = "stackSymbolOption" + item.value;
         this.initialStackSymbolSelect.append(option);
-        //TODO: Add to transition function
-        //TODO: Check already defined transition functions
+
+        this.keyboardStackSymbol.append(keyboardButton);
     };
 
     stateDeleted(item: State){
@@ -335,4 +352,15 @@ export class FormAutomataBuilder {
         //TODO: Check already defined transition functions
     };
 
+    createKeyboardButton(item: itemType): HTMLButtonElement{
+        let button = document.createElement('button');
+        button.classList.add('flex', 'justify-center', 'items-center', 'px-2', 'h-8', 'bg-slate-100', 'm-1');
+        button.innerText = item.value ?? 'ε';
+        button.addEventListener('click', this.keyboardButtonPressed.bind(this));
+        return button;
+    }
+    
+    keyboardButtonPressed(event: Event){
+        event.preventDefault();
+    }
 }

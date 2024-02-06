@@ -140,31 +140,18 @@
                     <p id="transitionToState" class="mr-1 py-2 px-4 min-h-8 bg-slate-100">q1</p>
                     <p id="transitionPushSymbols" class="mr-1 py-2 px-4 min-h-8 bg-slate-100">II</p>
                 </div>
-                <p id="transitionFunctionError" class="hidden text-red-600 font-bold ml-4">Error: Transition function already exists</p>
-                <div class="flex flex-row">
-                    <button class="flex justify-center items-center w-8 h-8 bg-slate-100 m-1">
-                        A
-                    </button>
-                    <button class="flex justify-center items-center w-8 h-8 bg-slate-100 m-1">
-                        A
-                    </button>
+                <p id="transitionFunctionError" class="hidden text-red-600 font-bold ml-4">Error: Invalid or duplicate transition function</p>
+                <div class="flex flex-row" id="keyboardState">
+                    
                 </div>
-                <div class="flex flex-row">
-                    <button class="flex justify-center items-center w-8 h-8 bg-slate-100 m-1">
-                        A
-                    </button>
-                    <button class="flex justify-center items-center w-8 h-8 bg-slate-100 m-1">
-                        A
-                    </button>
+                <div class="flex flex-row" id="keyboardInputSymbol">
+                    
                 </div>
-                <div class="flex flex-row">
-                    <button class="flex justify-center items-center w-8 h-8 bg-slate-100 m-1">
-                        A
-                    </button>
-                    <button class="flex justify-center items-center w-8 h-8 bg-slate-100 m-1">
-                        A
-                    </button>
+                <div class="flex flex-row" id="keyboardStackSymbol">
+                    
                 </div>
+                <button class="mt-2 py-2 rounded bg-green-500 hover:bg-green-700 text-white font-bold">Add transition function</button>
+                
                 <div class="flex flex-row flex-wrap mx-2 mb-4" id="newAutomataTranstitionFunctions">
                     
                 </div>
