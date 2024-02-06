@@ -37,6 +37,10 @@ export declare class FormAutomataBuilder {
     deleteInputSymbol(item: InputSymbol, div: HTMLDivElement): void;
     deleteStackSymbol(item: StackSymbol, div: HTMLDivElement): void;
     stateAdded(item: State): void;
+    inputSymbolAdded(item: InputSymbol): void;
+    stackSymbolAdded(item: StackSymbol): void;
     stateDeleted(item: State): void;
+    inputSymbolDeleted(item: InputSymbol): void;
+    stackSymbolDeleted(item: StackSymbol): void;
 }
 export {};

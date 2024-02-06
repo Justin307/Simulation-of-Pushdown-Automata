@@ -65,7 +65,6 @@ export class FormAutomataBuilder {
         this.acceptingStatesSelect.addEventListener('change', this.acceptingStatesChangeHandler.bind(this));
     }
 
-    //TODO: Test
     reset(){
         //divs
         this.statesDiv.innerHTML = '';
@@ -77,10 +76,23 @@ export class FormAutomataBuilder {
         (document.getElementById('inputSymbolInput') as HTMLInputElement).value = '';
         (document.getElementById('stackSymbolInput') as HTMLInputElement).value = '';
         //selects
-        //FIXME: Change to createElement()
-        this.initialStateSelect.innerHTML = '<option value="" disabled selected hidden>Choose initial state ...</option>';
-        this.initialStackSymbolSelect.innerHTML = '<option value="" disabled selected hidden>Choose initial stack symbol...</option>';
-        this.acceptingStatesSelect.innerHTML = '<option value="" disabled selected hidden>Choose accepting states...</option>';
+        let option = document.createElement('option');
+        option.value = '';
+        option.innerText = 'Choose initial state ...';
+        option.disabled = true;
+        option.selected = true;
+        option.hidden = true;
+        this.initialStateSelect.innerHTML = '';
+        this.initialStateSelect.append(option);
+        option = document.createElement('option');
+        option.value = '';
+        option.innerText = 'Choose initial stack symbol...';
+        option.disabled = true;
+        option.selected = true;
+        option.hidden = true;
+        this.initialStackSymbolSelect.innerHTML = '';
+        this.initialStackSymbolSelect.append(option);
+        this.acceptingStatesSelect.innerHTML = '';
         this.acceptingStatesSelect.disabled = true;
         //checkbox
         (document.getElementById('acceptanceEmptyStackCheckBox') as HTMLInputElement).checked = true;
@@ -143,17 +155,49 @@ export class FormAutomataBuilder {
 
     initialStackSymbolChangeHandler(event: Event){
         event.preventDefault();
-        //TODO: Update initial stack symbol
+        let select = event.target as HTMLSelectElement;
+        let selectedOption = select.options[select.selectedIndex];
+        if(selectedOption.value === ''){
+            this.initialStackSymbol = undefined;
+        }
+        else{
+            let item = {
+                value: selectedOption.value
+            }
+            this.initialStackSymbol = item;
+        }
     };
 
     acceptingStateEmptyChangeHandler(event: Event){
-        //TODO: Change select visibility
-        //TODO: Update accepting states
+        let checkbox = event.target as HTMLInputElement;
+        if(checkbox.checked){
+            for(let a of this.states){
+                let option = this.acceptingStatesSelect.options.namedItem("acceptingStateOption" + a.value);
+                if(option){
+                    option.selected = false;
+                }
+            }
+            this.acceptingStates = null;
+            this.acceptingStatesSelect.disabled = true;
+        }
+        else{
+            this.acceptingStates = [];
+            this.acceptingStatesSelect.disabled = false;
+        }
     };
 
     acceptingStatesChangeHandler(event: Event){
         event.preventDefault();
-        //TODO: Update accepting states
+        this.acceptingStates = [];
+        for(let a of this.states){
+            let option = this.acceptingStatesSelect.options.namedItem("acceptingStateOption" + a.value);
+            if(option){
+                if(option.selected){
+                    this.acceptingStates?.push(a);
+                }
+            }
+        }
+        console.log(this.acceptingStates);
     };
 
     newItem<T extends itemType>(compareFunction: (arg1: T, arg2: T) => boolean, item: T, type: string): void{
@@ -197,13 +241,13 @@ export class FormAutomataBuilder {
                 this.statesDiv.append(div);
                 this.stateAdded(item as State);
             } else if(type === 'InputSymbol'){
-                //TODO: Change function and div
                 button.addEventListener('click', this.deleteInputSymbol.bind(this, item, div));
                 this.inputSymbolDiv.append(div);
+                this.inputSymbolAdded(item as InputSymbol);
             } else if(type === 'StackSymbol'){
-                //TODO: Change function
                 button.addEventListener('click', this.deleteStackSymbol.bind(this, item, div));
                 this.stackSymbolDiv.append(div);
+                this.stackSymbolAdded(item as StackSymbol);
             }
             error.style.display = 'none';
             //TODO: Update others
@@ -218,17 +262,20 @@ export class FormAutomataBuilder {
         this.statesDiv.removeChild(div);
         this.states.splice(this.states.indexOf(item), 1);
         this.stateDeleted(item);
+        //TODO: Update others
     }
 
     deleteInputSymbol(item: InputSymbol, div: HTMLDivElement){
         this.inputSymbolDiv.removeChild(div);
         this.inputSymbols.splice(this.inputSymbols.indexOf(item), 1);
+        this.inputSymbolDeleted(item);
         //TODO: Update others
     }
 
     deleteStackSymbol(item: StackSymbol, div: HTMLDivElement){
         this.stackSymbolDiv.removeChild(div);
         this.stackSymbols.splice(this.stackSymbols.indexOf(item), 1);
+        this.stackSymbolDeleted(item);
         //TODO: Update others
     }
 
@@ -245,10 +292,45 @@ export class FormAutomataBuilder {
         this.acceptingStatesSelect.append(option);
         //TODO: Add to transition function
     };
+    
+    inputSymbolAdded(item: InputSymbol){
+        //TODO: Add to transition function
+    };
+
+    stackSymbolAdded(item: StackSymbol){
+        let option = document.createElement('option');
+        option.value = item.value;
+        option.innerText = item.value;
+        option.id = "stackSymbolOption" + item.value;
+        this.initialStackSymbolSelect.append(option);
+        //TODO: Add to transition function
+        //TODO: Check already defined transition functions
+    };
 
     stateDeleted(item: State){
-        this.initialStateSelect.options.namedItem("initialStateOption" + item.value).remove();
-        this.acceptingStatesSelect.options.namedItem("acceptingStateOption" + item.value).remove();
+        let option = this.initialStateSelect.options.namedItem("initialStateOption" + item.value)
+        if(option && option.selected){
+            option.remove();
+            this.initialStateSelect.options[0].selected = true;
+        }
+        let option2 = this.acceptingStatesSelect.options.namedItem("acceptingStateOption" + item.value)
+        if(option2 && option2.selected){
+            option2.remove();
+        }
+        //TODO: Delete from transition function
+        //TODO: Check already defined transition functions
+    };
+
+    inputSymbolDeleted(item: InputSymbol){
+        //TODO: Delete from transition function
+        //TODO: Check already defined transition functions
+    };
+
+    stackSymbolDeleted(item: StackSymbol){
+        let option = this.initialStateSelect.options.namedItem("stackSymbolOption" + item.value)
+        if(option && option.selected){
+            option.remove();
+        }
         //TODO: Delete from transition function
         //TODO: Check already defined transition functions
     };

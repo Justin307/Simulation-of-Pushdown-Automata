@@ -128,7 +128,6 @@ export class UI{
         for(let s of tapeInput){
             if(!allowed.includes(s)){
                 this.tapeFormError?.classList.remove("hidden");
-                //TODO Print valid symbols
                 return false;
             }
         }

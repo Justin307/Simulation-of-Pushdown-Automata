@@ -1,6 +1,6 @@
 import { PushdownAutomata } from "./pushdownAutomata"
 import { UI } from "./ui" 
-import { automataOverviewPage, savedAutomatasPage, loadAutomataPage, mainPage, simulatorPage } from "./events";
+import { automataOverviewPage, savedAutomatasPage, loadAutomataPage, mainPage, simulatorPage, menuPage } from "./events";
 
 export class Storage{
     savedAutomatasTable?: HTMLTableElement;
@@ -49,9 +49,11 @@ export class Storage{
                 if(!overwrite){
                     this.insertRow(key);
                 }
-                //TODO Switch to simulator instead
-                savedAutomatasPage.style.display = "flex";
                 loadAutomataPage.style.display = "none";
+                menuPage.style.display = "flex";
+                mainPage.style.display = "none";
+                simulatorPage.style.display = "flex";
+                this.ui.setAutomata(this.loadAutomata(key));
                 keyInput.value = "";
                 fileInput.value = "";
             }
