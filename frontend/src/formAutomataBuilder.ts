@@ -1,4 +1,5 @@
-import { InputSymbol, StackSymbol, State, TransitionFunction, compareInputSymbol, compareStackSymbol, compareState } from "./pushdownAutomataTypes";
+import { InputSymbol, StackSymbol, State, TransitionFunction, compareInputSymbol, compareStackSymbol, compareState, compareTransitionFunction } from "./pushdownAutomataTypes";
+import { UI } from "./ui";
 
 type itemType = State | InputSymbol | StackSymbol;
 
@@ -31,6 +32,11 @@ export class FormAutomataBuilder {
     private keyboardState: HTMLDivElement;
     private keyboardInputSymbol: HTMLDivElement;
     private keyboardStackSymbol: HTMLDivElement;
+    private keyboardDeleteButton: HTMLButtonElement;
+
+    private transitionFunctionParts: HTMLParagraphElement[];
+
+    private activePart: number;
 
 
     constructor(){
@@ -60,6 +66,20 @@ export class FormAutomataBuilder {
         this.keyboardState = document.getElementById('keyboardState') as HTMLDivElement;
         this.keyboardInputSymbol = document.getElementById('keyboardInputSymbol') as HTMLDivElement;
         this.keyboardStackSymbol = document.getElementById('keyboardStackSymbol') as HTMLDivElement;
+    
+        this.transitionFunctionParts = [];
+        this.transitionFunctionParts.push(document.getElementById('transtitionFromState') as HTMLParagraphElement);
+        this.transitionFunctionParts.push(document.getElementById('transtionPopSymbol') as HTMLParagraphElement);
+        this.transitionFunctionParts.push(document.getElementById('transitionSymbol') as HTMLParagraphElement);
+        this.transitionFunctionParts.push(document.getElementById('transitionToState') as HTMLParagraphElement);
+        this.transitionFunctionParts.push(document.getElementById('transitionPushSymbols') as HTMLParagraphElement);
+
+        this.activePart = -1;
+
+        this.keyboardInputSymbol.append(this.createKeyboardButton({isEpsylon: true}, 1));
+        this.keyboardDeleteButton = this.createKeyboardButton({value: '←'}, 3);
+        this.keyboardDeleteButton.style.display = "none";
+        this.keyboardStackSymbol.append(this.keyboardDeleteButton);
     }
 
     registerEvents(){
@@ -71,6 +91,12 @@ export class FormAutomataBuilder {
         document.getElementById('acceptanceEmptyStackCheckBox')?.addEventListener('click', this.acceptingStateEmptyChangeHandler.bind(this));
         this.acceptingStatesSelect.addEventListener('change', this.acceptingStatesChangeHandler.bind(this));
         document.getElementById("addTransitionFunction")?.addEventListener('click', this.transitionFunctionAddHandler.bind(this));
+        this.transitionFunctionParts[0]?.addEventListener('click', (event: Event) => {this.transitionFunctionPartChangeHandler(event, 0)});
+        this.transitionFunctionParts[1]?.addEventListener('click', (event: Event) => {this.transitionFunctionPartChangeHandler(event, 1)});
+        this.transitionFunctionParts[2]?.addEventListener('click', (event: Event) => {this.transitionFunctionPartChangeHandler(event, 2)});
+        this.transitionFunctionParts[3]?.addEventListener('click', (event: Event) => {this.transitionFunctionPartChangeHandler(event, 3)});
+        this.transitionFunctionParts[4]?.addEventListener('click', (event: Event) => {this.transitionFunctionPartChangeHandler(event, 4)});
+        document.getElementById('addTransitionFunctionButton')?.addEventListener('click', this.transitionFunctionAddHandler.bind(this));
     }
 
     reset(){
@@ -104,8 +130,23 @@ export class FormAutomataBuilder {
         this.acceptingStatesSelect.disabled = true;
         //checkbox
         (document.getElementById('acceptanceEmptyStackCheckBox') as HTMLInputElement).checked = true;
+        //keyboard
+        this.keyboardState.innerHTML = '';
+        this.keyboardInputSymbol.innerHTML = '';
+        this.keyboardInputSymbol.append(this.createKeyboardButton({isEpsylon: true}, 1));
+        this.keyboardStackSymbol.innerHTML = '';
+        this.keyboardStackSymbol.append(this.keyboardDeleteButton);
+        this.keyboardDeleteButton.style.display = "none";
         //errors
-        //TODO: Clear errors
+        this.stateError.style.display = 'none';
+        this.stackSymbolError.style.display = 'none';
+        this.inputSymbolError.style.display = 'none';
+        this.initialStateError.style.display = 'none';
+        this.acceptingStateError.style.display = 'none';
+        this.initialStateError.style.display = 'none';
+        this.initialStackSymbolError.style.display = 'none';
+        this.transitionFunctionError.style.display = 'none';
+        //TODO: Clear transition function
     }
 
     stateFormSubmitHandler(event: SubmitEvent){
@@ -209,7 +250,47 @@ export class FormAutomataBuilder {
 
     transitionFunctionAddHandler(event: Event){
         event.preventDefault();
-        //TODO: Check all five parts and save
+        for(let i = 0; i < 4; i++){
+            if(this.transitionFunctionParts[i].innerText === ''){
+                this.transitionFunctionError.style.display = 'block';
+                this.transitionFunctionError.innerText = 'Error: All fields must be filled';
+                return;
+            }
+        }
+        let fromState = {value: this.transitionFunctionParts[0].innerText};
+        let startSymbol = {value: this.transitionFunctionParts[1].innerText};
+        let inputSymbol = this.transitionFunctionParts[2].innerText === 'ε' ? {isEpsylon: true} : {isEpsylon: false, value: this.transitionFunctionParts[2].innerText};
+        let toState = {value: this.transitionFunctionParts[3].innerText};
+        let pushedSymbols = this.transitionFunctionParts[4].innerHTML.split('').map((s) => {return {value: s}});
+        let item: TransitionFunction = {
+            fromState: fromState,
+            startSymbol: startSymbol,
+            inputSymbol: inputSymbol,
+            toState: toState,
+            pushedSymbols: pushedSymbols,
+        };
+        for(let t of this.transitionFunctions){
+            if(compareTransitionFunction(t, item)){
+                this.transitionFunctionError.style.display = 'block';
+                return;
+            }
+        }
+        this.transitionFunctions.push(item);
+        this.transitionFunctionDiv.append(this.createTransitionFunctionDiv(item));
+        this.transitionFunctionError.style.display = 'none';
+    }
+
+    createTransitionFunctionDiv(item: TransitionFunction): HTMLDivElement{
+        let div = document.createElement('div');
+        div.classList.add('flex', 'p-2', 'bg-slate-100', 'rounded', 'm-2', 'flex-row', 'justify-center', 'items-center');
+        let t = UI.generateTransitionFunction(item);
+        div.append(t);
+        let button = document.createElement('button');
+        button.classList.add('rounded-full', 'bg-slate-300', 'w-6', 'h-6', 'ml-2');
+        button.innerText = 'X';
+        div.append(button);
+        button.addEventListener('click', this.deleteTransitionFunction.bind(this, item, div));
+        return div;
     }
 
     newItem<T extends itemType>(compareFunction: (arg1: T, arg2: T) => boolean, item: T, type: string): void{
@@ -248,16 +329,18 @@ export class FormAutomataBuilder {
             button.classList.add('rounded-full', 'bg-slate-300', 'w-6', 'h-6');
             button.innerText = 'X';
             div.append(button);
-            let keyboardButton = this.createKeyboardButton(item);
             if(type === 'State'){
+                let keyboardButton = this.createKeyboardButton(item,0);
                 button.addEventListener('click', this.deleteState.bind(this, item, div, keyboardButton));
                 this.statesDiv.append(div);
                 this.stateAdded(item as State, keyboardButton);
             } else if(type === 'InputSymbol'){
+                let keyboardButton = this.createKeyboardButton(item,1);
                 button.addEventListener('click', this.deleteInputSymbol.bind(this, item, div, keyboardButton));
                 this.inputSymbolDiv.append(div);
                 this.inputSymbolAdded(item as InputSymbol, keyboardButton);
             } else if(type === 'StackSymbol'){
+                let keyboardButton = this.createKeyboardButton(item,2);
                 button.addEventListener('click', this.deleteStackSymbol.bind(this, item, div, keyboardButton));
                 this.stackSymbolDiv.append(div);
                 this.stackSymbolAdded(item as StackSymbol, keyboardButton);
@@ -293,6 +376,11 @@ export class FormAutomataBuilder {
         keyboardButton.remove();
         //TODO: Clear div
     }
+
+    deleteTransitionFunction(item: TransitionFunction, div: HTMLDivElement){
+        this.transitionFunctionDiv.removeChild(div);
+        this.transitionFunctions.splice(this.transitionFunctions.indexOf(item), 1);
+    };
 
     stateAdded(item: State, keyboardButton: HTMLButtonElement){
         let option = document.createElement('option');
@@ -334,12 +422,19 @@ export class FormAutomataBuilder {
         if(option2 && option2.selected){
             option2.remove();
         }
-        //TODO: Delete from transition function
+        if(this.transitionFunctionParts[0].innerText === item.value){
+            this.transitionFunctionParts[0].innerText = '';
+        }
+        if(this.transitionFunctionParts[3].innerText === item.value){
+            this.transitionFunctionParts[3].innerText = '';
+        }
         //TODO: Check already defined transition functions
     };
 
     inputSymbolDeleted(item: InputSymbol){
-        //TODO: Delete from transition function
+        if(this.transitionFunctionParts[2].innerText === item.value){
+            this.transitionFunctionParts[2].innerText = '';
+        }
         //TODO: Check already defined transition functions
     };
 
@@ -348,19 +443,109 @@ export class FormAutomataBuilder {
         if(option && option.selected){
             option.remove();
         }
-        //TODO: Delete from transition function
+        if(this.transitionFunctionParts[1].innerText === item.value){
+            this.transitionFunctionParts[1].innerText = '';
+        }
+        if(this.transitionFunctionParts[4].innerText.includes(item.value)){
+            this.transitionFunctionParts[4].innerText = '';
+        }
         //TODO: Check already defined transition functions
     };
 
-    createKeyboardButton(item: itemType): HTMLButtonElement{
+    createKeyboardButton(item: itemType, type: number): HTMLButtonElement{
         let button = document.createElement('button');
         button.classList.add('flex', 'justify-center', 'items-center', 'px-2', 'h-8', 'bg-slate-100', 'm-1');
         button.innerText = item.value ?? 'ε';
-        button.addEventListener('click', this.keyboardButtonPressed.bind(this));
+        button.addEventListener('click', (event: SubmitEvent) => this.keyboardButtonPressed(event, type));
         return button;
     }
     
-    keyboardButtonPressed(event: Event){
+    keyboardButtonPressed(event: Event, type: number){
         event.preventDefault();
+        console.log(type, this.activePart);
+        switch(type){
+            //State
+            case 0:
+                if(this.activePart === 0 || this.activePart === 3){
+                    let button = event.target as HTMLButtonElement;
+                    let inputField = this.transitionFunctionParts[this.activePart] as HTMLParagraphElement;
+                    inputField.innerText = button.innerText;
+                }
+                return;
+            //Input Symbol
+            case 1:
+                if(this.activePart === 2){
+                    let button = event.target as HTMLButtonElement;
+                    let inputField = this.transitionFunctionParts[this.activePart] as HTMLParagraphElement;
+                    inputField.innerText = button.innerText;
+                }
+                return;
+            //Stack Symbol
+            case 2:
+                if(this.activePart === 1){
+                    let button = event.target as HTMLButtonElement;
+                    let inputField = this.transitionFunctionParts[this.activePart] as HTMLParagraphElement;
+                    inputField.innerText = button.innerText;
+                }
+                else if(this.activePart === 4){
+                    let button = event.target as HTMLButtonElement;
+                    let inputField = this.transitionFunctionParts[this.activePart] as HTMLParagraphElement;
+                    inputField.innerText += button.innerText;
+                }
+                return;
+            case 3:
+                if(this.activePart === 4){
+                    let inputField = this.transitionFunctionParts[this.activePart] as HTMLParagraphElement;
+                    inputField.innerHTML = inputField.innerText.slice(0,-1);
+                }
+                return;
+            default:
+                return;
+        }
+
+    }
+
+    transitionFunctionPartChangeHandler(event: Event, index: number){
+        event.preventDefault();
+        if(this.activePart && this.activePart == index){
+            return;
+        }
+
+        if(this.activePart >= 0){
+            this.transitionFunctionParts[this.activePart].classList.remove('bg-slate-300');
+            this.transitionFunctionParts[this.activePart].classList.add('bg-slate-100');
+
+            if(this.activePart === 0 || this.activePart === 3){
+                this.keyboardState.style.display = 'none';
+            }
+            else if(this.activePart === 1 || this.activePart === 4){
+                this.keyboardStackSymbol.style.display = 'none';
+            }
+            else {
+                this.keyboardInputSymbol.style.display = 'none';
+            }
+        }
+
+        this.activePart = index;
+
+        this.transitionFunctionParts[this.activePart].classList.remove('bg-slate-100');
+        this.transitionFunctionParts[this.activePart].classList.add('bg-slate-300');
+
+        if(this.activePart === 4){
+            this.keyboardDeleteButton.style.display = "block";
+        }
+        else{
+            this.keyboardDeleteButton.style.display = "none";
+        }
+
+        if(this.activePart === 0 || this.activePart === 3){
+            this.keyboardState.style.display = 'flex';
+        }
+        else if(this.activePart === 1 || this.activePart === 4){
+            this.keyboardStackSymbol.style.display = 'flex';
+        }
+        else {
+            this.keyboardInputSymbol.style.display = 'flex';
+        }
     }
 }

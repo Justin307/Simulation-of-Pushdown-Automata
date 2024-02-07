@@ -212,5 +212,12 @@ class PushdownAutomata{
 
 ### 6.2.2024
 
-- Práce na zbylých TODOes ve formuláři
+- Práce na zbylých TODOes ve formuláři ✓
 
+### 7.2.2024 & 8.2.2024
+
+- Dokončení Transition Function Builderu
+
+### 9.2.2024
+
+- Kontrola při odeslání formuláře

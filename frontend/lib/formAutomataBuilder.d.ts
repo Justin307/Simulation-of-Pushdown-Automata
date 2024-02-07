@@ -1,4 +1,4 @@
-import { InputSymbol, StackSymbol, State } from "./pushdownAutomataTypes";
+import { InputSymbol, StackSymbol, State, TransitionFunction } from "./pushdownAutomataTypes";
 type itemType = State | InputSymbol | StackSymbol;
 export declare class FormAutomataBuilder {
     private states;
@@ -25,6 +25,9 @@ export declare class FormAutomataBuilder {
     private keyboardState;
     private keyboardInputSymbol;
     private keyboardStackSymbol;
+    private keyboardDeleteButton;
+    private transitionFunctionParts;
+    private activePart;
     constructor();
     registerEvents(): void;
     reset(): void;
@@ -36,17 +39,20 @@ export declare class FormAutomataBuilder {
     acceptingStateEmptyChangeHandler(event: Event): void;
     acceptingStatesChangeHandler(event: Event): void;
     transitionFunctionAddHandler(event: Event): void;
+    createTransitionFunctionDiv(item: TransitionFunction): HTMLDivElement;
     newItem<T extends itemType>(compareFunction: (arg1: T, arg2: T) => boolean, item: T, type: string): void;
     deleteState(item: State, div: HTMLDivElement, keyboardButton: HTMLButtonElement): void;
     deleteInputSymbol(item: InputSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement): void;
     deleteStackSymbol(item: StackSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement): void;
+    deleteTransitionFunction(item: TransitionFunction, div: HTMLDivElement): void;
     stateAdded(item: State, keyboardButton: HTMLButtonElement): void;
     inputSymbolAdded(item: InputSymbol, keyboardButton: HTMLButtonElement): void;
     stackSymbolAdded(item: StackSymbol, keyboardButton: HTMLButtonElement): void;
     stateDeleted(item: State): void;
     inputSymbolDeleted(item: InputSymbol): void;
     stackSymbolDeleted(item: StackSymbol): void;
-    createKeyboardButton(item: itemType): HTMLButtonElement;
-    keyboardButtonPressed(event: Event): void;
+    createKeyboardButton(item: itemType, type: number): HTMLButtonElement;
+    keyboardButtonPressed(event: Event, type: number): void;
+    transitionFunctionPartChangeHandler(event: Event, index: number): void;
 }
 export {};

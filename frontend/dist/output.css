@@ -1771,10 +1771,6 @@ html {
   width: 16rem;
 }
 
-.w-8 {
-  width: 2rem;
-}
-
 .w-\[24px\] {
   width: 24px;
 }
@@ -2402,6 +2398,10 @@ html {
 
 .pt-3 {
   padding-top: 0.75rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
 }
 
 .text-left {
