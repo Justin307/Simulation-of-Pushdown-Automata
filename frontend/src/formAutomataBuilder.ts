@@ -130,6 +130,10 @@ export class FormAutomataBuilder {
         this.acceptingStatesSelect.disabled = true;
         //checkbox
         (document.getElementById('acceptanceEmptyStackCheckBox') as HTMLInputElement).checked = true;
+        //transition function parts
+        for(let t of this.transitionFunctionParts){
+            t.innerText = '';
+        }
         //keyboard
         this.keyboardState.innerHTML = '';
         this.keyboardInputSymbol.innerHTML = '';
@@ -146,7 +150,6 @@ export class FormAutomataBuilder {
         this.initialStateError.style.display = 'none';
         this.initialStackSymbolError.style.display = 'none';
         this.transitionFunctionError.style.display = 'none';
-        //TODO: Clear transition function
     }
 
     stateFormSubmitHandler(event: SubmitEvent){
@@ -278,6 +281,10 @@ export class FormAutomataBuilder {
         this.transitionFunctions.push(item);
         this.transitionFunctionDiv.append(this.createTransitionFunctionDiv(item));
         this.transitionFunctionError.style.display = 'none';
+
+        for(let t of this.transitionFunctionParts){
+            t.innerText = '';
+        }
     }
 
     createTransitionFunctionDiv(item: TransitionFunction): HTMLDivElement{
@@ -359,6 +366,7 @@ export class FormAutomataBuilder {
         this.stateDeleted(item);
         keyboardButton.remove();
         //TODO: Clear div
+        //NOTE: I don't know what this TODO means
     }
 
     deleteInputSymbol(item: InputSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
@@ -367,6 +375,7 @@ export class FormAutomataBuilder {
         this.inputSymbolDeleted(item);
         keyboardButton.remove();
         //TODO: Clear div
+        //NOTE: I don't know what this TODO means
     }
 
     deleteStackSymbol(item: StackSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
@@ -375,6 +384,7 @@ export class FormAutomataBuilder {
         this.stackSymbolDeleted(item);
         keyboardButton.remove();
         //TODO: Clear div
+        //NOTE: I don't know what this TODO means
     }
 
     deleteTransitionFunction(item: TransitionFunction, div: HTMLDivElement){
@@ -396,10 +406,14 @@ export class FormAutomataBuilder {
         this.acceptingStatesSelect.append(option);
 
         this.keyboardState.append(keyboardButton);
+
+        this.transitionCheck();
     };
     
     inputSymbolAdded(item: InputSymbol, keyboardButton: HTMLButtonElement){
         this.keyboardInputSymbol.append(keyboardButton);
+
+        this.transitionCheck();
     };
 
     stackSymbolAdded(item: StackSymbol, keyboardButton: HTMLButtonElement){
@@ -410,6 +424,8 @@ export class FormAutomataBuilder {
         this.initialStackSymbolSelect.append(option);
 
         this.keyboardStackSymbol.append(keyboardButton);
+
+        this.transitionCheck();
     };
 
     stateDeleted(item: State){
@@ -428,14 +444,16 @@ export class FormAutomataBuilder {
         if(this.transitionFunctionParts[3].innerText === item.value){
             this.transitionFunctionParts[3].innerText = '';
         }
-        //TODO: Check already defined transition functions
+
+        this.transitionCheck();
     };
 
     inputSymbolDeleted(item: InputSymbol){
         if(this.transitionFunctionParts[2].innerText === item.value){
             this.transitionFunctionParts[2].innerText = '';
         }
-        //TODO: Check already defined transition functions
+
+        this.transitionCheck();
     };
 
     stackSymbolDeleted(item: StackSymbol){
@@ -449,7 +467,8 @@ export class FormAutomataBuilder {
         if(this.transitionFunctionParts[4].innerText.includes(item.value)){
             this.transitionFunctionParts[4].innerText = '';
         }
-        //TODO: Check already defined transition functions
+
+        this.transitionCheck();
     };
 
     createKeyboardButton(item: itemType, type: number): HTMLButtonElement{
@@ -547,5 +566,61 @@ export class FormAutomataBuilder {
         else {
             this.keyboardInputSymbol.style.display = 'flex';
         }
+    }
+
+    //FIXME: Something doesn't work here
+    transitionCheck(): boolean{
+        let anyInvalid = false;
+        for(let i = 0; i < this.transitionFunctions.length; i++){
+            let t = this.transitionFunctions[i];
+            let tD = this.transitionFunctionDiv.children[i] as HTMLDivElement;
+            //From state
+            let fromState = this.states.find((s) => compareState(s, t.fromState));
+            if(!fromState){
+                anyInvalid = true;
+                tD.style.border = "1px solid rgb(224 36 36)";
+                continue;
+            }
+            //To state
+            let toState = this.states.find((s) => compareState(s, t.toState));
+            if(!toState){
+                anyInvalid = true;
+                tD.style.border = "1px solid rgb(224 36 36)";
+                continue;
+            }
+            //Input symbol
+            if(!t.inputSymbol.isEpsylon){
+                let inputSymbol = this.inputSymbols.find((s) => compareInputSymbol(s, t.inputSymbol));
+                if(!inputSymbol){
+                    anyInvalid = true;
+                    tD.style.border = "1px solid rgb(224 36 36)";
+                    continue;
+                }
+            }
+            //Start symbol
+            let startSymbol = this.stackSymbols.find((s) => compareStackSymbol(s, t.startSymbol));
+            if(!startSymbol){
+                anyInvalid = true;
+                tD.style.border = "1px solid rgb(224 36 36)";
+                continue;
+            }
+            //Pushed symbols
+            let checker = false;
+            for(let s of t.pushedSymbols){
+                let stackSymbol = this.stackSymbols.find((s2) => compareStackSymbol(s2, s));
+                if(!stackSymbol){
+                    anyInvalid = true;
+                    checker = true;
+                    tD.style.border = "1px solid rgb(224 36 36)";
+                    break;
+                }
+            }
+            if(checker){
+                continue;
+            }
+            //Correct transition
+            tD.style.border = "";
+        }
+        return anyInvalid;
     }
 }

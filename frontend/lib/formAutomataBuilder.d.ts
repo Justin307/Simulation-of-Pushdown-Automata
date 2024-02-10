@@ -54,5 +54,6 @@ export declare class FormAutomataBuilder {
     createKeyboardButton(item: itemType, type: number): HTMLButtonElement;
     keyboardButtonPressed(event: Event, type: number): void;
     transitionFunctionPartChangeHandler(event: Event, index: number): void;
+    transitionCheck(): boolean;
 }
 export {};
