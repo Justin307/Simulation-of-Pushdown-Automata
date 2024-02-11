@@ -3,8 +3,8 @@ import { UI } from "./ui"
 import { automataOverviewPage, savedAutomatasPage, loadAutomataPage, mainPage, simulatorPage, menuPage } from "./events";
 
 export class Storage{
-    savedAutomatasTable?: HTMLTableElement;
-    ui: UI;
+    private savedAutomatasTable?: HTMLTableElement;
+    private ui: UI;
 
     constructor(ui: UI){
         this.savedAutomatasTable = document.getElementById("savedAutomatasTable") as HTMLTableElement;
@@ -97,14 +97,15 @@ export class Storage{
         return false;
     }
 
-    saveAutomata(key: string, automata: PushdownAutomata){
+    saveAutomata(key: string, automata: PushdownAutomata): boolean{
         if(this.keyExists(key)){
             //TODO Change! No confirms!
             if(!confirm("Key already exists. Overwrite?")){
-                return;
+                return false;
             }
         }
         this.save(key, automata);
+        return true;
     }
 
     loadAutomata(key: string): PushdownAutomata | null{

@@ -1,6 +1,10 @@
 import { InputSymbol, StackSymbol, State, TransitionFunction } from "./pushdownAutomataTypes";
+import { UI } from "./ui";
+import { Storage } from "./storage";
 type itemType = State | InputSymbol | StackSymbol;
 export declare class FormAutomataBuilder {
+    private storage;
+    private ui;
     private states;
     private inputSymbols;
     private stackSymbols;
@@ -15,6 +19,7 @@ export declare class FormAutomataBuilder {
     private initialStateSelect;
     private initialStackSymbolSelect;
     private acceptingStatesSelect;
+    private keyError;
     private stateError;
     private inputSymbolError;
     private stackSymbolError;
@@ -28,7 +33,8 @@ export declare class FormAutomataBuilder {
     private keyboardDeleteButton;
     private transitionFunctionParts;
     private activePart;
-    constructor();
+    private keyInput;
+    constructor(storage: Storage, ui: UI);
     registerEvents(): void;
     reset(): void;
     stateFormSubmitHandler(event: SubmitEvent): void;
@@ -55,5 +61,6 @@ export declare class FormAutomataBuilder {
     keyboardButtonPressed(event: Event, type: number): void;
     transitionFunctionPartChangeHandler(event: Event, index: number): void;
     transitionCheck(): boolean;
+    saveEventHandler(event: Event): void;
 }
 export {};

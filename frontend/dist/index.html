@@ -38,6 +38,14 @@
         <!--New automata definition-->
         <div class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-300 w-full p-2 flex-col max-h-[100vh] overflow-y-scroll" id="newAutomataPage">
             <h1 class="my-4 mx-auto text-xl md:text-2xl font-bold">New Automata</h1>
+            <!--Name/key-->
+            <div class="container mx-auto bg-white p-4">
+                <label for="loadKeyInput" class="mb-2">
+                    <span class="font-bold">Automata name/key:</span>
+                    <input id="newAutomataKey" type="text" required class="mt-0 px-0.5 block w-full border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black">
+                </label>
+                <p id="keyError" class="hidden text-red-600 font-bold ml-4">Error: Key must be specified</p>
+            </div>
             <!-- State -->
             <div class="container mx-auto bg-white">
                 <form method=POST  id="newAutomataStateForm" class="flex flex-col m-4 mb-2">
@@ -157,7 +165,7 @@
                 </div>
                 <hr>
             </div>
-            <button class="bg-slate-200 rounded px-4 py-2 mx-auto">Save automata</button>
+            <button id="newAutomataSaveButton" class="bg-slate-200 rounded px-4 py-2 mx-auto">Save automata</button>
         </div>
 
         <!--Saved automata-->

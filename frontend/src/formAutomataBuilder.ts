@@ -1,9 +1,16 @@
+import { PushdownAutomata } from "./pushdownAutomata";
+import { checkPushdownAutomata } from "./pushdownAutomataChecker";
 import { InputSymbol, StackSymbol, State, TransitionFunction, compareInputSymbol, compareStackSymbol, compareState, compareTransitionFunction } from "./pushdownAutomataTypes";
 import { UI } from "./ui";
+import { Storage } from "./storage";
+import { menuPage, newAutomataPage, mainPage, simulatorPage} from "./events";
 
 type itemType = State | InputSymbol | StackSymbol;
 
 export class FormAutomataBuilder {
+    private storage: Storage;
+    private ui: UI;
+
     private states: State[]
     private inputSymbols: InputSymbol[]
     private stackSymbols: StackSymbol[]
@@ -21,6 +28,7 @@ export class FormAutomataBuilder {
     private initialStackSymbolSelect: HTMLSelectElement;
     private acceptingStatesSelect: HTMLSelectElement;
 
+    private keyError: HTMLParagraphElement;
     private stateError: HTMLParagraphElement;
     private inputSymbolError: HTMLParagraphElement;
     private stackSymbolError: HTMLParagraphElement;
@@ -38,8 +46,12 @@ export class FormAutomataBuilder {
 
     private activePart: number;
 
+    private keyInput: HTMLInputElement;
 
-    constructor(){
+    constructor(storage: Storage, ui: UI){
+        this.storage = storage;
+        this.ui = ui;
+
         this.states = [];
         this.inputSymbols = [];
         this.stackSymbols = [];
@@ -55,6 +67,7 @@ export class FormAutomataBuilder {
         this.initialStackSymbolSelect = document.getElementById('newAutomataInitialStackSymbolSelect') as HTMLSelectElement;
         this.acceptingStatesSelect = document.getElementById('newAutomataAcceptingStatesSelect') as HTMLSelectElement;
 
+        this.keyError = document.getElementById('keyError') as HTMLParagraphElement;
         this.stateError = document.getElementById('stateError') as HTMLParagraphElement;
         this.inputSymbolError = document.getElementById('inputSymbolError') as HTMLParagraphElement;
         this.stackSymbolError = document.getElementById('stackSymbolError') as HTMLParagraphElement;
@@ -80,6 +93,8 @@ export class FormAutomataBuilder {
         this.keyboardDeleteButton = this.createKeyboardButton({value: '←'}, 3);
         this.keyboardDeleteButton.style.display = "none";
         this.keyboardStackSymbol.append(this.keyboardDeleteButton);
+
+        this.keyInput = document.getElementById('newAutomataKey') as HTMLInputElement;
     }
 
     registerEvents(){
@@ -97,6 +112,7 @@ export class FormAutomataBuilder {
         this.transitionFunctionParts[3]?.addEventListener('click', (event: Event) => {this.transitionFunctionPartChangeHandler(event, 3)});
         this.transitionFunctionParts[4]?.addEventListener('click', (event: Event) => {this.transitionFunctionPartChangeHandler(event, 4)});
         document.getElementById('addTransitionFunctionButton')?.addEventListener('click', this.transitionFunctionAddHandler.bind(this));
+        document.getElementById('newAutomataSaveButton')?.addEventListener('click', this.saveEventHandler.bind(this));
     }
 
     reset(){
@@ -363,6 +379,10 @@ export class FormAutomataBuilder {
     deleteState(item: State, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
         this.statesDiv.removeChild(div);
         this.states.splice(this.states.indexOf(item), 1);
+        if(compareState(this.initialState, item)){
+            this.initialState = undefined;
+        }
+        this.acceptingStates = this.acceptingStates?.filter(a => !compareState(a, item)) ?? null;
         this.stateDeleted(item);
         keyboardButton.remove();
         //TODO: Clear div
@@ -381,6 +401,9 @@ export class FormAutomataBuilder {
     deleteStackSymbol(item: StackSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
         this.stackSymbolDiv.removeChild(div);
         this.stackSymbols.splice(this.stackSymbols.indexOf(item), 1);
+        if(compareStackSymbol(this.initialStackSymbol, item)){
+            this.initialStackSymbol = undefined;
+        }
         this.stackSymbolDeleted(item);
         keyboardButton.remove();
         //TODO: Clear div
@@ -430,12 +453,14 @@ export class FormAutomataBuilder {
 
     stateDeleted(item: State){
         let option = this.initialStateSelect.options.namedItem("initialStateOption" + item.value)
-        if(option && option.selected){
+        if(option){
+            if(option.selected){
+                this.initialStateSelect.options[0].selected = true;
+            }
             option.remove();
-            this.initialStateSelect.options[0].selected = true;
         }
         let option2 = this.acceptingStatesSelect.options.namedItem("acceptingStateOption" + item.value)
-        if(option2 && option2.selected){
+        if(option2){
             option2.remove();
         }
         if(this.transitionFunctionParts[0].innerText === item.value){
@@ -457,8 +482,11 @@ export class FormAutomataBuilder {
     };
 
     stackSymbolDeleted(item: StackSymbol){
-        let option = this.initialStateSelect.options.namedItem("stackSymbolOption" + item.value)
-        if(option && option.selected){
+        let option = this.initialStackSymbolSelect.options.namedItem("stackSymbolOption" + item.value)
+        if(option){
+            if(option.selected){
+                this.initialStackSymbolSelect.options[0].selected = true;
+            }
             option.remove();
         }
         if(this.transitionFunctionParts[1].innerText === item.value){
@@ -622,5 +650,76 @@ export class FormAutomataBuilder {
             tD.style.border = "";
         }
         return anyInvalid;
+    }
+
+    saveEventHandler(event: Event): void{
+        event.preventDefault();
+        //States
+        if(this.states.length === 0){
+            this.stateError.style.display = 'block';
+            this.stateError.innerText = 'Error: At least one state must be defined';
+            return;
+        }
+        //Input symbols
+        if(this.inputSymbols.length === 0){
+            this.inputSymbolError.style.display = 'block';
+            this.inputSymbolError.innerText = 'Error: At least one input symbol must be defined';
+            return;
+        }
+        //Stack symbols
+        if(this.stackSymbols.length === 0){
+            this.stackSymbolError.style.display = 'block';
+            this.stackSymbolError.innerText = 'Error: At least one stack symbol must be defined';
+            return;
+        }
+        //Initial state
+        if(!this.initialState){
+            this.initialStateError.style.display = 'block';
+            this.initialStateError.innerText = 'Error: Initial state must be defined';
+            return;
+        }
+        //Initial stack symbol
+        if(!this.initialStackSymbol){
+            this.initialStackSymbolError.style.display = 'block';
+            this.initialStackSymbolError.innerText = 'Error: Initial stack symbol must be defined';
+            return;
+        }
+        //Accepting states
+        if(this.acceptingStates !== null){
+            if(this.acceptingStates.length === 0){
+                this.acceptingStateError.style.display = 'block';
+                this.acceptingStateError.innerText = 'Error: At least one accepting state must be defined or enable acceptance by empty stack';
+                return;
+            }
+        }
+        //Transition functions
+        if(this.transitionFunctions.length === 0){
+            this.transitionFunctionError.style.display = 'block';
+            this.transitionFunctionError.innerText = 'Error: At least one transition function must be defined';
+            return;
+        }
+        //Whole automata
+        if(!checkPushdownAutomata(this.states, this.stackSymbols, this.inputSymbols, this.initialState, this.initialStackSymbol, this.acceptingStates, this.transitionFunctions)){
+            return;
+        }
+        //Key
+        let key = this.keyInput.value.trim();
+        if(key === ''){
+            this.keyError.style.display = 'block';
+        }
+        else{
+            this.keyError.style.display = 'none';
+        }
+        //Valid
+        let pda = new PushdownAutomata(this.states, this.inputSymbols, this.stackSymbols, this.initialState, this.initialStackSymbol, this.acceptingStates, this.transitionFunctions);
+        let result = this.storage.saveAutomata(key, pda);
+        if(result){
+            this.reset();
+            newAutomataPage.style.display = "none";
+            menuPage.style.display = "flex";
+            mainPage.style.display = "none";
+            simulatorPage.style.display = "flex";
+            this.ui.setAutomata(this.storage.loadAutomata(key));
+        }
     }
 }

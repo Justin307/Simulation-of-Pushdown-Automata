@@ -1,8 +1,8 @@
 import { PushdownAutomata } from "./pushdownAutomata";
 import { UI } from "./ui";
 export declare class Storage {
-    savedAutomatasTable?: HTMLTableElement;
-    ui: UI;
+    private savedAutomatasTable?;
+    private ui;
     constructor(ui: UI);
     registerEvents(): void;
     private loadFile;
@@ -10,7 +10,7 @@ export declare class Storage {
     private load;
     private delete;
     keyExists(key: string): boolean;
-    saveAutomata(key: string, automata: PushdownAutomata): void;
+    saveAutomata(key: string, automata: PushdownAutomata): boolean;
     loadAutomata(key: string): PushdownAutomata | null;
     private insertRow;
     printAutomatas(): void;
