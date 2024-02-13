@@ -13,8 +13,8 @@ export type State = {
 export declare function compareState(a: State, b: State): boolean;
 export type TransitionFunction = {
     fromState: State;
+    startSymbol: StackSymbol;
     inputSymbol: InputSymbol;
-    startSymbol: StackSymbol | null;
     toState: State;
     pushedSymbols: StackSymbol[];
 };

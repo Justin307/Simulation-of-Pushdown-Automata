@@ -11,10 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ui = new UI();
     storage = new Storage(ui);
     automataBuilder = new FormAutomataBuilder(storage, ui);
-    registerEvents();
+    registerEvents(storage);
     ui.registerEvents();
     storage.registerEvents();
     automataBuilder.registerEvents();
-    storage.printAutomatas();
     ui.setTape("aabb");
 });

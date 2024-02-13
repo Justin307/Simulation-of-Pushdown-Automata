@@ -1567,11 +1567,6 @@ html {
   margin-bottom: 1rem;
 }
 
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -1786,10 +1781,6 @@ html {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[100\%-2rem\] {
-  width: 100%-2rem;
 }
 
 .min-w-16 {

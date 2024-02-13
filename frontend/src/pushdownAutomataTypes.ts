@@ -41,8 +41,8 @@ export function compareState(a: State, b: State): boolean{
 
 export type TransitionFunction = {
     fromState: State;
+    startSymbol: StackSymbol;
     inputSymbol: InputSymbol;
-    startSymbol: StackSymbol | null;
     toState: State;
     pushedSymbols: StackSymbol[];
 }
@@ -53,16 +53,13 @@ export function compareTransitionFunction(a: TransitionFunction, b: TransitionFu
         return false;
     }
 
-    //imputSymbol
-    if(!compareInputSymbol(a.inputSymbol, b.inputSymbol)){
+    //startSymbol
+    if(!compareStackSymbol(a.startSymbol, b.startSymbol)){
         return false;
     }
 
-    //startSymbol
-    if(typeof(a.startSymbol) != typeof(b.startSymbol)){
-        return false;
-    }
-    if(a.startSymbol != null && !compareStackSymbol(a.startSymbol, b.startSymbol)){
+    //inputSymbol
+    if(!compareInputSymbol(a.inputSymbol, b.inputSymbol)){
         return false;
     }
 
@@ -72,6 +69,9 @@ export function compareTransitionFunction(a: TransitionFunction, b: TransitionFu
     }
 
     //pushedSymbols
+    if(a.pushedSymbols.length != b.pushedSymbols.length){
+        return false;
+    }
     for(let i = 0; i < a.pushedSymbols.length; i++){
         if(!compareStackSymbol(a.pushedSymbols[i], b.pushedSymbols[i])){
             return false;

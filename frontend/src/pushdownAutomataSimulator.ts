@@ -109,6 +109,4 @@ export class PushdownAutomataSimulator{
         this.reset();
         this.inputTape = input;
     }
-
-    //TODO Check Automata validity
 }

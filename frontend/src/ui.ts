@@ -43,6 +43,7 @@ export class UI{
         this.simulator = new PushdownAutomataSimulator(automata);
         this.fillInformation();
         this.resetUI();
+        this.tapePosition = 0;
         if(this.tapeForm){
             this.tapeForm.style.display = "flex";
         }
@@ -316,6 +317,7 @@ export class UI{
             clearTimeout(this.timeout);
             this.timeout = null;
         }
+        this.tapePosition = 0;
     }
 
     setTape(tape: string): void{

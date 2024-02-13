@@ -25,13 +25,11 @@ export class Storage{
         let fileInput = document.getElementById("loadFileInput") as HTMLInputElement
         let file = fileInput?.files?.[0];
         if(!key || !file){
-            //TODO Error
-            console.log("Key or file does not exists");
+            alert("Please fill in all fields");
             return;
         }
         let overwrite = false;
         if(this.keyExists(key)){
-            //TODO Change! No confirms!
             if(!confirm("Key already exists. Overwrite?")){
                 return;
             }
@@ -60,8 +58,7 @@ export class Storage{
             reader.readAsText(file);
 
         } catch (error){
-            //TODO Error
-            console.log("Try catch error");
+            alert("Error loading file. Please try again.");
             return;
         }
     }
@@ -99,7 +96,6 @@ export class Storage{
 
     saveAutomata(key: string, automata: PushdownAutomata): boolean{
         if(this.keyExists(key)){
-            //TODO Change! No confirms!
             if(!confirm("Key already exists. Overwrite?")){
                 return false;
             }
@@ -171,6 +167,10 @@ export class Storage{
 
     printAutomatas(){
         if(this.savedAutomatasTable){
+            let l = this.savedAutomatasTable.rows.length
+            for(let i = 0; i < l; i++){
+                this.savedAutomatasTable.deleteRow(0);
+            }
             for(let i = 0; i < localStorage.length; i++){
                 let key = localStorage.key(i);
                 this.insertRow(key);

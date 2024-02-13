@@ -245,11 +245,11 @@ export class FormAutomataBuilder {
                 }
             }
             this.acceptingStates = null;
-            this.acceptingStatesSelect.disabled = true;
+            this.acceptingStatesSelect.style.display = 'none';
         }
         else{
             this.acceptingStates = [];
-            this.acceptingStatesSelect.disabled = false;
+            this.acceptingStatesSelect.style.display = 'block';
         }
     };
 
@@ -272,7 +272,7 @@ export class FormAutomataBuilder {
         for(let i = 0; i < 4; i++){
             if(this.transitionFunctionParts[i].innerText === ''){
                 this.transitionFunctionError.style.display = 'block';
-                this.transitionFunctionError.innerText = 'Error: All fields must be filled';
+                this.transitionFunctionError.innerText = 'Error: First 4 fields must be filled';
                 return;
             }
         }
@@ -290,6 +290,7 @@ export class FormAutomataBuilder {
         };
         for(let t of this.transitionFunctions){
             if(compareTransitionFunction(t, item)){
+                console.log(t, item);
                 this.transitionFunctionError.style.display = 'block';
                 return;
             }
@@ -596,7 +597,6 @@ export class FormAutomataBuilder {
         }
     }
 
-    //FIXME: Something doesn't work here
     transitionCheck(): boolean{
         let anyInvalid = false;
         for(let i = 0; i < this.transitionFunctions.length; i++){
@@ -678,11 +678,17 @@ export class FormAutomataBuilder {
             this.initialStateError.innerText = 'Error: Initial state must be defined';
             return;
         }
+        else{
+            this.initialStateError.style.display = 'none';
+        }
         //Initial stack symbol
         if(!this.initialStackSymbol){
             this.initialStackSymbolError.style.display = 'block';
             this.initialStackSymbolError.innerText = 'Error: Initial stack symbol must be defined';
             return;
+        }
+        else{
+            this.initialStackSymbolError.style.display = 'none';
         }
         //Accepting states
         if(this.acceptingStates !== null){
@@ -690,6 +696,9 @@ export class FormAutomataBuilder {
                 this.acceptingStateError.style.display = 'block';
                 this.acceptingStateError.innerText = 'Error: At least one accepting state must be defined or enable acceptance by empty stack';
                 return;
+            }
+            else{
+                this.initialStateError.style.display = 'none';
             }
         }
         //Transition functions
@@ -714,12 +723,13 @@ export class FormAutomataBuilder {
         let pda = new PushdownAutomata(this.states, this.inputSymbols, this.stackSymbols, this.initialState, this.initialStackSymbol, this.acceptingStates, this.transitionFunctions);
         let result = this.storage.saveAutomata(key, pda);
         if(result){
-            this.reset();
+            /*this.reset();
             newAutomataPage.style.display = "none";
             menuPage.style.display = "flex";
             mainPage.style.display = "none";
             simulatorPage.style.display = "flex";
-            this.ui.setAutomata(this.storage.loadAutomata(key));
+            this.ui.setAutomata(this.storage.loadAutomata(key));*/
+            console.log("Valid automata:", pda);
         }
     }
 }

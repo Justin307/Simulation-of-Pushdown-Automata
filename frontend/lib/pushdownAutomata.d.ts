@@ -4,7 +4,7 @@ export declare class PushdownAutomata {
     inputSymbols: InputSymbol[];
     stackSymbols: StackSymbol[];
     initialState: State;
-    initialStackSymbol: StackSymbol | null;
+    initialStackSymbol: StackSymbol;
     acceptingState: State[] | null;
     transitionFunction: TransitionFunction[];
     constructor(states: State[], inputSymbols: InputSymbol[], stackSymbols: StackSymbol[], initialState: State, initialStackSymbol: StackSymbol, acceptingState: State[] | null, transitionFunction: TransitionFunction[]);

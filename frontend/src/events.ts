@@ -1,3 +1,5 @@
+import { Storage } from "./storage";
+
 var divAutomataDefinition: HTMLDivElement;
 var divTransitionHistory: HTMLDivElement;
 var infoDiv: HTMLDivElement;
@@ -21,7 +23,7 @@ function infoDivSwitch(): void {
     infoDiv.classList.toggle("md:-translate-x-0");
 };
 
-export function registerEvents(): void {
+export function registerEvents(storage: Storage): void {
     divAutomataDefinition = document.getElementById("automataDefinitionDiv") as HTMLDivElement;
     divTransitionHistory = document.getElementById("transitionHistoryDiv") as HTMLDivElement;
     infoDiv = document.getElementById("infoDiv") as HTMLDivElement;
@@ -60,6 +62,7 @@ export function registerEvents(): void {
     document.getElementById("savedAutomatasButton")?.addEventListener("click", () => {
         menuPage.style.display = "none";
         savedAutomatasPage.style.display = "flex";
+        storage?.printAutomatas();
     });
 
     document.getElementById("savedAutomatasBackButton")?.addEventListener("click", () => {

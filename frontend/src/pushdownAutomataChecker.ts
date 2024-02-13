@@ -88,7 +88,7 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
             tempError = true;
             break;
         }
-        if(!pda.inputSymbols.some(i => compareInputSymbol(i, t.inputSymbol))){
+        if(!(t.inputSymbol.isEpsylon || (!t.inputSymbol.isEpsylon && pda.inputSymbols.some(i => compareInputSymbol(i, t.inputSymbol))))){
             tempError = true;
             break;
         }

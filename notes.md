@@ -100,21 +100,14 @@ class PushdownAutomata{
 
 ## Otázky na schůzku
 
-- Definice přepisové funkce 
-	- strana 132 https://fuuu.be/polytech/INFOF408/Introduction-To-The-Theory-Of-Computation-Michael-Sipser.pdf
-	- https://link.springer.com/chapter/10.1007/978-1-4612-1844-9_27
-- Rozložení UI/Layout
-- Volba následující přepisové funkce
-	- Ruční pohyb
-	- Automatický pohyb
-- Způsoby definice automatu
-	- Formulář
-	- Načtení/uložení z/do souboru
-	- Local storage
-	- Server s přihlášením ????
-- Zápočet
-
 ## Poznámky ze schůzky
+
+- Form
+	- Transition function uspořádat podle stavu a stack symbolu
+	- Multi select
+
+- storage.ts
+	- Přesunout svg do souboru mimo
 
 ## Odkazy
 
@@ -216,8 +209,16 @@ class PushdownAutomata{
 
 ### 7.2.2024 & 8.2.2024
 
-- Dokončení Transition Function Builderu
+- Dokončení Transition Function Builderu ✓
 
 ### 9.2.2024
 
-- Kontrola při odeslání formuláře
+- Kontrola při odeslání formuláře ✓
+
+### 11.2.2024
+
+- Odeslání formuláře ✓
+
+### 13.2.2024
+
+- Opravy chyb
