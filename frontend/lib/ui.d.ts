@@ -12,6 +12,8 @@ export declare class UI {
     transitionOptions?: HTMLDivElement;
     tapeFormError?: HTMLParagraphElement;
     tapeForm?: HTMLDivElement;
+    result?: HTMLDivElement;
+    resultText?: HTMLParagraphElement;
     tapePosition: number;
     isChoosing: boolean;
     isRunnig: boolean;
@@ -23,6 +25,7 @@ export declare class UI {
     registerEvents(): void;
     private setTapeForm;
     private checkTapeInputValidity;
+    private showResult;
     static generateTransitionFunction(f: TransitionFunction): HTMLDivElement;
     fillInformation(): void;
     addToHistory(f: TransitionFunction): void;

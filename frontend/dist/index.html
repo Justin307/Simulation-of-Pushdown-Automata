@@ -259,6 +259,13 @@
 
     <!--Simulator-->
     <div class="hidden container mx-auto md:py-10 flex-row md:flex-col h-screen max-h-screen relative" id="simulatorPage">
+        <div class="hidden absolute top-0 bottom-0 left-0 right-0 justify-center items-center bg-[rgba(255,255,255,0.5)] z-50" id="simulatorResultDiv">
+            <div class="p-4 md:p-4 bg-white flex flex-col">
+                <p class="font-bold mb-4" id="simulatorResultContent">The input is not accepted.</p>
+                <button class="mx-auto w-36 py-2 rounded bg-slate-200 hover:bg-slate-300 font-bold" id="hideResultButton" type="button">Close</button>
+            </div>
+        </div>
+
         <div class="absolute top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center bg-[rgba(255,255,255,0.5)]" id="tapeFormModal">
             <div class="bg-white flex flex-col justify-center items-center min-w-52 sm:min-w-64 md:min-w-80 p-4">
                 <form method="POST" id="setTape">

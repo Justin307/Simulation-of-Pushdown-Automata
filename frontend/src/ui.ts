@@ -13,6 +13,8 @@ export class UI{
     transitionOptions?: HTMLDivElement;
     tapeFormError?: HTMLParagraphElement;
     tapeForm?: HTMLDivElement;
+    result?: HTMLDivElement;
+    resultText?: HTMLParagraphElement;
 
     tapePosition: number = 0;
 
@@ -37,6 +39,8 @@ export class UI{
         this.transitionOptions = document.getElementById("transitionOptions") as HTMLDivElement;
         this.tapeFormError = document.getElementById("tapeFormError") as HTMLParagraphElement;
         this.tapeForm = document.getElementById("tapeFormModal") as HTMLDivElement;
+        this.result = document.getElementById("simulatorResultDiv") as HTMLDivElement;
+        this.resultText = document.getElementById("simulatorResultContent") as HTMLParagraphElement;
     }
 
     setAutomata(automata: PushdownAutomata): void{
@@ -106,6 +110,11 @@ export class UI{
                 this.timeout = null;
             }
         });
+        document.getElementById("hideResultButton")?.addEventListener("click", () => {
+            if(this.result){
+                this.result.style.display = "none";
+            }
+        });
     }
 
     private setTapeForm(event: SubmitEvent): void{
@@ -135,6 +144,15 @@ export class UI{
         this.tapeFormError?.classList.add("hidden");
         return true;
     };
+
+    private showResult(text: string){
+        if(this.resultText){
+            this.resultText.innerText = text;
+        }
+        if(this.result){
+            this.result.style.display = "flex";
+        }
+    }
 
     static generateTransitionFunction(f: TransitionFunction): HTMLDivElement {
         let res = document.createElement("div") as HTMLDivElement;
@@ -218,24 +236,26 @@ export class UI{
     2 -> not read
     */
     setSymbolToState(s: HTMLDivElement, state: number){
-        switch(state){
-            case 0:{
-                s.classList.remove("bg-red-500");
-                s.classList.remove("bg-red-900");
-                s.classList.add("bg-red-300");
-                return
-            }
-            case 1:{
-                s.classList.remove("bg-red-300");
-                s.classList.remove("bg-red-500");
-                s.classList.add("bg-red-900");
-                return;
-            }
-            default:{
-                s.classList.remove("bg-red-300");
-                s.classList.remove("bg-red-900");
-                s.classList.add("bg-red-500");
-                return;
+        if(s){
+            switch(state){
+                case 0:{
+                    s.classList.remove("bg-red-500");
+                    s.classList.remove("bg-red-900");
+                    s.classList.add("bg-red-300");
+                    return
+                }
+                case 1:{
+                    s.classList.remove("bg-red-300");
+                    s.classList.remove("bg-red-500");
+                    s.classList.add("bg-red-900");
+                    return;
+                }
+                default:{
+                    s.classList.remove("bg-red-300");
+                    s.classList.remove("bg-red-900");
+                    s.classList.add("bg-red-500");
+                    return;
+                }
             }
         }
     }
@@ -318,6 +338,8 @@ export class UI{
             this.timeout = null;
         }
         this.tapePosition = 0;
+
+        this.result.style.display = "none";
     }
 
     setTape(tape: string): void{
@@ -351,6 +373,9 @@ export class UI{
         }
         this.addToHistory(f);
         this.isChoosing = false;
+        if(this.simulator?.acceptedInput()){
+            this.showResult("The input was accepted by the automatos.");
+        }
     }
 
     private generateOptions(options: TransitionFunction[]): void{
@@ -386,11 +411,21 @@ export class UI{
     }
 
     nextStep(): void{
+        console.log(this.tapePosition);
         if(!this.isChoosing){
             if(this.simulator){
                 let possibleTranstions: TransitionFunction[] = this.simulator.nextStep();
                 if(possibleTranstions.length == 0){
-                    throw new Error("No possible transitions");
+                    if(this.isRunnig){
+                        this.isRunnig = false;
+                        if(this.timeout){
+                            clearTimeout(this.timeout);
+                            this.timeout = null;
+                        }
+                    }
+                    if(!this.simulator.acceptedInput()){
+                        this.showResult("The input was not accepted by the automatos. No possible transitions to be made.");
+                    }
                 }
                 else if(possibleTranstions.length == 1){
                     this.useTransition(possibleTranstions[0]);
@@ -412,6 +447,7 @@ export class UI{
     }
 
     backStep(): void{
+        console.log(this.tapePosition);
         if(this.isChoosing){
             this.isChoosing = false;
             if(this.transitionOptions){
@@ -435,14 +471,14 @@ export class UI{
                 if(last.startSymbol != null){
                     this.addToStack(last.startSymbol);
                 }
-            }
-            if(this.isRunnig && !this.directionForward)
-            {
-                let dir = this.directionForward;
-                this.timeout = setTimeout(() => {
-                    if(this.isRunnig && this.directionForward == dir)
-                        this.backStep();
-                }, this.speed);
+                if(this.isRunnig && !this.directionForward)
+                {
+                    let dir = this.directionForward;
+                    this.timeout = setTimeout(() => {
+                        if(this.isRunnig && this.directionForward == dir)
+                            this.backStep();
+                    }, this.speed);
+                }
             }
         }
     }
