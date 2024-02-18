@@ -1,8 +1,14 @@
 import { Storage } from "./storage";
+import { UI } from "./ui";
+import { FormAutomataBuilder } from "./formAutomataBuilder";
 
-var divAutomataDefinition: HTMLDivElement;
-var divTransitionHistory: HTMLDivElement;
-var infoDiv: HTMLDivElement;
+export let g_ui: UI = new UI();
+export let g_storage: Storage = new Storage();
+export let g_automataBuilder: FormAutomataBuilder = new FormAutomataBuilder();
+
+export var divAutomataDefinition: HTMLDivElement;
+export var divTransitionHistory: HTMLDivElement;
+export var infoDiv: HTMLDivElement;
 export var mainPage: HTMLDivElement;
 export var menuPage: HTMLDivElement;
 export var newAutomataPage: HTMLDivElement;
@@ -23,7 +29,7 @@ function infoDivSwitch(): void {
     infoDiv.classList.toggle("md:-translate-x-0");
 };
 
-export function registerEvents(storage: Storage): void {
+export function registerEvents(): void {
     divAutomataDefinition = document.getElementById("automataDefinitionDiv") as HTMLDivElement;
     divTransitionHistory = document.getElementById("transitionHistoryDiv") as HTMLDivElement;
     infoDiv = document.getElementById("infoDiv") as HTMLDivElement;
@@ -62,7 +68,7 @@ export function registerEvents(storage: Storage): void {
     document.getElementById("savedAutomatasButton")?.addEventListener("click", () => {
         menuPage.style.display = "none";
         savedAutomatasPage.style.display = "flex";
-        storage?.printAutomatas();
+        g_storage.printAutomatas();
     });
 
     document.getElementById("savedAutomatasBackButton")?.addEventListener("click", () => {

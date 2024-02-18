@@ -138,14 +138,17 @@
             <!--Transition functions-->
             <div class="container mx-auto bg-white p-4 pb-2 flex flex-col">
                 <span class="font-bold mb-2">Transition functions:</span>
-                <div class="flex flex-row flex-nowrap relative items-center">
-                    <p id="transtitionFromState" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
-                    <p id="transtionPopSymbol" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
-                    <p class="mr-1">──</p>
-                    <p id="transitionSymbol" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
-                    <p class="mr-1">─></p>
-                    <p id="transitionToState" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
-                    <p id="transitionPushSymbols" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
+                <div class="flex flex-row flex-wrap">
+                    <div class="flex flex-row flex-nowrap relative items-center">
+                        <p id="transtitionFromState" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
+                        <p id="transtionPopSymbol" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
+                        <p class="mr-1">──</p>
+                        <p id="transitionSymbol" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
+                        <p class="mr-1">─></p>
+                        <p id="transitionToState" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
+                        <p id="transitionPushSymbols" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
+                    </div>
+                    <button id="addTransitionFunctionButton" class="mt-2 py-2 px-4 rounded bg-green-500 hover:bg-green-700 text-white font-bold max-w-36">Add transition</button>
                 </div>
                 <p id="transitionFunctionError" class="hidden text-red-600 font-bold ml-4">Error: Invalid or duplicate transition function</p>
                 <div class="hidden flex-row" id="keyboardState">
@@ -157,14 +160,16 @@
                 <div class="hidden flex-row" id="keyboardStackSymbol">
                     
                 </div>
-                <button id="addTransitionFunctionButton" class="mt-2 py-2 rounded bg-green-500 hover:bg-green-700 text-white font-bold">Add transition</button>
                 
                 <div class="flex flex-row flex-wrap mx-2 mb-4" id="newAutomataTranstitionFunctions">
                     
                 </div>
                 <hr>
             </div>
-            <button id="newAutomataSaveButton" class="bg-slate-200 rounded px-4 py-2 mx-auto">Save automaton</button>
+            <div class="flex flex-row justify-center">
+                <button id="newAutomataCancelButton" class="bg-slate-200 rounded px-4 py-2 mx-2">Cancel</button>
+                <button id="newAutomataSaveButton" class="bg-slate-200 rounded px-4 py-2 mx-2">Save automaton</button>
+            </div>
         </div>
 
         <!--Saved automata-->
@@ -184,6 +189,7 @@
                         <th class="border-b font-medium p-2 pt-0 pb-3 text-left">Name</th>
                         <th class="border-b font-medium p-2 pt-0 pb-3 text-left">Definition</th>
                         <th class="border-b font-medium p-2 pt-0 pb-3 text-left">Open</th>
+                        <th class="border-b font-medium p-2 pt-0 pb-3 text-left">Edit</th>
                         <th class="border-b font-medium p-2 pt-0 pb-3 text-left">Download</th>
                         <th class="border-b font-medium p-2 pt-0 pb-3 text-left">Delete</th>
                     </tr>

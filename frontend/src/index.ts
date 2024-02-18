@@ -1,19 +1,8 @@
-import { UI } from "./ui";
-import { registerEvents } from "./events";
-import { Storage } from "./storage";
-import { FormAutomataBuilder } from "./formAutomataBuilder";
-
-let storage: Storage;
-let ui: UI;
-let automataBuilder: FormAutomataBuilder;
+import { registerEvents, g_ui, g_storage, g_automataBuilder } from "./events";
 
 document.addEventListener("DOMContentLoaded", () => {
-    ui = new UI();
-    storage = new Storage(ui);
-    automataBuilder = new FormAutomataBuilder(storage, ui);
-    registerEvents(storage);
-    ui.registerEvents();
-    storage.registerEvents();
-    automataBuilder.registerEvents();
-    ui.setTape("aabb");
+    registerEvents();
+    g_ui.registerEvents();
+    g_storage.registerEvents();
+    g_automataBuilder.registerEvents();
 });

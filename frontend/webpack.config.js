@@ -19,6 +19,10 @@ module.exports = {
       { 
         test: /\.tsx?$/,
         loader: "ts-loader"
+      },
+      { 
+        test: /\.svg$/, 
+        loader: 'svg-inline-loader' 
       }
     ]
   }

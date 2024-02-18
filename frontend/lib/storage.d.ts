@@ -1,9 +1,7 @@
 import { PushdownAutomata } from "./pushdownAutomata";
-import { UI } from "./ui";
 export declare class Storage {
     private savedAutomatasTable?;
-    private ui;
-    constructor(ui: UI);
+    constructor();
     registerEvents(): void;
     private loadFile;
     private save;

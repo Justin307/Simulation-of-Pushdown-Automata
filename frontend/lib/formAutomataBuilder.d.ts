@@ -1,10 +1,7 @@
+import { PushdownAutomata } from "./pushdownAutomata";
 import { InputSymbol, StackSymbol, State, TransitionFunction } from "./pushdownAutomataTypes";
-import { UI } from "./ui";
-import { Storage } from "./storage";
 type itemType = State | InputSymbol | StackSymbol;
 export declare class FormAutomataBuilder {
-    private storage;
-    private ui;
     private states;
     private inputSymbols;
     private stackSymbols;
@@ -34,9 +31,10 @@ export declare class FormAutomataBuilder {
     private transitionFunctionParts;
     private activePart;
     private keyInput;
-    constructor(storage: Storage, ui: UI);
+    constructor();
     registerEvents(): void;
     reset(): void;
+    editAutomata(key: string, pda: PushdownAutomata): void;
     stateFormSubmitHandler(event: SubmitEvent): void;
     inputSymbolSubmitHandler(event: SubmitEvent): void;
     stackSymbolSubmitHandler(event: SubmitEvent): void;

@@ -1,4 +1,12 @@
 import { Storage } from "./storage";
+import { UI } from "./ui";
+import { FormAutomataBuilder } from "./formAutomataBuilder";
+export declare let g_ui: UI;
+export declare let g_storage: Storage;
+export declare let g_automataBuilder: FormAutomataBuilder;
+export declare var divAutomataDefinition: HTMLDivElement;
+export declare var divTransitionHistory: HTMLDivElement;
+export declare var infoDiv: HTMLDivElement;
 export declare var mainPage: HTMLDivElement;
 export declare var menuPage: HTMLDivElement;
 export declare var newAutomataPage: HTMLDivElement;
@@ -6,4 +14,4 @@ export declare var savedAutomatasPage: HTMLDivElement;
 export declare var simulatorPage: HTMLDivElement;
 export declare var automataOverviewPage: HTMLDivElement;
 export declare var loadAutomataPage: HTMLDivElement;
-export declare function registerEvents(storage: Storage): void;
+export declare function registerEvents(): void;
