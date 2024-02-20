@@ -106,9 +106,6 @@ class PushdownAutomata{
 	- Transition function uspořádat podle stavu a stack symbolu
 	- Multi select
 
-- storage.ts
-	- Přesunout svg do souboru mimo
-
 ## Odkazy
 
 1. https://www.geeksforgeeks.org/introduction-of-pushdown-automata/

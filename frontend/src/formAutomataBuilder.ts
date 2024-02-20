@@ -464,7 +464,7 @@ export class FormAutomataBuilder {
     deleteState(item: State, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
         this.statesDiv.removeChild(div);
         this.states.splice(this.states.indexOf(item), 1);
-        if(compareState(this.initialState, item)){
+        if(this.initialState && compareState(this.initialState, item)){
             this.initialState = undefined;
         }
         this.acceptingStates = this.acceptingStates?.filter(a => !compareState(a, item)) ?? null;
@@ -486,7 +486,7 @@ export class FormAutomataBuilder {
     deleteStackSymbol(item: StackSymbol, div: HTMLDivElement, keyboardButton: HTMLButtonElement){
         this.stackSymbolDiv.removeChild(div);
         this.stackSymbols.splice(this.stackSymbols.indexOf(item), 1);
-        if(compareStackSymbol(this.initialStackSymbol, item)){
+        if(this.initialStackSymbol && compareStackSymbol(this.initialStackSymbol, item)){
             this.initialStackSymbol = undefined;
         }
         this.stackSymbolDeleted(item);

@@ -262,7 +262,7 @@ export class UI{
 
     moveTape(backward: boolean = false): void{
         let symbols = this.tape?.children;
-        if(symbols && symbols.length > 1){
+        if(symbols && symbols.length >= 1){
             if(backward == true){
                 this.tapePosition--;
                 this.setSymbolToState(symbols[this.tapePosition+1] as HTMLDivElement, 2);
@@ -328,6 +328,10 @@ export class UI{
             }
         }
 
+        if(this.transitionOptions){
+            this.transitionOptions.innerHTML = "";
+        }
+
         this.isChoosing = false;
         this.isRunnig = false;
         this.directionForward = true;
@@ -340,6 +344,7 @@ export class UI{
         this.tapePosition = 0;
 
         this.result.style.display = "none";
+
     }
 
     setTape(tape: string): void{
