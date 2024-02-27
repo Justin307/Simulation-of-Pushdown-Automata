@@ -59,6 +59,7 @@ export declare class FormAutomataBuilder {
     keyboardButtonPressed(event: Event, type: number): void;
     transitionFunctionPartChangeHandler(event: Event, index: number): void;
     transitionCheck(): boolean;
+    transitionSort(): void;
     saveEventHandler(event: Event): void;
 }
 export {};

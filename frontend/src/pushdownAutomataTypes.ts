@@ -80,3 +80,7 @@ export function compareTransitionFunction(a: TransitionFunction, b: TransitionFu
 
     return true;
 }
+
+export function toString(item: TransitionFunction): string{
+    return `${item.fromState.value} ${item.startSymbol.value} --${item.inputSymbol.isEpsylon ? "ε" : item.inputSymbol.value}-> ${item.toState.value} ${item.pushedSymbols.map(x => x.value).join(" ")}`;
+}

@@ -56,6 +56,16 @@ export class UI{
     registerEvents(): void{
         document.getElementById("buttonNext")?.addEventListener("click", this.nextStep.bind(this));
         document.getElementById("buttonBack")?.addEventListener("click", this.backStep.bind(this));
+        document.addEventListener("keydown", (event: KeyboardEvent) => {
+            if(simulatorPage.style.display != "none" && this.result.style.display == "none" && this.tapeForm.style.display == 'none' && event.repeat == false){
+                if(event.key == "ArrowRight"){
+                    this.nextStep();
+                }
+                else if(event.key == "ArrowLeft"){
+                    this.backStep();
+                }
+            }
+        });
         document.getElementById("speed-control")?.addEventListener('input', (event: InputEvent) => {
             this.speed = parseInt((event.target as HTMLInputElement).value);
         });
@@ -131,7 +141,6 @@ export class UI{
     }
 
     private checkTapeInputValidity(tapeInput: string): boolean{
-        console.log("Checking tape input");
         if(!this.simulator)
             return false;
         let allowed = this.simulator.automata.inputSymbols.map((s) => s.value);
@@ -159,7 +168,7 @@ export class UI{
         res.classList.add("flex", "flex-row", "flex-nowrap", "justify-center", "pt-3");
 
         let left = document.createElement("div") as HTMLDivElement;
-        left.innerText = f.fromState.value + " " + f.startSymbol.value ?? "";
+        left.innerText = f.fromState.value + " " + f.startSymbol.value;
         res.append(left);
 
         let arrow = document.createElement("div") as HTMLDivElement;
@@ -379,7 +388,7 @@ export class UI{
         this.addToHistory(f);
         this.isChoosing = false;
         if(this.simulator?.acceptedInput()){
-            this.showResult("The input was accepted by the automatos.");
+            this.showResult("The input was accepted by the automaton.");
         }
     }
 
@@ -429,7 +438,7 @@ export class UI{
                         }
                     }
                     if(!this.simulator.acceptedInput()){
-                        this.showResult("The input was not accepted by the automatos. No possible transitions to be made.");
+                        this.showResult("The input was not accepted by the automaton. No possible transitions to be made.");
                     }
                 }
                 else if(possibleTranstions.length == 1){

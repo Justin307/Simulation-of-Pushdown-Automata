@@ -103,8 +103,9 @@ class PushdownAutomata{
 ## Poznámky ze schůzky
 
 - Form
-	- Transition function uspořádat podle stavu a stack symbolu
 	- Multi select
+- Simulator
+    - když možnosti, při zmáčknutí šipky nějaký efekt
 
 ## Odkazy
 
@@ -218,4 +219,9 @@ class PushdownAutomata{
 
 ### 13.2.2024
 
-- Opravy chyb
+- Opravy chyb ✓
+
+### 14.2.2024 - 27.2.2024
+
+- práce na formuláři ✓
+- opravy chyb ✓

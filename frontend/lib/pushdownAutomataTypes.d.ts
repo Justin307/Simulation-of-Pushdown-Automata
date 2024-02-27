@@ -19,3 +19,4 @@ export type TransitionFunction = {
     pushedSymbols: StackSymbol[];
 };
 export declare function compareTransitionFunction(a: TransitionFunction, b: TransitionFunction): boolean;
+export declare function toString(item: TransitionFunction): string;

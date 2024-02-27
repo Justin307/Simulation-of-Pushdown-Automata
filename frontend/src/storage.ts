@@ -1,6 +1,7 @@
 import { PushdownAutomata } from "./pushdownAutomata"
 import { UI } from "./ui" 
 import { automataOverviewPage, savedAutomatasPage, loadAutomataPage, mainPage, simulatorPage, menuPage, g_ui, g_automataBuilder, newAutomataPage } from "./events";
+import { checkPushdownAutomata } from "./pushdownAutomataChecker";
 // @ts-expect-error
 import * as svg_edit from './svg/edit.svg';
 // @ts-expect-error
@@ -48,11 +49,16 @@ export class Storage{
             reader.onload = () => {
                 const jsonStr = reader.result as string;
                 const automata = JSON.parse(jsonStr) as PushdownAutomata;
+
+                if(checkPushdownAutomata(automata) !== true){
+                    return;
+                }
                 
                 this.save(key, automata);
                 if(!overwrite){
                     this.insertRow(key);
                 }
+
                 loadAutomataPage.style.display = "none";
                 menuPage.style.display = "flex";
                 mainPage.style.display = "none";

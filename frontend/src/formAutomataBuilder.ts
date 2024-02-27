@@ -1,6 +1,6 @@
 import { PushdownAutomata } from "./pushdownAutomata";
 import { checkPushdownAutomata } from "./pushdownAutomataChecker";
-import { InputSymbol, StackSymbol, State, TransitionFunction, compareInputSymbol, compareStackSymbol, compareState, compareTransitionFunction } from "./pushdownAutomataTypes";
+import { InputSymbol, StackSymbol, State, TransitionFunction, compareInputSymbol, compareStackSymbol, compareState, compareTransitionFunction, toString } from "./pushdownAutomataTypes";
 import { UI } from "./ui";
 import { menuPage, newAutomataPage, mainPage, simulatorPage, g_ui, g_automataBuilder, g_storage} from "./events";
 
@@ -48,7 +48,7 @@ export class FormAutomataBuilder {
         this.states = [];
         this.inputSymbols = [];
         this.stackSymbols = [];
-        this.acceptingStates = null;
+        this.acceptingStates = [];
         this.transitionFunctions = [];
 
         this.statesDiv = document.getElementById('newAutomataStates') as HTMLDivElement;
@@ -118,7 +118,7 @@ export class FormAutomataBuilder {
         this.states = [];
         this.inputSymbols = [];
         this.stackSymbols = [];
-        this.acceptingStates = null;
+        this.acceptingStates = [];
         this.transitionFunctions = [];
         //divs
         this.statesDiv.innerHTML = '';
@@ -247,8 +247,21 @@ export class FormAutomataBuilder {
         //transition functions
         for(let t of pda.transitionFunction){
             this.transitionFunctions.push(t);
-            this.transitionFunctionDiv.append(this.createTransitionFunctionDiv(t));
+            let div = this.createTransitionFunctionDiv(t)
+            div.addEventListener('click', (event: Event) => {
+                let left = (div.children[0].children[0] as HTMLDivElement).innerText.split(' ');
+                let middle = (div.children[0].children[1].children[0] as HTMLDivElement).innerText;
+                let right = (div.children[0].children[2] as HTMLDivElement).innerText.split(' ');
+    
+                this.transitionFunctionParts[0].innerText = left[0];
+                this.transitionFunctionParts[1].innerText = left[1];
+                this.transitionFunctionParts[2].innerText = middle;
+                this.transitionFunctionParts[3].innerText = right[0];
+                this.transitionFunctionParts[4].innerText = right[1] ?? "";
+            });
+            this.transitionFunctionDiv.append(div);
         }
+        this.transitionSort();
     }
 
     stateFormSubmitHandler(event: SubmitEvent){
@@ -347,7 +360,6 @@ export class FormAutomataBuilder {
                 }
             }
         }
-        console.log(this.acceptingStates);
     };
 
     transitionFunctionAddHandler(event: Event){
@@ -373,15 +385,28 @@ export class FormAutomataBuilder {
         };
         for(let t of this.transitionFunctions){
             if(compareTransitionFunction(t, item)){
-                console.log(t, item);
                 this.transitionFunctionError.style.display = 'block';
                 this.transitionFunctionError.innerText = 'Error: Transition already exists';
                 return;
             }
         }
         this.transitionFunctions.push(item);
-        this.transitionFunctionDiv.append(this.createTransitionFunctionDiv(item));
+        let div = this.createTransitionFunctionDiv(item)
+        div.addEventListener('click', (event: Event) => {
+            let left = (div.children[0].children[0] as HTMLDivElement).innerText.split(' ');
+            let middle = (div.children[0].children[1].children[0] as HTMLDivElement).innerText;
+            let right = (div.children[0].children[2] as HTMLDivElement).innerText.split(' ');
+
+            this.transitionFunctionParts[0].innerText = left[0];
+            this.transitionFunctionParts[1].innerText = left[1];
+            this.transitionFunctionParts[2].innerText = middle;
+            this.transitionFunctionParts[3].innerText = right[0];
+            this.transitionFunctionParts[4].innerText = right[1] ?? "";
+        });
+        this.transitionFunctionDiv.append(div);
         this.transitionFunctionError.style.display = 'none';
+
+        this.transitionSort();
 
         for(let t of this.transitionFunctionParts){
             t.innerText = '';
@@ -594,7 +619,6 @@ export class FormAutomataBuilder {
     
     keyboardButtonPressed(event: Event, type: number){
         event.preventDefault();
-        console.log(type, this.activePart);
         switch(type){
             //State
             case 0:
@@ -736,31 +760,52 @@ export class FormAutomataBuilder {
         return anyInvalid;
     }
 
+    transitionSort(): void{
+        let cmp = (a: TransitionFunction, b: TransitionFunction): boolean => toString(a) < toString(b);
+        console.log(this.transitionFunctions.length, this.transitionFunctionDiv.childNodes.length)
+        for(let i = 1; i < this.transitionFunctions.length; i++){
+            let j = i;
+            while(j > 0 && cmp(this.transitionFunctions[j], this.transitionFunctions[j-1])){
+                let temp = this.transitionFunctions[j];
+                this.transitionFunctions[j] = this.transitionFunctions[j-1];
+                this.transitionFunctions[j-1] = temp;
+                let tempDiv = this.transitionFunctionDiv.children[j];
+                this.transitionFunctionDiv.insertBefore(tempDiv, this.transitionFunctionDiv.children[j-1]);
+                j--;
+            }
+        }
+        for(let t of this.transitionFunctions){
+            console.log(toString(t));
+        }
+    }
+
+
     saveEventHandler(event: Event): void{
         event.preventDefault();
+        let error = false;
         //States
         if(this.states.length === 0){
             this.stateError.style.display = 'block';
             this.stateError.innerText = 'Error: At least one state must be defined';
-            return;
+            error = true;
         }
         //Input symbols
         if(this.inputSymbols.length === 0){
             this.inputSymbolError.style.display = 'block';
             this.inputSymbolError.innerText = 'Error: At least one input symbol must be defined';
-            return;
+            error = true;
         }
         //Stack symbols
         if(this.stackSymbols.length === 0){
             this.stackSymbolError.style.display = 'block';
             this.stackSymbolError.innerText = 'Error: At least one stack symbol must be defined';
-            return;
+            error = true;
         }
         //Initial state
         if(!this.initialState){
             this.initialStateError.style.display = 'block';
             this.initialStateError.innerText = 'Error: Initial state must be defined';
-            return;
+            error = true;
         }
         else{
             this.initialStateError.style.display = 'none';
@@ -769,7 +814,7 @@ export class FormAutomataBuilder {
         if(!this.initialStackSymbol){
             this.initialStackSymbolError.style.display = 'block';
             this.initialStackSymbolError.innerText = 'Error: Initial stack symbol must be defined';
-            return;
+            error = true;
         }
         else{
             this.initialStackSymbolError.style.display = 'none';
@@ -778,8 +823,8 @@ export class FormAutomataBuilder {
         if(this.acceptingStates !== null){
             if(this.acceptingStates.length === 0){
                 this.acceptingStateError.style.display = 'block';
-                this.acceptingStateError.innerText = 'Error: At least one accepting state must be defined or enable acceptance by empty stack';
-                return;
+                this.acceptingStateError.innerText = 'Error: At least one accepting state must be defined or acceptance by empty stack must be checked';
+                error = true;
             }
             else{
                 this.initialStateError.style.display = 'none';
@@ -789,19 +834,20 @@ export class FormAutomataBuilder {
         if(this.transitionFunctions.length === 0){
             this.transitionFunctionError.style.display = 'block';
             this.transitionFunctionError.innerText = 'Error: At least one transition function must be defined';
-            return;
-        }
-        //Whole automata
-        if(!checkPushdownAutomata(this.states, this.stackSymbols, this.inputSymbols, this.initialState, this.initialStackSymbol, this.acceptingStates, this.transitionFunctions)){
-            return;
+            error = true;
         }
         //Key
         let key = this.keyInput.value.trim();
         if(key === ''){
             this.keyError.style.display = 'block';
+            error = true;
         }
         else{
             this.keyError.style.display = 'none';
+        }
+        //Whole automata
+        if(error || !checkPushdownAutomata(this.states, this.stackSymbols, this.inputSymbols, this.initialState, this.initialStackSymbol, this.acceptingStates, this.transitionFunctions)){
+            return;
         }
         //Valid
         let pda = new PushdownAutomata(this.states, this.inputSymbols, this.stackSymbols, this.initialState, this.initialStackSymbol, this.acceptingStates, this.transitionFunctions);
@@ -813,7 +859,6 @@ export class FormAutomataBuilder {
             mainPage.style.display = "none";
             simulatorPage.style.display = "flex";
             g_ui.setAutomata(g_storage.loadAutomata(key));
-            console.log("Valid automata:", pda);
         }
     }
 }
