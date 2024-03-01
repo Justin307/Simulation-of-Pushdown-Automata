@@ -2,7 +2,7 @@ import { PushdownAutomata } from "./pushdownAutomata";
 import { checkPushdownAutomata } from "./pushdownAutomataChecker";
 import { InputSymbol, StackSymbol, State, TransitionFunction, compareInputSymbol, compareStackSymbol, compareState, compareTransitionFunction, toString } from "./pushdownAutomataTypes";
 import { UI } from "./ui";
-import { menuPage, newAutomataPage, mainPage, simulatorPage, g_ui, g_automataBuilder, g_storage} from "./events";
+import { menuPage, newAutomataPage, mainPage, simulatorPage, g_ui, g_automataBuilder, g_storage, changePage, PageEnum} from "./events";
 
 type itemType = State | InputSymbol | StackSymbol;
 
@@ -108,8 +108,7 @@ export class FormAutomataBuilder {
         document.getElementById('newAutomataSaveButton')?.addEventListener('click', this.saveEventHandler.bind(this));
         document.getElementById('newAutomataCancelButton')?.addEventListener('click', () => {
             this.reset();
-            newAutomataPage.style.display = "none";
-            menuPage.style.display = "flex";
+            changePage(PageEnum.MENU);
         });
     }
 
@@ -166,6 +165,7 @@ export class FormAutomataBuilder {
         this.keyboardDeleteButton.style.display = "none";
         this.keyboardStackSymbol.style.display = 'none';
         //errors
+        this.keyError.style.display = 'none';
         this.stateError.style.display = 'none';
         this.stackSymbolError.style.display = 'none';
         this.inputSymbolError.style.display = 'none';
@@ -762,7 +762,6 @@ export class FormAutomataBuilder {
 
     transitionSort(): void{
         let cmp = (a: TransitionFunction, b: TransitionFunction): boolean => toString(a) < toString(b);
-        console.log(this.transitionFunctions.length, this.transitionFunctionDiv.childNodes.length)
         for(let i = 1; i < this.transitionFunctions.length; i++){
             let j = i;
             while(j > 0 && cmp(this.transitionFunctions[j], this.transitionFunctions[j-1])){
@@ -774,9 +773,11 @@ export class FormAutomataBuilder {
                 j--;
             }
         }
+        /*
+        //Debug - print array - has to match divs rendered on site
         for(let t of this.transitionFunctions){
             console.log(toString(t));
-        }
+        }*/
     }
 
 
@@ -854,10 +855,7 @@ export class FormAutomataBuilder {
         let result = g_storage.saveAutomata(key, pda);
         if(result){
             this.reset();
-            newAutomataPage.style.display = "none";
-            menuPage.style.display = "flex";
-            mainPage.style.display = "none";
-            simulatorPage.style.display = "flex";
+            changePage(PageEnum.SIMULATOR);
             g_ui.setAutomata(g_storage.loadAutomata(key));
         }
     }

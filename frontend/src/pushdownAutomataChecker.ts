@@ -24,6 +24,7 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
         error = true;
         errorMSg.push("No states");
     }
+    console.log(pda);
     if(includeDuplicates(pda.states, compareState)){
         error = true;
         errorMSg.push("Duplicate states");

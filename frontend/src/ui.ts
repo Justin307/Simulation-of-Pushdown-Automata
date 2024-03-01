@@ -1,7 +1,7 @@
 import { PushdownAutomataSimulator } from "./pushdownAutomataSimulator";
 import { PushdownAutomata } from "./pushdownAutomata";
 import { TransitionFunction, InputSymbol, StackSymbol, State } from "./pushdownAutomataTypes";
-import { mainPage, simulatorPage } from "./events";
+import { PageEnum, changePage, mainPage, simulatorPage } from "./events";
 
 export class UI{
     simulator?: PushdownAutomataSimulator;
@@ -113,8 +113,7 @@ export class UI{
         });
         document.getElementById("closeSimulatorButton")?.addEventListener("click", () => {
             
-            simulatorPage.style.display = "none";
-            mainPage.style.display = "flex";
+            changePage(PageEnum.MENU);
             if(this.timeout){
                 clearTimeout(this.timeout);
                 this.timeout = null;

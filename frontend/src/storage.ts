@@ -1,6 +1,6 @@
 import { PushdownAutomata } from "./pushdownAutomata"
 import { UI } from "./ui" 
-import { automataOverviewPage, savedAutomatasPage, loadAutomataPage, mainPage, simulatorPage, menuPage, g_ui, g_automataBuilder, newAutomataPage } from "./events";
+import { automataOverviewPage, savedAutomatasPage, loadAutomataPage, mainPage, simulatorPage, menuPage, g_ui, g_automataBuilder, newAutomataPage, changePage, PageEnum } from "./events";
 import { checkPushdownAutomata } from "./pushdownAutomataChecker";
 // @ts-expect-error
 import * as svg_edit from './svg/edit.svg';
@@ -48,7 +48,8 @@ export class Storage{
             const reader = new FileReader();
             reader.onload = () => {
                 const jsonStr = reader.result as string;
-                const automata = JSON.parse(jsonStr) as PushdownAutomata;
+
+                const automata = Object.setPrototypeOf(JSON.parse(jsonStr),PushdownAutomata.prototype);
 
                 if(checkPushdownAutomata(automata) !== true){
                     return;
@@ -59,10 +60,7 @@ export class Storage{
                     this.insertRow(key);
                 }
 
-                loadAutomataPage.style.display = "none";
-                menuPage.style.display = "flex";
-                mainPage.style.display = "none";
-                simulatorPage.style.display = "flex";
+                changePage(PageEnum.SIMULATOR);
                 g_ui.setAutomata(this.loadAutomata(key));
                 keyInput.value = "";
                 fileInput.value = "";
@@ -147,8 +145,7 @@ export class Storage{
             button.innerHTML = svg_open;
             button.children[0].classList.add("w-6","h-6","text-gray-800","dark:text-white");
             button.addEventListener("click", () => {
-                mainPage.style.display = "none";
-                simulatorPage.style.display = "flex";
+                changePage(PageEnum.SIMULATOR);
                 g_ui.setAutomata(this.loadAutomata(key));
             });
             cell.append(button);
@@ -161,8 +158,7 @@ export class Storage{
             button.children[0].classList.add("w-6","h-6","text-gray-800","dark:text-white");
             button.addEventListener("click", () => {
                 g_automataBuilder.editAutomata(key, this.load<PushdownAutomata>(key));
-                savedAutomatasPage.style.display = "none";
-                newAutomataPage.style.display = "flex";
+                changePage(PageEnum.NEW_AUTOMATA);
 
             });
             cell.append(button);
@@ -235,7 +231,6 @@ export class Storage{
         for(let f of automata.transitionFunction ?? []){
             tFunction.append(UI.generateTransitionFunction(f));
         }
-        savedAutomatasPage.style.display = "none";
-        automataOverviewPage.style.display = "flex";
+        changePage(PageEnum.OVERVIEW);
     }
 }

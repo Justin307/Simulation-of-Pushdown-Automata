@@ -6,16 +6,107 @@ export let g_ui: UI = new UI();
 export let g_storage: Storage = new Storage();
 export let g_automataBuilder: FormAutomataBuilder = new FormAutomataBuilder();
 
-export var divAutomataDefinition: HTMLDivElement;
-export var divTransitionHistory: HTMLDivElement;
-export var infoDiv: HTMLDivElement;
-export var mainPage: HTMLDivElement;
-export var menuPage: HTMLDivElement;
-export var newAutomataPage: HTMLDivElement;
-export var savedAutomatasPage: HTMLDivElement;
+//Simulator
 export var simulatorPage: HTMLDivElement;
-export var automataOverviewPage: HTMLDivElement
+
+//Inside simulator
+export var divAutomataDefinition: HTMLDivElement;
+
+//Inside simulator
+export var divTransitionHistory: HTMLDivElement;
+
+//Inside simulator
+//Wrapper for divAutomataDefinition & divTransitionHistory
+export var infoDiv: HTMLDivElement;
+
+//Main
+//Wrapper for all the pages bellow
+export var mainPage: HTMLDivElement;
+
+//Menu
+export var menuPage: HTMLDivElement;
+
+//New automata form 
+export var newAutomataPage: HTMLDivElement;
+
+//Upload form
 export var loadAutomataPage: HTMLDivElement;
+
+//Saved automatas table
+export var savedAutomatasPage: HTMLDivElement;
+
+//Overview of saved automata
+export var automataOverviewPage: HTMLDivElement;
+
+export enum PageEnum {
+    SIMULATOR = 0,
+    MENU = 1,
+    NEW_AUTOMATA = 2,
+    UPLOAD = 3,
+    SAVED = 4,
+    OVERVIEW = 5,
+}
+
+export function changePage(page: PageEnum): void {
+    switch(page){
+        case PageEnum.SIMULATOR:
+            simulatorPage.style.display = "flex";
+            mainPage.style.display = "none";
+            menuPage.style.display = "none";
+            newAutomataPage.style.display = "none";
+            loadAutomataPage.style.display = "none";
+            savedAutomatasPage.style.display = "none";
+            automataOverviewPage.style.display = "none";
+            break;
+        case PageEnum.MENU:
+            simulatorPage.style.display = "none";
+            mainPage.style.display = "flex";
+            menuPage.style.display = "flex";
+            newAutomataPage.style.display = "none";
+            loadAutomataPage.style.display = "none";
+            savedAutomatasPage.style.display = "none";
+            automataOverviewPage.style.display = "none";
+            break;
+        case PageEnum.NEW_AUTOMATA:
+            simulatorPage.style.display = "none";
+            mainPage.style.display = "flex";
+            menuPage.style.display = "none";
+            newAutomataPage.style.display = "flex";
+            loadAutomataPage.style.display = "none";
+            savedAutomatasPage.style.display = "none";
+            automataOverviewPage.style.display = "none";
+            break;
+        case PageEnum.UPLOAD:
+            simulatorPage.style.display = "none";
+            mainPage.style.display = "flex";
+            menuPage.style.display = "none";
+            newAutomataPage.style.display = "none";
+            loadAutomataPage.style.display = "flex";
+            savedAutomatasPage.style.display = "none";
+            automataOverviewPage.style.display = "none";
+            break;
+        case PageEnum.SAVED:
+            simulatorPage.style.display = "none";
+            mainPage.style.display = "flex";
+            menuPage.style.display = "none";
+            newAutomataPage.style.display = "none";
+            loadAutomataPage.style.display = "none";
+            savedAutomatasPage.style.display = "flex";
+            automataOverviewPage.style.display = "none";
+            break;
+        case PageEnum.OVERVIEW:
+            simulatorPage.style.display = "none";
+            mainPage.style.display = "flex";
+            menuPage.style.display = "none";
+            newAutomataPage.style.display = "none";
+            loadAutomataPage.style.display = "none";
+            savedAutomatasPage.style.display = "none";
+            automataOverviewPage.style.display = "flex";
+            break;
+        default:
+            break;
+    }
+}
 
 function infoDivSwitch(): void {
     infoDiv.classList.toggle("hidden");
@@ -56,34 +147,28 @@ export function registerEvents(): void {
     document.getElementById("hideInfoButton")?.addEventListener("click", infoDivSwitch);
 
     document.getElementById("newAutomataButton")?.addEventListener("click", () => {
-        menuPage.style.display = "none";
-        newAutomataPage.style.display = "flex";
+        changePage(PageEnum.NEW_AUTOMATA);
     });
 
     document.getElementById("uploadAutomataButton")?.addEventListener("click", () => {
-        menuPage.style.display = "none";
-        loadAutomataPage.style.display = "flex";
+        changePage(PageEnum.UPLOAD);
     });
 
     document.getElementById("savedAutomatasButton")?.addEventListener("click", () => {
-        menuPage.style.display = "none";
-        savedAutomatasPage.style.display = "flex";
+        changePage(PageEnum.SAVED);
         g_storage.printAutomatas();
     });
 
     document.getElementById("savedAutomatasBackButton")?.addEventListener("click", () => {
-        menuPage.style.display = "flex";
-        savedAutomatasPage.style.display = "none";
+        changePage(PageEnum.MENU);
     });
 
     document.getElementById("hideOverviewButton")?.addEventListener("click", () => {
-        savedAutomatasPage.style.display = "flex";
-        automataOverviewPage.style.display = "none";
+        changePage(PageEnum.SAVED);
     });
 
     document.getElementById("hideLoadButton")?.addEventListener("click", () => {
-        menuPage.style.display = "flex";
-        loadAutomataPage.style.display = "none";
+        changePage(PageEnum.MENU);
         (document.getElementById("loadKeyInput") as HTMLInputElement).value = "";
         (document.getElementById("loadFileInput") as HTMLInputElement).value = "";
     });

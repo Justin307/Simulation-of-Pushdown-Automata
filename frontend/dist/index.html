@@ -36,7 +36,7 @@
         </div>
 
         <!--New automaton definition-->
-        <div class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-300 w-full p-2 flex-col max-h-[100vh] overflow-y-scroll" id="newAutomataPage">
+        <div class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full p-2 flex-col max-h-[100vh] overflow-y-scroll" id="newAutomataPage">
             <!--Name/key-->
             <div class="container mx-auto bg-white p-4">
                 <label for="loadKeyInput" class="mb-2">
@@ -52,7 +52,7 @@
                         <span class="font-bold">States:</span>
                         <div class="flex flex-row">
                             <input id="stateInput" type="text" required class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black">
-                            <input type="submit" value="Insert" class="ml-3 w-36 py-2 rounded bg-green-500 hover:bg-green-700 text-white font-bold">
+                            <input type="submit" value="Insert" class="ml-3 w-36 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold">
                         </div>
                     </label>
                 </form>
@@ -69,7 +69,7 @@
                         <span class="font-bold">Input symbols:</span>
                         <div class="flex flex-row">
                             <input id="inputSymbolInput" type="text" required class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black">
-                            <input type="submit" value="Insert" class="ml-3 w-36 py-2 rounded bg-green-500 hover:bg-green-700 text-white font-bold">
+                            <input type="submit" value="Insert" class="ml-3 w-36 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold">
                         </div>
                     </label>
                 </form>
@@ -86,7 +86,7 @@
                         <span class="font-bold">Stack symbols:</span>
                         <div class="flex flex-row">
                             <input id="stackSymbolInput" type="text" required class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black">
-                            <input type="submit" value="Insert" class="ml-3 w-36 py-2 rounded bg-green-500 hover:bg-green-700 text-white font-bold">
+                            <input type="submit" value="Insert" class="ml-3 w-36 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold">
                         </div>
                     </label>
                 </form>
@@ -139,7 +139,7 @@
             <div class="container mx-auto bg-white p-4 pb-2 flex flex-col">
                 <span class="font-bold mb-2">Transition functions:</span>
                 <div class="flex flex-row flex-wrap">
-                    <div class="flex flex-row flex-nowrap relative items-center">
+                    <div class="flex flex-row flex-nowrap relative items-center mr-4">
                         <p id="transtitionFromState" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
                         <p id="transtionPopSymbol" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
                         <p class="mr-1">──</p>
@@ -148,7 +148,7 @@
                         <p id="transitionToState" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
                         <p id="transitionPushSymbols" class="mr-1 py-2 px-4 min-h-8 bg-slate-100"></p>
                     </div>
-                    <button id="addTransitionFunctionButton" class="mt-2 py-2 px-4 rounded bg-green-500 hover:bg-green-700 text-white font-bold max-w-36">Add transition</button>
+                    <button id="addTransitionFunctionButton" class="mt-2 py-2 px-4 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold max-w-36">Add transition</button>
                 </div>
                 <p id="transitionFunctionError" class="hidden text-red-600 font-bold ml-4">Error: Invalid or duplicate transition function</p>
                 <div class="hidden flex-row" id="keyboardState">
@@ -167,8 +167,8 @@
                 <hr>
             </div>
             <div class="flex flex-row justify-center">
-                <button id="newAutomataCancelButton" class="bg-slate-200 rounded px-4 py-2 mx-2">Cancel</button>
-                <button id="newAutomataSaveButton" class="bg-slate-200 rounded px-4 py-2 mx-2">Save automaton</button>
+                <button id="newAutomataCancelButton" class="bg-slate-200 rounded px-4 py-2 mx-2 font-bold">Cancel</button>
+                <button id="newAutomataSaveButton" class="bg-green-500 hover:bg-green-700 rounded px-4 py-2 mx-2 font-bold text-white">Save automaton</button>
             </div>
         </div>
 
