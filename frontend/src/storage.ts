@@ -1,6 +1,6 @@
 import { PushdownAutomata } from "./pushdownAutomata"
-import { UI } from "./ui" 
-import { automataOverviewPage, savedAutomatasPage, loadAutomataPage, mainPage, simulatorPage, menuPage, g_ui, g_automataBuilder, newAutomataPage, changePage, PageEnum } from "./events";
+import { SimulatorUI } from "./simulatorUI" 
+import { g_ui, g_automataBuilder, changePage, PageEnum } from "./globals";
 import { checkPushdownAutomata } from "./pushdownAutomataChecker";
 // @ts-expect-error
 import * as svg_edit from './svg/edit.svg';
@@ -229,7 +229,7 @@ export class Storage{
         let tFunction =  document.getElementById("overviewTranstionFunction") as HTMLDivElement;
         tFunction.innerHTML = "";
         for(let f of automata.transitionFunction ?? []){
-            tFunction.append(UI.generateTransitionFunction(f));
+            tFunction.append(SimulatorUI.generateTransitionFunction(f));
         }
         changePage(PageEnum.OVERVIEW);
     }

@@ -1,8 +1,8 @@
 import { PushdownAutomata } from "./pushdownAutomata";
 import { checkPushdownAutomata } from "./pushdownAutomataChecker";
 import { InputSymbol, StackSymbol, State, TransitionFunction, compareInputSymbol, compareStackSymbol, compareState, compareTransitionFunction, toString } from "./pushdownAutomataTypes";
-import { UI } from "./ui";
-import { menuPage, newAutomataPage, mainPage, simulatorPage, g_ui, g_automataBuilder, g_storage, changePage, PageEnum} from "./events";
+import { SimulatorUI } from "./simulatorUI";
+import { menuPage, newAutomataPage, mainPage, simulatorPage, g_ui, g_automataBuilder, g_storage, changePage, PageEnum} from "./globals";
 
 type itemType = State | InputSymbol | StackSymbol;
 
@@ -416,7 +416,7 @@ export class FormAutomataBuilder {
     createTransitionFunctionDiv(item: TransitionFunction): HTMLDivElement{
         let div = document.createElement('div');
         div.classList.add('flex', 'p-2', 'bg-slate-100', 'rounded', 'm-2', 'flex-row', 'justify-center', 'items-center');
-        let t = UI.generateTransitionFunction(item);
+        let t = SimulatorUI.generateTransitionFunction(item);
         div.append(t);
         let button = document.createElement('button');
         button.classList.add('rounded-full', 'bg-slate-300', 'w-6', 'h-6', 'ml-2');

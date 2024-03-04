@@ -1,9 +1,9 @@
 import { PushdownAutomataSimulator } from "./pushdownAutomataSimulator";
 import { PushdownAutomata } from "./pushdownAutomata";
 import { TransitionFunction, InputSymbol, StackSymbol, State } from "./pushdownAutomataTypes";
-import { PageEnum, changePage, mainPage, simulatorPage } from "./events";
+import { PageEnum, changePage, simulatorPage } from "./globals";
 
-export class UI{
+export class SimulatorUI{
     simulator?: PushdownAutomataSimulator;
     transtitionHistory?: HTMLDivElement;
     tape?: HTMLDivElement;
@@ -204,13 +204,13 @@ export class UI{
         let tFunction =  document.getElementById("infoTranstionFunction") as HTMLDivElement;
         tFunction.innerHTML = "";
         for(let f of this.simulator?.automata.transitionFunction ?? []){
-            tFunction.append(UI.generateTransitionFunction(f));
+            tFunction.append(SimulatorUI.generateTransitionFunction(f));
         }
     }
 
     addToHistory(f: TransitionFunction): void{
         if(this.transtitionHistory){
-            this.transtitionHistory.prepend(UI.generateTransitionFunction(f));
+            this.transtitionHistory.prepend(SimulatorUI.generateTransitionFunction(f));
         }
     }
 
@@ -402,7 +402,7 @@ export class UI{
         for(let o of options){
             let option = document.createElement("button") as HTMLButtonElement;
             option.classList.add("px-2","py-1","mx-auto");
-            option.append(UI.generateTransitionFunction(o));
+            option.append(SimulatorUI.generateTransitionFunction(o));
             option.addEventListener("click", () => {
                 this.useTransition(o);
                 if(this.transitionOptions){

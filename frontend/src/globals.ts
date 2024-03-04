@@ -1,8 +1,8 @@
 import { Storage } from "./storage";
-import { UI } from "./ui";
+import { SimulatorUI } from "./simulatorUI";
 import { FormAutomataBuilder } from "./formAutomataBuilder";
 
-export let g_ui: UI = new UI();
+export let g_ui: SimulatorUI = new SimulatorUI();
 export let g_storage: Storage = new Storage();
 export let g_automataBuilder: FormAutomataBuilder = new FormAutomataBuilder();
 

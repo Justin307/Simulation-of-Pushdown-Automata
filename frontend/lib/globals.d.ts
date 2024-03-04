@@ -1,7 +1,7 @@
 import { Storage } from "./storage";
-import { UI } from "./ui";
+import { SimulatorUI } from "./simulatorUI";
 import { FormAutomataBuilder } from "./formAutomataBuilder";
-export declare let g_ui: UI;
+export declare let g_ui: SimulatorUI;
 export declare let g_storage: Storage;
 export declare let g_automataBuilder: FormAutomataBuilder;
 export declare var simulatorPage: HTMLDivElement;

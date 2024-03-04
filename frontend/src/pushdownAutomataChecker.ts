@@ -24,7 +24,6 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
         error = true;
         errorMSg.push("No states");
     }
-    console.log(pda);
     if(includeDuplicates(pda.states, compareState)){
         error = true;
         errorMSg.push("Duplicate states");
@@ -74,11 +73,10 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
                     errorMessagePushed = true;
                     errorMSg.push("These accepting states do not exist:");
                 }
-                errorMSg.push("> " + finalState.value);
+                errorMSg.push("-> " + finalState.value);
                 break;
             }
-        }
-        
+        }  
     }
     //Transition function
     if(pda.transitionFunction.length === 0){
@@ -98,7 +96,7 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
         if(!errorTransitionPushed){
             error = true;
             errorTransitionPushed = true;
-            errorMSg.push("> " + t.fromState.value + " " + t.startSymbol.value + " --" + t.inputSymbol.isEpsylon ? "ε" : t.inputSymbol.value + "-> " + t.toState.value + " " + t.pushedSymbols.map(s => s.value).join(" "));
+             errorMSg.push("-> " + t.fromState.value + " " + t.startSymbol.value + " -- " + (t.inputSymbol.isEpsylon ? "ε" : t.inputSymbol.value) + " -> " + t.toState.value + " " + t.pushedSymbols.map(s => s.value).join(" "));
         }
     }
     for(let t of pda.transitionFunction){
@@ -106,39 +104,34 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
         if(!pda.states.some(s => compareState(s, t.fromState))){
             pushMessage();
             pushTransition(t);
-            errorMSg.push("From state does not exist");
-            break;
+            errorMSg.push("   From state does not exist");
         }
         if(!pda.states.some(s => compareState(s, t.toState))){
             pushMessage();
             pushTransition(t);
-            errorMSg.push("To state does not exist");
-            break;
+            errorMSg.push("   To state does not exist");
         }
         if(!(t.inputSymbol.isEpsylon || (!t.inputSymbol.isEpsylon && pda.inputSymbols.some(i => compareInputSymbol(i, t.inputSymbol))))){
             pushMessage();
             pushTransition(t);
-            errorMSg.push("Input symbol does not exist");
-            break;
+            errorMSg.push("   Input symbol does not exist");
         }
         if(!pda.stackSymbols.some(s => compareStackSymbol(s, t.startSymbol))){
             pushMessage();
             pushTransition(t);
-            errorMSg.push("Popped symbol does not exist");
-            break;
+            errorMSg.push("   Popped symbol does not exist");
         }
         for(let pushedSymbol of t.pushedSymbols){
             if(!pda.stackSymbols.some(s => compareStackSymbol(s, pushedSymbol))){
                 pushMessage();
                 pushTransition(t);
-                errorMSg.push("Pushed symbol " + pushedSymbol.value + "does not exist");
-                break;
+                errorMSg.push("   Pushed symbol " + pushedSymbol.value + " does not exist");
             }
         }
     }
 
     if(error){
-        alert("Error in PDA: \n -" + errorMSg.join("\n -"));
+        alert("Error in PDA: \n " + errorMSg.join("\n "));
         return false;
     }
 

@@ -2,7 +2,7 @@
 import { PushdownAutomataSimulator } from "./pushdownAutomataSimulator";
 import { PushdownAutomata } from "./pushdownAutomata";
 import { TransitionFunction, InputSymbol, StackSymbol, State } from "./pushdownAutomataTypes";
-export declare class UI {
+export declare class SimulatorUI {
     simulator?: PushdownAutomataSimulator;
     transtitionHistory?: HTMLDivElement;
     tape?: HTMLDivElement;

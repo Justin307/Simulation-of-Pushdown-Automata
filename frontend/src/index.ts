@@ -1,4 +1,4 @@
-import { registerEvents, g_ui, g_storage, g_automataBuilder } from "./events";
+import { registerEvents, g_ui, g_storage, g_automataBuilder } from "./globals";
 
 document.addEventListener("DOMContentLoaded", () => {
     registerEvents();

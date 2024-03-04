@@ -26,10 +26,10 @@
       }
     ],
     "initialState": {
-      "value": "q1"
+      "value": "q3"
     },
     "initialStackSymbol": {
-      "value": "O"
+      "value": "A"
     },
     "acceptingState": null,
     "transitionFunction": [
@@ -107,6 +107,42 @@
           "value": "q2"
         },
         "pushedSymbols": []
+      },
+      {
+        "fromState": {
+          "value": "q3"
+        },
+        "inputSymbol": {
+          "isEpsylon": false,
+          "value": "b"
+        },
+        "startSymbol": {
+          "value": "F"
+        },
+        "toState": {
+          "value": "q2"
+        },
+        "pushedSymbols": []
+      },
+      {
+        "fromState": {
+          "value": "q1"
+        },
+        "inputSymbol": {
+          "isEpsylon": false,
+          "value": "t"
+        },
+        "startSymbol": {
+          "value": "I"
+        },
+        "toState": {
+          "value": "q2"
+        },
+        "pushedSymbols": [
+          {
+            "value": "P"
+          }
+        ]
       }
     ]
   }
