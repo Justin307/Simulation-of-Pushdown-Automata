@@ -107,6 +107,15 @@ class PushdownAutomata{
 - Simulator
     - když možnosti, při zmáčknutí šipky nějaký efekt
 
+- Text
+    - kapitoly + sekce (více nedělit)
+    - Uvod - co, jak, proč, shrnutí kapitol - becné uvedení do problematiky
+    - (max) 1/3 - teoretický rozbor, co to je automat, jak probíhá výpočet, existující software (BP z minulého roku, software na github)
+    - analýza/návrh, ulm diagram, návrh tříd, ...
+    - kapitola věnovaná implementaci, technologie, knihovny, trochu části kódu, ...
+    - pohled uživatele, uživatelské rozhraní, vzorové automaty, spuštění aplikace
+    - závěr (stručný) - často se opakují věci, konkrétní výsledek práce, co je přínos
+
 ## Odkazy
 
 1. https://www.geeksforgeeks.org/introduction-of-pushdown-automata/
