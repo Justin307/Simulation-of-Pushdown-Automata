@@ -102,10 +102,9 @@ class PushdownAutomata{
 
 ## Poznámky ze schůzky
 
-- Form
-	- Multi select
 - Simulator
     - když možnosti, při zmáčknutí šipky nějaký efekt
+    - auto focus na aktuální symbol v Tape
 
 - Text
     - kapitoly + sekce (více nedělit)

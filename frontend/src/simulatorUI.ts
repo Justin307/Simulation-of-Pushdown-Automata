@@ -222,7 +222,7 @@ export class SimulatorUI{
 
     addToTape(s: InputSymbol, append?: boolean): void{
         let symbol = document.createElement("div") as HTMLDivElement;
-        symbol.classList.add("bg-red-500","h-16","w-16","m-2","flex-shrink-0","flex","justify-center","items-center")
+        symbol.classList.add("bg-slate-300","h-16","w-16","m-2","flex-shrink-0","flex","justify-center","items-center", "text-xl")
         symbol.innerText = s.value;
         if(append && append == true){
             this.tape?.append(symbol);
@@ -247,21 +247,21 @@ export class SimulatorUI{
         if(s){
             switch(state){
                 case 0:{
-                    s.classList.remove("bg-red-500");
-                    s.classList.remove("bg-red-900");
-                    s.classList.add("bg-red-300");
+                    s.classList.remove("bg-slate-300");
+                    s.classList.remove("bg-slate-400");
+                    s.classList.add("bg-slate-200");
                     return
                 }
                 case 1:{
-                    s.classList.remove("bg-red-300");
-                    s.classList.remove("bg-red-500");
-                    s.classList.add("bg-red-900");
+                    s.classList.remove("bg-slate-200");
+                    s.classList.remove("bg-slate-300");
+                    s.classList.add("bg-slate-400");
                     return;
                 }
                 default:{
-                    s.classList.remove("bg-red-300");
-                    s.classList.remove("bg-red-900");
-                    s.classList.add("bg-red-500");
+                    s.classList.remove("bg-slate-200");
+                    s.classList.remove("bg-slate-400");
+                    s.classList.add("bg-slate-300");
                     return;
                 }
             }
@@ -300,7 +300,7 @@ export class SimulatorUI{
 
     addToStack(s: StackSymbol): void{
         let symbol = document.createElement("div") as HTMLDivElement;
-        symbol.classList.add("bg-green-500","h-16","w-16","m-2","flex-shrink-0","flex","justify-center","items-center","first:mt-auto")
+        symbol.classList.add("first:bg-slate-400", "bg-slate-300","h-16","w-16","m-2","flex-shrink-0","flex","justify-center","items-center","first:mt-auto", "text-xl", )
         symbol.innerText = s.value;
         this.stack?.prepend(symbol);
     }
