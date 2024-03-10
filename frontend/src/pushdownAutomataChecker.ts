@@ -37,6 +37,17 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
         error = true;
         errorMSg.push("Duplicate input symbols");
     }
+    let tempError = false;
+    for(let s of pda.inputSymbols){
+        if(s.value.length != 1) {
+            tempError = true
+        }
+    }
+    if(tempError){
+        error = true;
+        errorMSg.push("All input symbols must be one character long");
+        tempError = false;
+    }
     //Stack symbols
     if(pda.stackSymbols.length === 0){
         error = true;
@@ -45,6 +56,16 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
     if(includeDuplicates(pda.stackSymbols, compareStackSymbol)){
         error = true;
         errorMSg.push("Duplicate stack symbols");
+    }
+    for(let s of pda.stackSymbols){
+        if(s.value.length != 1) {
+            tempError = true
+        }
+    }
+    if(tempError){
+        error = true;
+        errorMSg.push("All stack symbols must be one character long");
+        tempError = false;
     }
     //Initial state
     if(pda.initialState === null){

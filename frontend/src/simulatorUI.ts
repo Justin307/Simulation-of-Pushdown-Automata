@@ -256,6 +256,7 @@ export class SimulatorUI{
                     s.classList.remove("bg-slate-200");
                     s.classList.remove("bg-slate-300");
                     s.classList.add("bg-slate-400");
+                    s.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
                     return;
                 }
                 default:{
@@ -303,11 +304,13 @@ export class SimulatorUI{
         symbol.classList.add("first:bg-slate-400", "bg-slate-300","h-16","w-16","m-2","flex-shrink-0","flex","justify-center","items-center","first:mt-auto", "text-xl", )
         symbol.innerText = s.value;
         this.stack?.prepend(symbol);
+        this.stack?.children[0]?.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
     }
 
     removeFromStack(): void{
         if(this.stack && this.stack.childElementCount > 0){
             this.stack.removeChild(this.stack.firstChild);
+            this.stack?.children[0]?.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
         }
     }
 
@@ -398,7 +401,9 @@ export class SimulatorUI{
         }
         if(this.transitionOptions){
             this.transitionOptions.innerHTML = "";
+            this.transitionOptions.classList.remove("animate-notify-user");
         }
+        
         for(let o of options){
             let option = document.createElement("button") as HTMLButtonElement;
             option.classList.add("px-2","py-1","mx-auto");
@@ -421,6 +426,9 @@ export class SimulatorUI{
             });
             this.transitionOptions?.append(option);
         }
+        //This command is only to force the browser to reflow the element and apply the animation again - without it it doen't react to the class change
+        void this.transitionOptions?.offsetWidth;
+        this.transitionOptions.classList.add("animate-notify-user");
     }
 
     nextStep(): void{
@@ -457,6 +465,12 @@ export class SimulatorUI{
                 }
             }
         }
+        else {
+            this.transitionOptions.classList.remove("animate-notify-user");
+            //This command is only to force the browser to reflow the element and apply the animation again - without it it doen't react to the class change
+            void this.transitionOptions?.offsetWidth;
+            this.transitionOptions.classList.add("animate-notify-user");
+        }
     }
 
     backStep(): void{
@@ -491,6 +505,15 @@ export class SimulatorUI{
                         if(this.isRunnig && this.directionForward == dir)
                             this.backStep();
                     }, this.speed);
+                }
+            }
+            else {
+                if(this.isRunnig){
+                    this.isRunnig = false;
+                    if(this.timeout){
+                        clearTimeout(this.timeout);
+                        this.timeout = null;
+                    }
                 }
             }
         }

@@ -8,3 +8,24 @@
         font-family: "sans-serif, Roboto, Arial;"
     }
 }
+
+@layer utilities {
+    .animate-notify-user {
+        animation: notify-user 0.5s ease;
+    }
+
+    @keyframes notify-user {
+        0% {
+            background-color: rgb(241 245 249);
+            color: black;
+        }
+        50% {
+            background-color: rgb(71 85 105);
+            color:white;
+        }
+        100% {
+            background-color: rgb(241 245 249);
+            color: black;
+        }
+    }
+}

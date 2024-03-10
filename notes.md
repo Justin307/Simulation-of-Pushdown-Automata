@@ -102,10 +102,6 @@ class PushdownAutomata{
 
 ## Poznámky ze schůzky
 
-- Simulator
-    - když možnosti, při zmáčknutí šipky nějaký efekt
-    - auto focus na aktuální symbol v Tape
-
 - Text
     - kapitoly + sekce (více nedělit)
     - Uvod - co, jak, proč, shrnutí kapitol - becné uvedení do problematiky

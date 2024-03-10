@@ -281,12 +281,18 @@ export class FormAutomataBuilder {
         let form = event.target as HTMLFormElement;
         let inputField = form.elements.namedItem('inputSymbolInput') as HTMLInputElement;
         let inputValue = inputField.value;
-        inputField.value = '';
-        let item: InputSymbol = {
-            isEpsylon: false,
-            value: inputValue,
-        };
-        this.newItem<InputSymbol>(compareInputSymbol, item, 'InputSymbol');
+        if(inputValue.length == 1) {
+            inputField.value = '';
+            let item: InputSymbol = {
+                isEpsylon: false,
+                value: inputValue,
+            };
+            this.newItem<InputSymbol>(compareInputSymbol, item, 'InputSymbol');
+        }
+        else {
+            this.inputSymbolError.style.display = 'block';
+            this.inputSymbolError.innerText = 'Error: Input symbol must be a single character';
+        }
     };
 
     stackSymbolSubmitHandler(event: SubmitEvent){
@@ -294,11 +300,17 @@ export class FormAutomataBuilder {
         let form = event.target as HTMLFormElement;
         let inputField = form.elements.namedItem('stackSymbolInput') as HTMLInputElement;
         let inputValue = inputField.value;
-        inputField.value = '';
-        let item: StackSymbol = {
-            value: inputValue,
-        };
-        this.newItem<StackSymbol>(compareStackSymbol, item, 'StackSymbol');
+        if(inputValue.length == 1) {
+            inputField.value = '';
+            let item: StackSymbol = {
+                value: inputValue,
+            };
+            this.newItem<StackSymbol>(compareStackSymbol, item, 'StackSymbol');
+        }
+        else {
+            this.stackSymbolError.style.display = 'block';
+            this.stackSymbolError.innerText = 'Error: Stack symbol must be a single character';
+        }
     };
 
     initialStateChangeHandler(event: Event){
