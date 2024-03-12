@@ -41,7 +41,7 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="1">
+  <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
       <file>BachelorThesis.bcf</file>
@@ -64,10 +64,6 @@
       <file>czech-iso.lbx</file>
       <file>english.lbx</file>
       <file>english-iso.lbx</file>
-      <file>german.lbx</file>
-      <file>german-iso.lbx</file>
-      <file>french.lbx</file>
-      <file>french-iso.lbx</file>
     </requires>
   </internal>
   <external package="biblatex" priority="5" active="0">
@@ -90,7 +86,6 @@
     </requires>
     <requires type="editable">
       <file>biblatex-examples.bib</file>
-      <file>coffee.bib</file>
     </requires>
   </external>
 </requests>
