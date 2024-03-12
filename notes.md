@@ -104,7 +104,7 @@ class PushdownAutomata{
 
 - Text
     - kapitoly + sekce (více nedělit)
-    - Uvod - co, jak, proč, shrnutí kapitol - becné uvedení do problematiky
+    - Uvod - co, jak, proč, shrnutí kapitol - obecné uvedení do problematiky
     - (max) 1/3 - teoretický rozbor, co to je automat, jak probíhá výpočet, existující software (BP z minulého roku, software na github)
     - analýza/návrh, ulm diagram, návrh tříd, ...
     - kapitola věnovaná implementaci, technologie, knihovny, trochu části kódu, ...

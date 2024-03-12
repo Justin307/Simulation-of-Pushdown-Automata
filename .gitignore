@@ -130,4 +130,4 @@ out
 
 # IDE
 .vscode/
-frontend/.VSCodeCounter/
+*/.VSCodeCounter/
