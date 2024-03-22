@@ -1,3 +1,18 @@
-\chapter{Úvod}
+\chapter{Úvod}    
+    Chomského hierarchie popisuje 4 druhy gramatik a jazyků --- regulární, bezkontextové, kontextové a neomezené. Pokud pracujeme s regulárními jazyky, tak nám pro výpočet stačí konečné automaty, ať už deterministické nebo nedeterministické. Pokud bychom ale chtěli pracovat s bezkontextovými jazyky, tak nám konečný automat nestačil. Pro bezkontextové jazyky tedy musíme použít zásobníkový automat, který má oproti konečným automatům navíc zásobník pro ukládaní dat. Právě zásobníkovými automaty se táto práce zabývá, přesněji simulátorem zásobníkových automatů
 
+    Cílem této práce je implementovat grafický simulátor zásobníkových automatů, deterministických i nedeterministických, přijímajících prázdným zásobníkem nebo koncovým stavem. 
+    
+    Aplikace bude umožňovat:
+
+    \begin{itemize}
+        \item Zadat definici automatu přímo v aplikaci
+        \item Nahrát automat ze souboru
+        \item Stáhnout automat jako souboru
+        \item Upravit automat
+        \item Provést nad automatem simulaci pro uživatelem zadaný vstup
+    \end{itemize}
+
+    % TODO: Upravit/dopsat obsah práce
+    Práce bude rozdělená do několika částí. V první části se budu zabývat tím, co to jsou zásobníkové automaty, jak jsou definovány, rozdíly mezi typy zásobníkových automatů --- deterministické vs nedeterministické, přijímající prázdným zásobníkem vs přijímacím stavem a jak probíhá výpočet. V další části se budu věnovat návrhu aplikace, jaké všechny funkce bude aplikace obsahovat a jak bude reprezentován zásobníkový automat v kódu. Následující část pak se bude týkat samotné implementaci aplikace, testování aplikace a vzorovým příkladům. V poslední kapitole % TODO: Dopsat...
 \endinput

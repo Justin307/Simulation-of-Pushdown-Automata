@@ -1,9 +1,0 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is 'BachelorThesis.blg'
-[82] biber-MSWIN64:340> INFO - === 
-[107] Biber.pm:419> INFO - Reading 'BachelorThesis.bcf'
-[189] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
-[200] bbl.pm:660> INFO - Writing 'BachelorThesis.bbl' with encoding 'UTF-8'
-[201] bbl.pm:763> INFO - Output to BachelorThesis.bbl
-[201] Biber.pm:131> WARN - The file 'BachelorThesis.bcf' does not contain any citations!
-[201] Biber.pm:133> INFO - WARNINGS: 1

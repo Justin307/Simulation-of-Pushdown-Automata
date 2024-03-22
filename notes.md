@@ -100,6 +100,9 @@ class PushdownAutomata{
 
 ## Otázky na schůzku
 
+- Tisk textu BP?
+- počet stran - počítá se i úvod a závěr?
+
 ## Poznámky ze schůzky
 
 - Text

@@ -35,7 +35,7 @@
 \EnglishKeywords{typography; \LaTeX; master thesis}
 
 % SETTING: Akronymy
-\AddAcronym{Zkratka}{Popis}
+\AddAcronym{PDA}{Zásobníkový automat (Pushdown Automaton)}
 
 
 % SETTING: Bibliografie
@@ -51,13 +51,13 @@
 % Nechame vysazet titulni strany.
 \MakeTitlePages
 
-% TODO: Obrázky
+% NOTE: Obrázky
 % Jsou v praci obrazky? Pokud ano vysazime jejich seznam a odstrankujeme.
 % Pokud ne smazeme nasledujici dve makra.
 \listoffigures
 \clearpage
 
-% TODO: Tabulky
+% NOTE: Tabulky
 % Jsou v praci tabulky? Pokud ano vysazime jejich seznam a odstrankujeme.
 % Pokud ne smazeme nasledujici dve makra.
 \listoftables
@@ -66,12 +66,13 @@
 % A nasleduje text zaverecne prace.
 \input{Chapters/Introduction.tex}
 % NOTE: Místo pro linkování kapitol
+\input{Chapters/PushdownAutomata.tex}
 \input{Chapters/Conclusion.tex}
 
 % Seznam literatury
 \printbibliography[title={Literatura}, heading=bibintoc]
 
-% Note: Přílohy
+% NOTE: Přílohy
 % Prilohy
 \appendix
 
