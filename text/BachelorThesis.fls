@@ -458,6 +458,9 @@ INPUT .\Figures\PDAComponents.drawio.pdf
 INPUT .\Figures\PDAComponents.drawio.pdf
 INPUT .\Figures\PDAComponents.drawio.pdf
 INPUT .\Figures\PDAComponents.drawio.pdf
+INPUT .\Chapters\AppSpecifications.tex
+INPUT .\Chapters\AppSpecifications.tex
+INPUT Chapters\AppSpecifications.tex
 INPUT .\Chapters\Conclusion.tex
 INPUT .\Chapters\Conclusion.tex
 INPUT Chapters\Conclusion.tex
