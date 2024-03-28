@@ -118,7 +118,7 @@ export class PushdownAutomata{
         for(let s of symbols){
             let invalid: boolean = true;
             for(let inputSymbol of this.inputSymbols){
-                if(inputSymbol.isEpsylon == false && inputSymbol.value == s){
+                if(inputSymbol.isEpsilon == false && inputSymbol.value == s){
                     invalid = false;
                     break;
                 }
@@ -136,13 +136,13 @@ export class PushdownAutomata{
 
         let inputSymbol: InputSymbol;
         if(tapeSymbol === ""){
-            inputSymbol = {isEpsylon: true}
+            inputSymbol = {isEpsilon: true}
         }
         else{
-            inputSymbol = {isEpsylon: false, value: tapeSymbol};
+            inputSymbol = {isEpsilon: false, value: tapeSymbol};
         }
         for(let transitionFunction of this.transitionFunction){
-            if(!compareInputSymbol(inputSymbol, transitionFunction.inputSymbol) && !transitionFunction.inputSymbol.isEpsylon){
+            if(!compareInputSymbol(inputSymbol, transitionFunction.inputSymbol) && !transitionFunction.inputSymbol.isEpsilon){
                 continue;
             }
             if(!compareState(state, transitionFunction.fromState)){

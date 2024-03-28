@@ -3,7 +3,7 @@ export type StackSymbol = {
 };
 export declare function compareStackSymbol(a: StackSymbol | null, b: StackSymbol | null): boolean;
 export type InputSymbol = {
-    isEpsylon: boolean;
+    isEpsilon: boolean;
     value?: string;
 };
 export declare function compareInputSymbol(a: InputSymbol, b: InputSymbol): boolean;

@@ -35,7 +35,7 @@ export class PushdownAutomataSimulator{
     }
 
     applyTransitionFunction(f: TransitionFunction): void{
-        if(!f.inputSymbol.isEpsylon){
+        if(!f.inputSymbol.isEpsilon){
             this.inputTape = this.inputTape.substring(1);
         }
         this.stack.pop();
@@ -102,7 +102,7 @@ export class PushdownAutomataSimulator{
             this.stack.pop();
         }
         this.stack.push(last.startSymbol);
-        if(!last.inputSymbol.isEpsylon)
+        if(!last.inputSymbol.isEpsilon)
             this.inputTape = last.inputSymbol.value + this.inputTape;
         
         return last;

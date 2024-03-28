@@ -15,13 +15,13 @@ export function compareStackSymbol(a: StackSymbol | null, b: StackSymbol | null)
 }
 
 export type InputSymbol = {
-    isEpsylon: boolean;
+    isEpsilon: boolean;
     value?: string;
 }
 
 export function compareInputSymbol(a: InputSymbol, b: InputSymbol): boolean{
-    if(a.isEpsylon == b.isEpsylon){
-        if(a.isEpsylon == false){
+    if(a.isEpsilon == b.isEpsilon){
+        if(a.isEpsilon == false){
             return a.value == b.value;
         }
         else{
@@ -82,5 +82,5 @@ export function compareTransitionFunction(a: TransitionFunction, b: TransitionFu
 }
 
 export function toString(item: TransitionFunction): string{
-    return `${item.fromState.value} ${item.startSymbol.value} --${item.inputSymbol.isEpsylon ? "ε" : item.inputSymbol.value}-> ${item.toState.value} ${item.pushedSymbols.map(x => x.value).join(" ")}`;
+    return `${item.fromState.value} ${item.startSymbol.value} --${item.inputSymbol.isEpsilon ? "ε" : item.inputSymbol.value}-> ${item.toState.value} ${item.pushedSymbols.map(x => x.value).join(" ")}`;
 }

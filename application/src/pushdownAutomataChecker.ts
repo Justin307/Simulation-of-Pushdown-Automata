@@ -117,7 +117,7 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
         if(!errorTransitionPushed){
             error = true;
             errorTransitionPushed = true;
-             errorMSg.push("-> " + t.fromState.value + " " + t.startSymbol.value + " -- " + (t.inputSymbol.isEpsylon ? "ε" : t.inputSymbol.value) + " -> " + t.toState.value + " " + t.pushedSymbols.map(s => s.value).join(" "));
+             errorMSg.push("-> " + t.fromState.value + " " + t.startSymbol.value + " -- " + (t.inputSymbol.isEpsilon ? "ε" : t.inputSymbol.value) + " -> " + t.toState.value + " " + t.pushedSymbols.map(s => s.value).join(" "));
         }
     }
     for(let t of pda.transitionFunction){
@@ -132,7 +132,7 @@ export function checkPushdownAutomata(state: State[] | PushdownAutomata, stackSy
             pushTransition(t);
             errorMSg.push("   To state does not exist");
         }
-        if(!(t.inputSymbol.isEpsylon || (!t.inputSymbol.isEpsylon && pda.inputSymbols.some(i => compareInputSymbol(i, t.inputSymbol))))){
+        if(!(t.inputSymbol.isEpsilon || (!t.inputSymbol.isEpsilon && pda.inputSymbols.some(i => compareInputSymbol(i, t.inputSymbol))))){
             pushMessage();
             pushTransition(t);
             errorMSg.push("   Input symbol does not exist");

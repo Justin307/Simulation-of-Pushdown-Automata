@@ -177,7 +177,7 @@ export class SimulatorUI{
 
         let symbol = document.createElement("div") as HTMLDivElement;
         symbol.classList.add("absolute", "top-0", "left-1/2", "-translate-x-[100%]", "-translate-y-2");
-        symbol.innerText = f.inputSymbol.isEpsylon ? "ε" : f.inputSymbol.value;
+        symbol.innerText = f.inputSymbol.isEpsilon ? "ε" : f.inputSymbol.value;
         arrow.append(symbol);
 
         let right = document.createElement("div") as HTMLDivElement;
@@ -364,7 +364,7 @@ export class SimulatorUI{
         if(this.tape){
             this.tape.innerHTML = "";
             for(let s of tape){
-                this.addToTape({isEpsylon: false, value: s}, true);
+                this.addToTape({isEpsilon: false, value: s}, true);
             }
         }
         let temp = this.tape?.children[0] as HTMLDivElement;
@@ -378,7 +378,7 @@ export class SimulatorUI{
         console.log(f);
         this.simulator?.applyTransitionFunction(f);
         this.changeState(f.toState);
-        if(!f.inputSymbol.isEpsylon){
+        if(!f.inputSymbol.isEpsilon){
             this.moveTape();
         }
         if(f.startSymbol != null){
@@ -489,7 +489,7 @@ export class SimulatorUI{
             if(last){
                 this.removeFromHistory();
                 this.changeState(last.fromState);
-                if(!last.inputSymbol.isEpsylon){
+                if(!last.inputSymbol.isEpsilon){
                     this.moveTape(true);
                 }
                 for(let i = 0; i < last.pushedSymbols.length; i++){ 

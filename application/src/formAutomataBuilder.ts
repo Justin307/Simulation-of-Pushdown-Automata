@@ -82,7 +82,7 @@ export class FormAutomataBuilder {
 
         this.activePart = -1;
 
-        this.keyboardInputSymbol.append(this.createKeyboardButton({isEpsylon: true}, 1));
+        this.keyboardInputSymbol.append(this.createKeyboardButton({isEpsilon: true}, 1));
         this.keyboardDeleteButton = this.createKeyboardButton({value: '←'}, 3);
         this.keyboardDeleteButton.style.display = "none";
         this.keyboardStackSymbol.append(this.keyboardDeleteButton);
@@ -158,7 +158,7 @@ export class FormAutomataBuilder {
         this.keyboardState.innerHTML = '';
         this.keyboardState.style.display = 'none';
         this.keyboardInputSymbol.innerHTML = '';
-        this.keyboardInputSymbol.append(this.createKeyboardButton({isEpsylon: true}, 1));
+        this.keyboardInputSymbol.append(this.createKeyboardButton({isEpsilon: true}, 1));
         this.keyboardInputSymbol.style.display = 'none';
         this.keyboardStackSymbol.innerHTML = '';
         this.keyboardStackSymbol.append(this.keyboardDeleteButton);
@@ -284,7 +284,7 @@ export class FormAutomataBuilder {
         if(inputValue.length == 1) {
             inputField.value = '';
             let item: InputSymbol = {
-                isEpsylon: false,
+                isEpsilon: false,
                 value: inputValue,
             };
             this.newItem<InputSymbol>(compareInputSymbol, item, 'InputSymbol');
@@ -385,7 +385,7 @@ export class FormAutomataBuilder {
         }
         let fromState = {value: this.transitionFunctionParts[0].innerText};
         let startSymbol = {value: this.transitionFunctionParts[1].innerText};
-        let inputSymbol = this.transitionFunctionParts[2].innerText === 'ε' ? {isEpsylon: true} : {isEpsylon: false, value: this.transitionFunctionParts[2].innerText};
+        let inputSymbol = this.transitionFunctionParts[2].innerText === 'ε' ? {isEpsilon: true} : {isEpsilon: false, value: this.transitionFunctionParts[2].innerText};
         let toState = {value: this.transitionFunctionParts[3].innerText};
         let pushedSymbols = this.transitionFunctionParts[4].innerHTML.split('').map((s) => {return {value: s}});
         let item: TransitionFunction = {
@@ -737,7 +737,7 @@ export class FormAutomataBuilder {
                 continue;
             }
             //Input symbol
-            if(!t.inputSymbol.isEpsylon){
+            if(!t.inputSymbol.isEpsilon){
                 let inputSymbol = this.inputSymbols.find((s) => compareInputSymbol(s, t.inputSymbol));
                 if(!inputSymbol){
                     anyInvalid = true;
