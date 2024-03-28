@@ -1,0 +1,54 @@
+\chapter{Implementace aplikace}
+
+Na předchozích stránkách teto práce byly popsány zásobníkové automaty, specifikace aplikace a technologie, které v této práci používám. Následující stránky se budou zabývat již samotnou implementací aplikace. Nejprve se zaměřím na to, jak vůbec reprezentovat zásobníkový automat v kódu. Následovat pak bude část zaměřující se na samotný simulátor a v poslední části se zaměřím na menu, tvorbu automatů pomocí formuláře, nahrávání souborů a jejich ukládání do paměti.
+
+\section{Reprezentace zásobníkových automatů v kódu}
+
+Abych mohl se zásobníkovými automaty pracovat v kódu, musel jsem mít způsob, jak je reprezentovat v kódu. Vytvořil jsem si tedy třídu PushdownAutomata, viz kód~\ref{src:PushdownAutomataDefinition}. Tato třída obsahuje jako atributy jednotlivé části definice zásobníkových automatů. 
+
+\begin{lstlisting}[label=src:PushdownAutomataDefinition, caption={Deklarce třídy PushdownAutomata}]
+    class PushdownAutomata{
+        states: State[];
+        inputSymbols: InputSymbol[];
+        stackSymbols: StackSymbol[];
+        initialState: State;
+        initialStackSymbol: StackSymbol;
+        acceptingState: State[] | null;
+        transitionFunction: TransitionFunction[];
+    
+        checkInputTapeValidity(inputTape: string): string[];
+        getTransitionFunctions(tapeSymbol: string, state: State, stackSymbol:  StackSymbol | null): TransitionFunction[];
+    }
+\end{lstlisting}
+
+První tři atributy definují jednotlivé množiny symbolů a stavů, se kterými automat pracuje. Jsou pro ně vytvořeny nové datové typy, zdrojový kód~\ref{src:PushdownAutomataTypes}. Všechny tyto typy obsahují atribut value, který obsahuje samotnou hodnotu. Typ InputSymbol navíc obsahuje ještě atribut isEpsilon, který je využíván u přechodových funkcí a umožňuje přechod bez přečtení symbolu ze vstupu.
+
+\begin{lstlisting}[label=src:PushdownAutomataTypes, caption={Datové typ State, StackSymbol, InputSymbol}]
+    type State = {
+        value: string;
+    }
+    type StackSymbol = {
+        value: string;
+    }
+    type InputSymbol = {
+        isEpsilon: boolean;
+        value?: string;
+    }
+\end{lstlisting}
+
+Dále následují dva atributy definující výchozí konfiguraci automatu --- initialState a initialStackSymbol. Po nich následuj acceptingState, který může nabývat dvou různých hodnot. Pokud obsahuje hodnotu null, tak zásobníkové automat přijímá slovo prázdným zásobníkem. V opačném případě, kdy obsahuje pole stavů, je slovo přijímáno přijímacím stavem.
+
+Posledním atributem je transitionFunction. Ten obsahuje pole všech přechodových funkcí, které jsou reprezentované opět svým typem TransitionFunction, zdrojový kód~\ref{src:TransitionFunctionType}. Ten se skládá z 5 atributů --- počátečního stavu, symbolu na zásobníku, symbolu na vstupní pásce, nového stavu a množiny zásobníkových symbolů, které budou přidány na zásobník, v tomto pořadí.
+
+\begin{lstlisting}[label=src:TransitionFunctionType, caption={Datové typ TransitionFunction}]
+    type TransitionFunction = {
+        fromState: State;
+        startSymbol: StackSymbol;
+        inputSymbol: InputSymbol;
+        toState: State;
+        pushedSymbols: StackSymbol[];
+    }
+\end{lstlisting}
+
+
+\endinput

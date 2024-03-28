@@ -6,6 +6,8 @@
 \usepackage{dcolumn} % sloupce tabulky s ciselnymi hodnotami
 \usepackage{subfig} % makra pro "podobrazky" a "podtabulky"
 \usepackage[cpp]{diplomalst}
+\renewcommand{\lstlistlistingname}{Seznam zdrojových kódů}
+\renewcommand{\lstlistingname}{Zdrojový kód}
 
 \ThesisAuthor{Ondřej Just}
 
@@ -63,11 +65,16 @@
 \listoftables
 \clearpage
 
+% NOTE: Zdrojove kody
+\lstlistoflistings
+\clearpage
+
 % A nasleduje text zaverecne prace.
 \input{Chapters/Introduction.tex}
 % NOTE: Místo pro linkování kapitol
 \input{Chapters/PushdownAutomata.tex}
 \input{Chapters/AppSpecifications.tex}
+\input{Chapters/AppImplemetation.tex}
 \input{Chapters/Conclusion.tex}
 
 % Seznam literatury
