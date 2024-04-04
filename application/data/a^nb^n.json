@@ -9,11 +9,11 @@
     ],
     "inputSymbols": [
       {
-        "isEpsylon": false,
+        "isEpsilon": false,
         "value": "a"
       },
       {
-        "isEpsylon": false,
+        "isEpsilon": false,
         "value": "b"
       }
     ],
@@ -38,7 +38,7 @@
           "value": "q1"
         },
         "inputSymbol": {
-          "isEpsylon": false,
+          "isEpsilon": false,
           "value": "a"
         },
         "startSymbol": {
@@ -58,7 +58,7 @@
           "value": "q1"
         },
         "inputSymbol": {
-          "isEpsylon": false,
+          "isEpsilon": false,
           "value": "a"
         },
         "startSymbol": {
@@ -81,7 +81,7 @@
           "value": "q1"
         },
         "inputSymbol": {
-          "isEpsylon": false,
+          "isEpsilon": false,
           "value": "b"
         },
         "startSymbol": {
@@ -97,7 +97,7 @@
           "value": "q2"
         },
         "inputSymbol": {
-          "isEpsylon": false,
+          "isEpsilon": false,
           "value": "b"
         },
         "startSymbol": {
