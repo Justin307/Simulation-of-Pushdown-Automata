@@ -6,13 +6,18 @@
 \babel@toc {czech}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Grafické zobrazení zásobníkového automatu}}{12}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Grafické zobrazení zásobníkového automatu}}{13}{figure.caption.6}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Návrh simulátoru}}{19}{figure.caption.8}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Třídní diagram tříd simulátoru}}{20}{figure.caption.9}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Ovládací tlačítka simulátoru}}{21}{figure.caption.10}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Volba přechodových funkcí}}{22}{figure.caption.11}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Vyplněný přechod na stránce tvorby zásobníkového automatu}}{24}{figure.caption.12}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Ukázka chybových hlášek kontroly zásobníkového automatu}}{25}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Návrh simulátoru}}{20}{figure.caption.8}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Třídní diagram tříd simulátoru}}{21}{figure.caption.9}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Ovládací tlačítka simulátoru}}{22}{figure.caption.10}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Volba přechodových funkcí}}{23}{figure.caption.11}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Vyplněný přechod na stránce tvorby zásobníkového automatu}}{25}{figure.caption.12}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Ukázka chybových hlášek kontroly zásobníkového automatu}}{26}{figure.caption.13}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Hlavní stránka}}{27}{figure.caption.14}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Název a formulář pro přidávání stavů}}{28}{figure.caption.15}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Seznam počátečních zásobníkových symbolů a zaškrtávací pole pro určení typu zásobníkového automatu}}{28}{figure.caption.16}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Formulář pro nahrání zásobníkového automatu ze souboru}}{29}{figure.caption.17}%
 \addvspace {10\p@ }

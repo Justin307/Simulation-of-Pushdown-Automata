@@ -135,7 +135,7 @@ Metoda printAutomatas slouží k výpisu všech automatů uložených v paměti.
 
 Poslední důležitou je metoda loadFile sloužící k nahrání automatu ze souboru. Tato metoda je nastavená jako submit event, spustí se tedy pouze při odeslání formuláře. Formulář obsahuje pouze dvě pole. První je textové a slouží pro pojmenování automatu. Toto jméno se zobrazuje ve výpisu všech automatů a zároveň je použito jako klíč pro ukládaní. Druhé pole pak slouží pro nahrání souboru. Po odeslaní se formuláře se spustí metoda loadFile, která nejprve zkontroluje, že jsou obě pole vyplněné. Následně si pomocí metody keyExists zjistí, jestli klíč již není náhodou použit a případně se uživatele zeptá, zda chce automat pro ten klíč přepsat. Poté se ze souboru pokusí vytvořit objekt typu PushdownAutomata a provede na kontrolu, zda je automat správně nadefinován, pomocí funkce checkPushdownAutomata. Pokud se nevyskytla žádná chyba, přepne uživatele do simulátoru s nastaveným aktuálně nahraným zásobníkovým automatem.
 
-\section{Stránka pro tvorbu zásobníkových automatů}
+\section{Stránka pro tvorbu zásobníkových automatů}\label{sec:PDABuilderImplementation}
 
 Třída formAutomataBuilder slouží k obsluze stránka, který slouží k tvorbě zásobníkového automatu. Obsahuje funkce, které se starají o zpracování dat při odeslání formulářů, kontroly dat, zobrazování chybových hlášek a další. Stránka se skládá z několika částí, kdy každá část odpovídá jedné části zásobníkového automatu. 
 
