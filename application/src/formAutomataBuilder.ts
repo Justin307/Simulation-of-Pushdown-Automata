@@ -154,7 +154,6 @@ export class FormAutomataBuilder {
         this.initialStackSymbolSelect.innerHTML = '';
         this.initialStackSymbolSelect.append(option);
         this.acceptingStatesSelect.innerHTML = '';
-        this.acceptingStatesSelect.disabled = true;
         //checkbox
         (document.getElementById('acceptanceEmptyStackCheckBox') as HTMLInputElement).checked = false;
         this.acceptingStatesSelect.style.display = 'block';
