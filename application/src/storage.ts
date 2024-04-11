@@ -92,7 +92,11 @@ export class Storage{
     }
 
     private delete(key: string){
-        localStorage.removeItem(key);
+        if(confirm("Do you want to delete pushdown automaton with key " + key + "?")){
+            localStorage.removeItem(key);
+            return true;
+        }
+        return false;
     }
 
     keyExists(key: string): boolean{
@@ -129,25 +133,13 @@ export class Storage{
             cell.classList.add("p-2", "font-bold");
             cell.innerText = key;
 
-            //definition
+            //show
             cell = row.insertCell();
             cell.classList.add("p-2", "text-center");
             let button = document.createElement("button");
             button.innerHTML = svg_definition;
             button.children[0].classList.add("w-6","h-6","text-gray-800","dark:text-white");
             button.addEventListener("click", this.showAutomata.bind(this, key));
-            cell.append(button);
-
-            //open
-            cell = row.insertCell();
-            cell.classList.add("p-2", "text-center");
-            button = document.createElement("button");
-            button.innerHTML = svg_open;
-            button.children[0].classList.add("w-6","h-6","text-gray-800","dark:text-white");
-            button.addEventListener("click", () => {
-                changePage(PageEnum.SIMULATOR);
-                g_ui.setAutomata(this.loadAutomata(key));
-            });
             cell.append(button);
 
             //edit
@@ -160,6 +152,18 @@ export class Storage{
                 g_automataBuilder.editAutomata(key, this.load<PushdownAutomata>(key));
                 changePage(PageEnum.NEW_AUTOMATA);
 
+            });
+            cell.append(button);
+
+            //run
+            cell = row.insertCell();
+            cell.classList.add("p-2", "text-center");
+            button = document.createElement("button");
+            button.innerHTML = svg_open;
+            button.children[0].classList.add("w-6","h-6","text-gray-800","dark:text-white");
+            button.addEventListener("click", () => {
+                changePage(PageEnum.SIMULATOR);
+                g_ui.setAutomata(this.loadAutomata(key));
             });
             cell.append(button);
 
@@ -189,8 +193,10 @@ export class Storage{
             button.innerHTML = svg_delete;
             button.children[0].classList.add("w-6","h-6","text-gray-800","dark:text-white");
             button.addEventListener("click", () => {
-                this.delete(key);
-                row.remove();
+                let res: boolean = this.delete(key);
+                if(res){
+                    row.remove();
+                }
             });
             cell.append(button);
         }

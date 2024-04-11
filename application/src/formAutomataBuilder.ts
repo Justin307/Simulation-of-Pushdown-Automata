@@ -110,6 +110,14 @@ export class FormAutomataBuilder {
             this.reset();
             changePage(PageEnum.MENU);
         });
+        this.keyInput.addEventListener("input", (event: Event) => {
+            if(this.keyInput.value.trim() !== ''){
+                this.keyError.style.display = 'none';
+            }
+            else{
+                this.keyError.style.display = "block";
+            }
+        });
     }
 
     reset(){
@@ -359,6 +367,7 @@ export class FormAutomataBuilder {
             this.acceptingStates = [];
             this.acceptingStatesSelect.style.display = 'block';
         }
+        this.acceptingStateError.style.display = "none"
     };
 
     acceptingStatesChangeHandler(event: Event){
@@ -372,6 +381,7 @@ export class FormAutomataBuilder {
                 }
             }
         }
+        this.acceptingStateError.style.display = "none"
     };
 
     transitionFunctionAddHandler(event: Event){
