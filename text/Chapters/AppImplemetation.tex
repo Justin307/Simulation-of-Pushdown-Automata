@@ -1,4 +1,4 @@
-\chapter{Implementace aplikace}
+\chapter{Implementace aplikace}\label{chap:AppImplemetation}
 
 Na předchozích stránkách teto práce byly popsány zásobníkové automaty, specifikace aplikace a technologie, které v této práci používám. Následující stránky se budou zabývat již samotnou implementací aplikace. Nejprve se zaměřím na to, jak vůbec reprezentovat zásobníkový automat v kódu. Následovat pak bude část zaměřující se na samotný simulátor a v poslední části se zaměřím na menu, tvorbu automatů pomocí formuláře, nahrávání souborů a jejich ukládání do paměti.
 
@@ -101,10 +101,74 @@ Pokud uživatel zmáčkne tlačítko pro krok dozadu, jako první se zkontroluj,
     \caption{Volba přechodových funkcí}\label{fig:TransitionFunctionChoosing}
 \end{figure}
 
-Na začátku kapitoly jsem zmínil, že mi mezi ovládacími prvky a zásobníkem zůstalo prázdné místo, obrázek \ref{fig:SimulatorPageDesign}. Toto místo jsem využil pro zobrazování dvou informací. První je tabulka zobrazující definici aktuálně používaného automatu. Druhou je pak historie použitých přechodových funkcí, které se v průběhu simulace použily. V případě mobilního zobrazení stránky jsou tyto informace schovány v modálním okně, které lze otevřít tlačítkem.
+Na začátku kapitoly jsem zmínil, že mi mezi ovládacími prvky a zásobníkem zůstalo prázdné místo, obrázek~\ref{fig:SimulatorPageDesign}. Toto místo jsem využil pro zobrazování dvou informací. První je tabulka zobrazující definici aktuálně používaného automatu. Druhou je pak historie použitých přechodových funkcí, které se v průběhu simulace použily. V případě mobilního zobrazení stránky jsou tyto informace schovány v modálním okně, které lze otevřít tlačítkem.
 
 \section{Úložiště}
-V kapitole \ref{sec:AppRequirements} bylo specifikováno, že si aplikace bude ukládat veškeré automaty, aby se k nim mohl uživatel kdykoliv vrátit. K tomu aplikace využívá localStorage\footnote{https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage}
+V kapitole~\ref{sec:AppRequirements} bylo specifikováno, že si aplikace bude ukládat veškeré automaty, aby se k nim mohl uživatel kdykoliv vrátit. K tomu aplikace využívá Local Storage.\footnote{https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage}. Local storage je úložiště v prohlížeči, které umožňuje ukládat data na straně klienta. Tyto data jsou ukládaná ve formě key-value, kdy pro každý klíč existuje jedna hodnota. Na rozdíl od session storage, kdy dochází k vymazání dat po opuštění stránky, zde data zůstávají i po opuštění stránky nebo zavření prohlížeče.
 
+V mé aplikaci jsem si pro práci s tímto úložištěm udělal třídu Storage, zkrácený zápis lze vidět ve zdrojovém kódu~\ref{src:StorageClass}. Jelikož Local Storage umožňuje ukládat klíče a hodnoty pouze jako textové řetězce, udělal jsem si nejprve metody save, která hodnotu převede na text a uloží ji do úložiště, a load, která pro zadaný klíč načte hodnotu z úložiště a převede ji z textu zpět na zadaný datový typ nebo objekt. Pro převody používám javascriptové funkce $JSON.stringify()$ a $JSON.parse()$. Dále jsem si vytvořil metodu saveAutomata, která si nejprve ověření, zda už neexistuje v úložišti záznam se stejným klíčem pomocí funkce keyExist. Pokud existuje, zeptá se uživatele, zda tento záznam může přepsat. Následně pomocí metody save uloží automat. Metoda loadAutomata si načte pro zadaný klíč automat z úložiště funkcí load, nastaví mu správný prototype a vrátí ho návratovou hodnotou. 
+
+\begin{lstlisting}[label=src:StorageClass, caption={třída Storage}]
+    class Storage{
+        save<T>(key: string, item: T);
+        load<T>(key: string): T | null;
+        saveAutomata(key: string, automata: PushdownAutomata): boolean;
+        loadAutomata(key: string): PushdownAutomata | null;
+        delete(key: string);
+        keyExists(key: string): boolean;
+        loadFile(e: SubmitEvent);
+        insertRow(key: string);
+        printAutomatas();
+        showAutomata(key: string);
+    }
+\end{lstlisting}
+
+Metoda printAutomatas slouží k výpisu všech automatů uložených v paměti. Metoda iteruje skrze všechny klíče v úložišti a volá pro ně metodu insertRow. Ta si pro zadaný klíč načte automat z úložiště a uloží nový řádek do tabulky i se všemi příslušnými tlačítky a nastavenými událostmi:
+\begin{itemize}
+    \item Zobrazení specifikace automatu --- metoda showAutomata
+    \item Spuštění simulátoru
+    \item Editace automatu
+    \item Stažení automatu jako soubor typu JSON (JavaScript Object Notation)
+    \item Odstranění automatu z úložiště --- metoda delete
+\end{itemize}
+
+
+Poslední důležitou je metoda loadFile sloužící k nahrání automatu ze souboru. Tato metoda je nastavená jako submit event, spustí se tedy pouze při odeslání formuláře. Formulář obsahuje pouze dvě pole. První je textové a slouží pro pojmenování automatu. Toto jméno se zobrazuje ve výpisu všech automatů a zároveň je použito jako klíč pro ukládaní. Druhé pole pak slouží pro nahrání souboru. Po odeslaní se formuláře se spustí metoda loadFile, která nejprve zkontroluje, že jsou obě pole vyplněné. Následně si pomocí metody keyExists zjistí, jestli klíč již není náhodou použit a případně se uživatele zeptá, zda chce automat pro ten klíč přepsat. Poté se ze souboru pokusí vytvořit objekt typu PushdownAutomata a provede na kontrolu, zda je automat správně nadefinován, pomocí funkce checkPushdownAutomata. Pokud se nevyskytla žádná chyba, přepne uživatele do simulátoru s nastaveným aktuálně nahraným zásobníkovým automatem.
+
+\section{Stránka pro tvorbu zásobníkových automatů}
+
+Třída formAutomataBuilder slouží k obsluze stránka, který slouží k tvorbě zásobníkového automatu. Obsahuje funkce, které se starají o zpracování dat při odeslání formulářů, kontroly dat, zobrazování chybových hlášek a další. Stránka se skládá z několika částí, kdy každá část odpovídá jedné části zásobníkového automatu. 
+
+První částí je formulář pro přidávání stavů. Po jeho odeslání se přidá nový stav do množiny stavů a přidá se jako jedna z možností, kterou lze vybrat jako přijímací stav a jako počáteční stav. Pokud je stav odstraněn, musí se odstranit i jako možnost v obou výběrech. Další částí je formulář pro přidávání symbolů vstupní abecedy. Po odeslání se symbol uloží do množiny vstupních symbolů vstupní abecedy. Po ní následuje formuláře pro přidání symbolu zásobníkové abecedy. Ten po odeslání kromě uložení symbolu ještě symbol přidá do seznamu možností počátečního zásobníkového symbolu. Všechny tyto tři formuláře zároveň přidávají tlačítka do prvku pro tvorbu přechodové funkce. 
+
+Následující dvě části jsou seznamy pro výběr počátečního stavu a počátečního zásobníkového symbolu. Oba tyto seznamy reagují na jakoukoliv změnu díky nastavené change události a vždy si uloží vybranou možnost. Předposlední část slouží k určení, jestli automat bude slovo přijímat prázdným zásobníkem nebo množinou přijímacích stavů. To uživatel může určit pomocí zaškrtávacího pole. Pokud pole není zaškrtnuté, zobrazí se uživatel seznam stavů a uživatel si může vybrat, které stavy budou přijímací.
+
+Poslední část stránky slouží k definování přechodů přechodové funkce. Každý přechod se skládá z 5 částí, které můžeme vidět na obrázku~\ref{fig:FilledTransition} v prvním řádku. První 4 části jsou povinné, zatímco poslední část může zůstat prázdná dle definice přechodové funkce. Při kliknutí na kteroukoliv část se na druhém řádku zobrazí všechny možnosti, které mohou být použity pro danou část. Zobrazují se zde vždy jen aktuální symboly, které byly přidány dříve, ale pro vstupní symbol je zde ještě přidán symbol $\epsilon$. Při kliknutí tlačítka Add transition se zkontroluje, že jsou první 4 části vyplněné, že přechod obsahuje pouze symboly nadefinovaných abeced a zda tento přechod již neexistuje. Pokud je vše v pořádku, tak přidá přechod do množiny přechodů přechodové funkce.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{Figures/PrntScrn_FilledTransition.png}
+    \caption{Vyplněný přechod na stránce tvorby zásobníkového automatu}\label{fig:FilledTransition}
+\end{figure}
+
+Při kliknutí na tlačítko Save automata ve spodní části stránky se spustí funkce saveEventHandler. Ta jako první zkontroluje, že všechny abecedy mají minimálně jeden symbol a že uživatel vybral počáteční stav a počáteční zásobníkový symbol. Dále zkontroluje, zda se jedná o automat přijímající prázdným zásobníkem nebo přijímajícími stavy a zda je případně vybrán alespoň jeden. Poté ještě zkontroluje, zda je nadefinován alespoň jeden přechod přechodové funkce. Následně se provede kontrola celého zásobníkového automatu pomocí funkce checkPushdownAutomata, která je podrobněji popsána v sekci~\ref{sec:checkPushdownAutomata}. Pokud se nikde nevyskytla chyba, automat se uloží do úložiště a stránka se přepne do simulátoru.
+
+\section{Funkce checkPushdownAutomata pro kontrolu automatu}\label{sec:checkPushdownAutomata}
+
+Poslední důležitou částí implementace je funkce pro kontrolu definice zásobníkových automatů. Tato funkce se volá při nahrání zásobníkového automatu ze souboru nebo při jeho definici přímo na stránce. Funkce postupně prochází jednotlivé části automatu a kontroluje jejich správnost. V případě nalezené chyby si uloží chybovou hlášku a na je všechny vypíše uživateli.
+
+Jako první postupně zkontroluje množinu stavů, vstupní a zásobníkovou abecedu. U všech tří kontroluje, jestli množiny nejsou prázdné a zda neobsahují duplicity. Jelikož typescript neobsahuje datový typ char, ale pouze string, tak u abeced ještě zkontroluje, že všechny symboly jsou délky jednoho znaku.
+
+Dále se kontroluje počáteční stav a počáteční zásobníkový symbol. U obou se zkontroluje, zda jsou součástí konkrétních množin. Pokud automat přijímá množinou přijímacích stavů, tak se pro každý přijímací stav taktéž zkontroluje, zda je součástí množiny stavů. 
+
+Nakonec se kontrolují přechody přechodové funkce. Pro každý přechod se zkontroluje, zda všechny jeho části (oba stavy, zásobníkové symboly a symbol vstupní abecedy, pokud není $\epsilon$) jsou součástí konkrétních množin.
+
+Nakonec se zkontroluje, jestli pole chybových hlášek je prázdné. Pokud není, tak se pomocí funkce alert zobrazí všechny chybové hlášky, viz obrázek~\ref{fig:PDACheckErrors} a funkce vrátí hodnotu false. V opačném případě vrátí funkce hodnotu true.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/PrntScrn_PDACheckErrors.png}
+    \caption{Ukázka chybových hlášek kontroly zásobníkového automatu}\label{fig:PDACheckErrors}
+\end{figure}
 
 \endinput

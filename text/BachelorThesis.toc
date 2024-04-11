@@ -19,5 +19,7 @@
 \contentsline {section}{\numberline {4.1}Reprezentace zásobníkových automatů v kódu}{17}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Simulátor}{19}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Úložiště}{22}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Závěr}{23}{chapter.5}%
-\contentsline {chapter}{Přílohy}{23}{chapter.5}%
+\contentsline {section}{\numberline {4.4}Stránka pro tvorbu zásobníkových automatů}{23}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Funkce checkPushdownAutomata pro kontrolu automatu}{25}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Závěr}{26}{chapter.5}%
+\contentsline {chapter}{Přílohy}{26}{chapter.5}%
