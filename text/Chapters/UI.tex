@@ -45,13 +45,53 @@ Druhým tlačítkem v hlavní nabídce se uživatel dostane na stránku s formul
 
 \begin{figure}[h]
     \centering
-    \includegraphics{Figures/PrntScrn_UI_Upload.png}
+    \includegraphics[width=0.45\textwidth]{Figures/PrntScrn_UI_Upload.png}
     \caption{Formulář pro nahrání zásobníkového automatu ze souboru}\label{fig:UploadForm}
 \end{figure}
 
 \section{Výpis úložiště}\label{sec:StoragePage}
+
+Třetím tlačítkem v hlavní nabídce si uživatel může zobrazit seznam všech automatů, které jsou uložené v úložišti. Vzhled této stránky je na obrázku~\ref{fig:Storage}. Nad samotnou tabulkou je nadpis a tlačítko pro návrat do hlavní nabídky. Samotná tabulka pak má 6 sloupců a každý řádek odpovídá jednomu automatu v úložišti.
+
+První sloupec obsahuje název automatu, dalších 5 sloupců pak obsahuje tlačítka. První tlačítko zobrazí stránku, na které je tabulka s informacemi o automatu. Druhé tlačítko přepne uživatele na stránku pro tvorbu zásobníkového automatu, kde může uživatel automat zeditovat. Třetí tlačítko přepne uživatel na stránku simulátoru, která je popsána v podkapitole~\ref{sec:SimulatorPage}, a nastaví tam konkrétní zásobníkový automat. Čtvrté tlačítko pak slouží pro stažení automatu jako soubor typu JSON.@ Poslední tlačítko pak slouží pro vymazání automatu z úložiště.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figures/PrntScrn_UI_Storage.png}
+    \caption{Výpis automatů v úložišti}\label{fig:Storage}
+\end{figure}
+
 \section{Simulátor}\label{sec:SimulatorPage}
 
+Poslední stránkou této aplikace je stránka samotného simulátoru. Na tuto stránku se může uživatel dostat třemi způsoby:
 
+\begin{itemize}
+    \item Vytvořením automatu na stránce popsané v podkapitole~\ref{sec:PDABuilder}
+    \item Nahráním automatu ze souboru
+    \item Vybráním automatu z úložiště
+\end{itemize}
+
+Při zobrazení této stránky je jako první otevře modální okno pro zadání vstupu, které je na obrázku~\ref{fig:TapeInput}. Po potvrzení vstupu se okno schová a uživatel vidí již samotný simulátor. Na obrázku~\ref{fig:Simulator} lze vidět stránku v průběhu simulace.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Figures/PrntScrn_UI_TapeInput.png}
+    \caption{Okno pro zadání vstupu}\label{fig:TapeInput}
+\end{figure}
+
+Samotný simulátor se pak skládá z několika částí. V horní částí je řádek, který symbolizuje vstupní pásku se symboly. Symboly s tmavším pozadím je symbol, který bude přečten jako další. Nalevo od něj jsou již přečtené symboly a napravo symboly ještě nepřečtené. Na pravé straně se pak nachází zásobník. Symbol, který se nachází nejvýše a má tmavší pozadí, je symbol na vrcholu zásobníku, takže bude přečten v dalším kroku. 
+
+Na levé straně stránky se nachází tři oblasti seřazené ve sloupci. První oblast, která se nachází nejvýše, zobrazuje aktuální stav, ve kterém se nachází řídící jednotka. Ve druhé oblasti, která je na obrázku~\ref{fig:Simulator} prázdná, se zobrazují možnosti volby dalšího přechodu u nedeterministických zásobníkových automatů. Příklad volby je na obrázku~\ref{fig:TransitionFunctionChoosing}. Třetí část pak obsahuje ovládací prvky simulátoru. Tlačítko Close simulation ukončí simulaci a vrátí uživatele do hlavní nabídky. Set new tape otevře modální okno pro zadání vstupu, stejně jako při prvním otevření stránky.
+Šipky pak slouží k samotnému ovládání simulace. Šipky na krajích slouží ke spuštění automatické simulace, šipky uvnitř pak slouží k manuálnímu krokování. Tlačítko uprostřed slouží k pozastavení simulace. Posledním ovládacím prvkem je posuvník, který slouží k nastavení času mezi jednotlivými kroky při automatické simulaci.
+
+Poslední částí simulátoru je místo uprostřed obrazovky, které slouží k zobrazování informací. V horní částí jsou dvě tlačítka, které přepínají, co bude zrovna zobrazeno. Levé tlačítko slouží k zobrazení tabulky s definicí aktuálně používaného zásobníkového automatu, levé pak slouží k zobrazení historie přechodů již použitých v této simulaci.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/PrntScrn_UI_Simulator.png}
+    \caption{Okno pro zadání vstupu}\label{fig:Simulator}
+\end{figure}
+
+Aplikace podporuje i zobrazení na menších obrazovkách, jako mají například telefony nebo tablety. Toto zobrazení se oproti tomu na obrázku~\ref{fig:Simulator} liší ve dvou věcech --- vstupní páska je svisle na levé straně obrazovky a středová část s informacemi je jako modální okno, které se otevírá tlačítkem.
 
 \endinput

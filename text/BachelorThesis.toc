@@ -26,6 +26,6 @@
 \contentsline {section}{\numberline {5.2}Stránka pro tvorbu zásobníkového automatu}{28}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Formulář pro nahrávání zásobníkových automatů}{29}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Výpis úložiště}{29}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Simulátor}{29}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Závěr}{30}{chapter.6}%
-\contentsline {chapter}{Přílohy}{30}{chapter.6}%
+\contentsline {section}{\numberline {5.5}Simulátor}{30}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Závěr}{32}{chapter.6}%
+\contentsline {chapter}{Přílohy}{32}{chapter.6}%
