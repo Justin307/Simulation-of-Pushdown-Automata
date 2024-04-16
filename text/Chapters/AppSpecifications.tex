@@ -1,21 +1,12 @@
-\chapter{Specifikace aplikace}\label{chap:AppSpecifications}
+\chapter{Analýzy a návrh}\label{chap:AppSpecifications}
 
-V minulé kapitole byly popsány zásobníkové automaty a způsob jejich činnosti. Tato kapitola už se bude věnovat samotné aplikaci, konkrétně jejím požadavkům a použitým technologiím.
+V minulé kapitole byly popsány zásobníkové automaty a způsob jejich činnosti. Tato kapitola už se bude věnovat samotné aplikaci, konkrétně tomu, co vše se od aplikace očekává a co by měla umět.
 
-\section{Požadavky aplikace}\label{sec:AppRequirements}
+Cílem této práce je tedy vytvořit aplikaci, která uživateli umožní si graficky simulovat činnost jakéhokoliv zásobníkového automatu, deterministického i nedeterministického, přijímajícího prázdným zásobníkem nebo přijímacím stavem. Z důvodu lepší dostupnosti pro uživatele jsem se rozhodl zvolit webovou aplikaci, která bude dostupná všem uživatelům bez nutnosti stahování nebo instalace jakéhokoliv softwaru. 
 
-Cílem této práce je vytvořit aplikaci, která uživateli umožní si graficky simulovat činnost jakéhokoliv zásobníkového automatu, deterministického i nedeterministického, přijímajícího prázdným zásobníkem nebo přijímacím stavem. Z důvodu lepší dostupnosti pro uživatele jsem se rozhodl zvolit webovou aplikaci, která bude dostupná všem uživatelům bez nutnosti stahování nebo instalace jakéhokoliv softwaru. 
-
-Aplikace by měla uživateli poskytnou možnost nadefinovat si automat přímo v aplikace, k čemuž by měl sloužit formulář, nebo moct nahrát automat ze souboru. Oba způsoby zadávání automatu by měly provádět kontrolu, jestli automat neobsahuje nějakou chybu, např.~přechodová funkce obsahuje zásobníkový symbol, který není součástí zásobníkové abecedy. 
+Aplikace by měla uživateli poskytnou možnost nadefinovat si automat přímo v aplikace, k čemuž by měl sloužit formulář, nebo moct nahrát automat ze souboru. Oba způsoby zadávání automatu by měly provádět kontrolu, jestli automat neobsahuje nějakou chybu, např.~přechod obsahuje zásobníkový symbol, který není součástí zásobníkové abecedy. 
 % BIB: https://blog.logrocket.com/localstorage-javascript-complete-guide/
 Dále si aplikace bude ukládat všechny zásobníkové automaty, aby se k nim mohl uživatel kdykoliv vrátit. Uživatel si bude moct zobrazit seznam všech uložených zásobníkových automatů, zobrazit si jejich definici, editovat je nebo je smazat. Dále si bude moct automat stáhnout do souboru, aby ho mohl např.~sdílet s ostatními uživateli. 
 
-Kterýkoliv z těch automatů si bude moct uživatel zobrazit v simulátoru. Simulátor bude zobrazovat vždy aktuální konfiguraci zásobníkového automatu, tedy vstupní pásku, zásobník a řídící jednotku, a bude uživateli umožňovat pro jím zadaný vstup krokovat činnost automat s vyhodnocením, zda je slovo přijato nebo ne. Krokovat bude moct uživatel dopředu i dozadu, ručně nebo automaticky s časovým intervalem, jehož délka bude nastavitelná.
-
-\section{Technologie}
-
-% BIB: https://www.itnetwork.cz/javascript/typescript/uvod-do-typescriptu
-% BIB: https://www.ackee.cz/blog/moderni-web-development-webpack
-Jelikož se jedná o webovou aplikaci, budou při vývoji použity webové technologie. Pro rozložení a strukturu stránky bude použit značkovací jazyk HTMl. Pro stylování budu využívat CSS framework Tailwind\footnote{https://tailwindcss.com/}, který na rozdíl od jiných frameworků, jako třeba Bootstrap, neobsahuje třídy pro stylování celých komponentů, ale spíše třídy pro jednotlivé vlastnosti, např.~barva pozadí, barva textu, margin a padding jednotlivých strana velikostí, atd. Funkcionality aplikace budou psány v jazyce Typescript\footnote{https://www.typescriptlang.org/}, což je nadstavba jazyka Javascript, která přidává statické typování, třídy, rozhraní a další věci. Ve výsledku bude veškerý typescriptový kód přeložen do Javascriptu pomocí nástroje Webpack\footnote{https://webpack.js.org/}, který dokáže sbalit jednotlivé moduly a udělat z nich balíčky vhodnější pro prohlížeč.
-
+Kterýkoliv z těch automatů si bude moct uživatel zobrazit v simulátoru. Simulátor bude zobrazovat vstupní pásku, zásobník a řídící jednotku, které budou vždy v aktuální konfigurace, a bude uživateli umožňovat pro jím zadaný vstup krokovat činnost automat s vyhodnocením, zda je slovo přijato nebo ne. Krokovat bude moct uživatel dopředu i dozadu, ručně nebo automaticky s časovým intervalem, jehož délka bude nastavitelná.
 \endinput

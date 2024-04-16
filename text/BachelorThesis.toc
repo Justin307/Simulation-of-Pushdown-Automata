@@ -12,15 +12,14 @@
 \contentsline {section}{\numberline {2.1}Definice zásobníkových automatů}{12}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Typy zásobníkových automatů}{13}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Činnost zásobníkových automatů}{14}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Specifikace aplikace}{16}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Požadavky aplikace}{16}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Technologie}{17}{section.3.2}%
-\contentsline {chapter}{\numberline {4}Implementace aplikace}{18}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Reprezentace zásobníkových automatů v kódu}{18}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Simulátor}{20}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Úložiště}{23}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Stránka pro tvorbu zásobníkových automatů}{24}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Funkce checkPushdownAutomata pro kontrolu automatu}{26}{section.4.5}%
+\contentsline {chapter}{\numberline {3}Analýzy a návrh}{16}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Implementace aplikace}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Technologie}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Reprezentace zásobníkových automatů v kódu}{17}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Simulátor}{19}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Úložiště}{22}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Stránka pro tvorbu zásobníkových automatů}{24}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Funkce checkPushdownAutomata pro kontrolu automatu}{25}{section.4.6}%
 \contentsline {chapter}{\numberline {5}Uživatelské rozhraní}{27}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Hlavní stránka}{27}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Stránka pro tvorbu zásobníkového automatu}{28}{section.5.2}%

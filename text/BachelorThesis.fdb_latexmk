@@ -1,19 +1,19 @@
 # Fdb version 4
-["biber BachelorThesis"] 1712918614.99365 "BachelorThesis.bcf" "BachelorThesis.bbl" "BachelorThesis" 1712925104.17464 0
-  "BachelorThesis.bcf" 1712925103.89018 107603 7bdaa7f420e2c17d60404a443744dd8d "pdflatex"
+["biber BachelorThesis"] 1713030038.41627 "BachelorThesis.bcf" "BachelorThesis.bbl" "BachelorThesis" 1713100352.62268 0
+  "BachelorThesis.bcf" 1713100352.31617 107603 7bdaa7f420e2c17d60404a443744dd8d "pdflatex"
   (generated)
   "BachelorThesis.bbl"
   "BachelorThesis.blg"
   (rewritten before read)
-["pdflatex"] 1712925102.37037 "c:/Users/ondra/Onedrive/Dokumenty/Simulation-of-Pushdown-Automata/text/BachelorThesis.tex" "BachelorThesis.pdf" "BachelorThesis" 1712925104.17541 0
-  "BachelorThesis.aux" 1712925103.87567 10260 4e2c178182351ce26fb11035eac1d019 "pdflatex"
-  "BachelorThesis.bbl" 1712918618.81117 486 5d0d039bf84e4f45a7144d280f172f5d "biber BachelorThesis"
-  "BachelorThesis.lof" 1712925103.89118 2035 23e4a2eb00d40709337cd8d0bd7ce441 "pdflatex"
-  "BachelorThesis.lol" 1712925103.89218 453 eb18fdff6fcde46fbd8c30e3bbdd7c6b "pdflatex"
-  "BachelorThesis.lot" 1712925103.89218 413 5a471f6df6663f91e2c3a9fe87516f88 "pdflatex"
-  "BachelorThesis.out" 1712925103.88718 4319 5dc0ee48adf22807bee48104ed7b9cc9 "pdflatex"
-  "BachelorThesis.run.xml" 1712925103.89118 2584 bfe333c7fdef7cf6028db2de8e967795 "pdflatex"
-  "BachelorThesis.toc" 1712925103.89118 2215 44f63b63d28d0d0cf1567c06c419382d "pdflatex"
+["pdflatex"] 1713100350.72295 "c:/Users/ondra/Onedrive/Dokumenty/Simulation-of-Pushdown-Automata/text/BachelorThesis.tex" "BachelorThesis.pdf" "BachelorThesis" 1713100352.62345 0
+  "BachelorThesis.aux" 1713100352.30054 10055 328461ab9364d628ba9fbb5bb90efb90 "pdflatex"
+  "BachelorThesis.bbl" 1713030039.95449 486 5d0d039bf84e4f45a7144d280f172f5d "biber BachelorThesis"
+  "BachelorThesis.lof" 1713100352.31917 2035 69f3f064d6217da826dc2fa6a19b9a8e "pdflatex"
+  "BachelorThesis.lol" 1713100352.31917 453 b78df26fd314a7e8d83a17f37b5ebf53 "pdflatex"
+  "BachelorThesis.lot" 1713100352.31917 413 5a471f6df6663f91e2c3a9fe87516f88 "pdflatex"
+  "BachelorThesis.out" 1713100352.31405 4152 c471184223de9a7edf87adff972894c2 "pdflatex"
+  "BachelorThesis.run.xml" 1713100352.31917 2584 bfe333c7fdef7cf6028db2de8e967795 "pdflatex"
+  "BachelorThesis.toc" 1713100352.31917 2132 30f57f26d30d42b4596f85db78dea105 "pdflatex"
   "C:/Users/ondra/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1711629595.30488 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ondra/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1706111230.66994 24225046 27c75024d888cd2a3998a67c3bffcb85 ""
   "C:/Users/ondra/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -210,12 +210,12 @@
   "C:/Users/ondra/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/ondra/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "C:/Users/ondra/AppData/Local/Programs/MiKTeX/tex/latex/xmpincl/xmpincl.sty" 1633254124 2832 d498c59e94b7dfa3b4bcf74380ad6348 ""
-  "Chapters/AppImplemetation.tex" 1712847314.62091 21330 9d3c60897d4d7d4961b22345eaf12ff5 ""
-  "Chapters/AppSpecifications.tex" 1712072407.55627 3207 41f529bc9afae5b72171a83b93915420 ""
+  "Chapters/AppImplemetation.tex" 1713094979.47414 22641 3bb7d34c6a43da077e99b5521adfe675 ""
+  "Chapters/AppSpecifications.tex" 1713031975.63346 2004 e22545f79308d13bfb65502e58c21375 ""
   "Chapters/Conclusion.tex" 1710252314.2452 30 519a8387a75ab95a693d9fa5ac1eb5fb ""
   "Chapters/Introduction.tex" 1712752373 1887 3d73c7f6258fecb08697faa2641a1cd5 ""
-  "Chapters/PushdownAutomata.tex" 1712752252 8566 e145794088c6dde2147d6d18364cda52 ""
-  "Chapters/UI.tex" 1712925099.89961 9377 3d5a0f5dde541c2220fe8a717d1b5c84 ""
+  "Chapters/PushdownAutomata.tex" 1713030140.64571 8506 dc3fe09194fe35dda9052f9f6312779f ""
+  "Chapters/UI.tex" 1713100350.06269 9367 c5cdb1dda271539c5cc9142aa94c1d78 ""
   "Figures/FEI_CZ.pdf" 1706109886.70709 748505 5384f51d214fdbc8c199b1df148af938 ""
   "Figures/PDAComponents.drawio.pdf" 1711111580.76385 21983 f83abd0e2a9d2361362ec67155d03b7d ""
   "Figures/PrntScrn_FilledTransition.png" 1712678062.05004 4685 fc803f80211ce80451a247559ab30328 ""
@@ -235,7 +235,7 @@
   "c:/Users/ondra/Onedrive/Dokumenty/Simulation-of-Pushdown-Automata/text/BachelorThesis.tex" 1712917835.67796 3939 c70dead537ff57a8b2281508fed15ecb ""
   "diploma.cls" 1706109886.99871 12539 692b184772add64129adc9f614aae5b4 ""
   "diplomalst.sty" 1706109887.02062 3334 0cdefc070a5e016f9660d6cca103c57b ""
-  "pdfa.xmpi" 1712925102.94502 5042 cfc72bba756e228cc34cfaf8ed4da540 "pdflatex"
+  "pdfa.xmpi" 1713100351.33492 5042 017f36e524ef437a7b64bfa173dc6577 "pdflatex"
   (generated)
   "BachelorThesis.aux"
   "BachelorThesis.bcf"

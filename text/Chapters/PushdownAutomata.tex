@@ -1,10 +1,8 @@
 \chapter{Zásobníkové automaty}
 
-Tato kapitola se bude zabývá tím, co to jsou zásobníkové automaty, jak jsou definovány a jak fungují. Zásobníkové automaty jsou jakýmsi rozšířením nedeterministických konečných automatů pro rozpoznávání bezkontextových gramatik. K vstupní pásce a řídící jednotce přibývá ještě zásobník, který slouží jako paměť automatu. Zásobník funguje na principu LIFO (Last~In~---~First~Out), tedy symbol, který je na zásobník vložen dříve, budeme brán jako poslední, a čten může být vždy pouze nejvrchnější symbol.
+Tato kapitola se bude zabývá tím, co to jsou zásobníkové automaty, jak jsou definovány a jak fungují. Zásobníkové automaty jsou jakýmsi rozšířením konečných automatů pro rozpoznávání bezkontextových gramatik. Ke vstupní pásce a řídící jednotce přibývá ještě zásobník, který slouží jako paměť automatu. Zásobník funguje na principu LIFO (Last~In~---~First~Out), tedy symbol, který je na zásobník vložen dříve, bude brán jako poslední, a čten může být vždy pouze nejvrchnější symbol.
 
-Příklad, kde bychom se bez zásobníku neobešli, je např.~automat kontrolující správné uzávorkování matematického výrazu. Při každém přečtení levé závorky si ji automat uloží na zásobník a při přečtení pravé závorky se zase podívá na zásobník, jestli tam má odpovídající levou závorku. V případě, že tam žádná závorka není nebo je tam závorka jiná, tak vstup není automatem přijat~---~není správně ozávorkován.
-
-% TODO: Ukončit úvod
+Příklad, kde bychom se bez zásobníku neobešli, je např.~automat kontrolující správného uzávorkování matematického výrazu. Při každém přečtení levé závorky si ji automat uloží na zásobník a při přečtení pravé závorky se na zásobník podívá, jestli tam má odpovídající levou závorku. V případě, že tam žádná závorka není nebo je tam závorka jiná, tak vstup není automatem přijat~---~není správně ozávorkován.
 
 \section{Definice zásobníkových automatů}\label{sec:DefinitonOfPDA}
 
@@ -23,8 +21,7 @@ kde $Q, \Sigma, \Gamma a F$ jsou neprázdné konečné množiny a
     \item $F \subseteq Q$ je množina přijímacích/konečných stavů
 \end{itemize}
 
-% TODO: Popsat tři komponenty na obrázku a přepsat propojení s definicí výše
-Graficky bychom mohli zásobníkový automat zobrazit jako na obrázku~\ref{fig:PDAComponents}, složený ze tří částí~---~vstupní pásky, řídící jednotky a zásobníku. Množina stavů $Q$ obsahuje všechny stavy, ve kterých se může vyskytovat řídící jednotka při výpočtu. $\Sigma$ obsahuje všechny symboly, které se mohou vyskytnout na vstupní pásce a $\Gamma$ zase všechny symboly použitelné na zásobníku. $q_0$ je stav z množiny $Q$, ve kterém se nachází řídící jednotka na začátku výpočtu. $X_0$ je symbol z množiny $\Gamma$, který se nachází na zásobníku na začátku výpočtu. Množina $F$, která je podmnožinou $Q$, obsahuje všechny stavy, ve kterých je vstup přijat. Přechodová funkce z $\delta : Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma \rightarrow P(Q \times \Gamma^*)$ zase říká, jak se automat zachová při určitém stavu, když přečte vstupní symbol a na vrcholu zásobníku je určitý symbol. Např.\ přechod $\delta(q_1,b,A) = \{(q_2,\epsilon)\}$ říká, že pokud se ze vstupu přečte znak~$a$, na vrchu zásobníku je symbol~$A$ a řídící jednotka je ve stavu~$q_1$, tak se řídící jednotka přesune do stavu~$q_2$ a na zásobník se nic nepřidá.
+Graficky bychom mohli zásobníkový automat zobrazit jako na obrázku~\ref{fig:PDAComponents}, složený ze tří částí~---~vstupní pásky, řídící jednotky a zásobníku. Množina stavů $Q$ obsahuje všechny stavy, ve kterých se může vyskytovat řídící jednotka při výpočtu. $\Sigma$ obsahuje všechny symboly, které se mohou vyskytnout na vstupní pásce a $\Gamma$ zase všechny symboly použitelné na zásobníku. $q_0$ je stav z množiny $Q$, ve kterém se nachází řídící jednotka na začátku výpočtu. $X_0$ je symbol z množiny $\Gamma$, který se nachází na zásobníku na začátku výpočtu. Množina $F$, která je podmnožinou $Q$, obsahuje všechny stavy, ve kterých je vstup přijat. Přechodová funkce $\delta : Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma \rightarrow P(Q \times \Gamma^*)$ zase říká, jak se automat zachová při určitém stavu, když přečte vstupní symbol a na vrcholu zásobníku je určitý symbol. Např.\ přechod $\delta(q_1,a,A) = \{(q_2,\epsilon)\}$ říká, že pokud se ze vstupu přečte znak~$a$, na vrchu zásobníku je symbol~$A$ a řídící jednotka je ve stavu~$q_1$, tak se řídící jednotka přesune do stavu~$q_2$ a na zásobník se nic nepřidá.
 
 \begin{figure}[h]
     \centering
@@ -38,11 +35,11 @@ Graficky bychom mohli zásobníkový automat zobrazit jako na obrázku~\ref{fig:
 Zásobníkové automaty stejně jako konečné automaty mohou být deterministické nebo nedeterministické. Pokud je automat deterministický, tak vždy musí existovat maximálně jeden přechod, který odpovídá aktuální konfiguraci automatu. Musí tedy splňovat tyto dvě podmínky:
 \begin{enumerate}
     \item Pro kombinaci $(q,a,Z)$ může existovat maximálně jeden přechod
-    \item Pokud existuje přechod $(q,\epsilon,Z)$, tak nesmí existovat žádná kombinace $(q,?,Z)$
+    \item Pokud existuje přechod $(q,\epsilon,Z)$, tak nesmí existovat žádná kombinace $(q,\mathord{?},Z)$
 \end{enumerate}
-kde ($q \in Q$, $a \in \Sigma$ a $Z \in \Gamma$). Pokud je kterékoliv z těchto pravidel porušeno, jedná se o automat nedeterministický.
+kde $q \in Q$, $a \in \Sigma$, $Z \in \Gamma$ a $\mathord{?}$ je jakýkoliv symbol vstupní abecedy. Pokud je kterékoliv z těchto pravidel porušeno, jedná se o automat nedeterministický.
 
-Definice použitá v kapitole~\ref{sec:DefinitonOfPDA} obsahuje podmnožinu stavů označovanou písmenem~F~---~množina přijímacích stavů. Pokud se po přečtení celého vstupu řídící jednotka nacházím v některém z přijímacích stavů, tak je vstup automatem přijat nezávisle na tom, jestli jsou nějaké symboly na zásobníku. V opačném případě tento automat vstup nepřijímá. Někdy ale můžeme chtít, aby bylo slovo přijato pouze, pokud je po přečtení celého slova zásobník prázdný. V tom případě může být vhodnější zásobníkový automat (deterministický či nedeterministický) přijímající prázdným zásobníkem. Takový automat je definovaný jako šestice, neobsahuje množinu F, a po přečtení slova jej přijme, pouze pokud na zásobníku není žádný symbol, nezávisle na stavu řídící jednotky.
+Definice použitá v kapitole~\ref{sec:DefinitonOfPDA} obsahuje podmnožinu stavů označovanou písmenem~F~---~množina přijímacích stavů. Pokud se po přečtení celého vstupu řídící jednotka nachází v některém z přijímacích stavů, tak je vstup automatem přijat nezávisle na tom, jestli jsou nějaké symboly na zásobníku. V opačném případě tento automat vstup nepřijímá. Někdy ale můžeme chtít, aby bylo slovo přijato pouze, pokud je po přečtení celého slova zásobník prázdný. V tom případě může být vhodnější zásobníkový automat (deterministický či nedeterministický) přijímající prázdným zásobníkem. Takový automat je definovaný jako šestice, neobsahuje množinu F, a po přečtení slova jej přijme, pouze pokud na zásobníku není žádný symbol, nezávisle na stavu řídící jednotky.
 
 Zásobníkové automaty se tedy dělí podle:
 \begin{itemize}
@@ -60,7 +57,7 @@ Zásobníkové automaty se tedy dělí podle:
 
 \section{Činnost zásobníkových automatů}
 
-Poslední část této kapitoly se věnuje tomu, jak zásobníkový automat funguje a jak probíhá jeho činnost. Pro potřeby této kapitoly bude použit následný deterministický zásobníkový automat přijímající slovo prázdným zásobníkem rozpoznávající jazyk $a^{n}b^{n}, n \ge 1$:\\
+Poslední část této kapitoly se věnuje tomu, jak zásobníkový automat funguje a jak probíhá jeho činnost. Pro potřeby této kapitoly bude použit následující deterministický zásobníkový automat přijímající slovo prázdným zásobníkem a rozpoznávající jazyk $a^{n}b^{n}, n \ge 1$:\\
 $M = (Q, \Sigma, \Gamma, \delta, q, X)$, kde \\
 \indent$Q = \{q\}$\\
 \indent$\Sigma = \{a,b\}$\\
@@ -70,16 +67,16 @@ $M = (Q, \Sigma, \Gamma, \delta, q, X)$, kde \\
 \indent\indent$(q,a,A) = (q,AA)$,\\
 \indent\indent$(q,b,A) = (q,\epsilon)$\\
 \indent$\}$\\
-Jako vstup bude použito slovo ``aaabbb''
+Jako vstup bude použito slovo ``aaabbb''.
 
 % BIB: http://vishub.org/officedocs/13770.pdf strana 158 dole
 V průběhu výpočtu se zásobníkový automat nachází vždy v nějaké konfiguraci, což je trojice $(Q \times \Sigma^{*} \times \Gamma^{*})$. $Q$ je aktuální stav, ve kterém se nachází řídící jednotka, $\Sigma^{*}$ je nepřečtená část vstupu a $\Gamma{*}$ je aktuální stav zásobníku. 
 
-Než automat započne svou činnost, musí se nastavit výchozí konfigurace podle definice automatu a námi požadovaného vstupu, v tomto případě (q,aaabbb,X). 
+Než automat započne svou činnost, musí se nastavit výchozí konfigurace podle definice automatu a námi požadovaného vstupu, v tomto případě $(q,aaabbb,X)$. 
 
-Když automat začne výpočet, přečte první znak ze vstupu, tedy symbol a, ze zásobníku se odebere symbol X a řídící jednotka je ve stavu q. Automat tedy hledá přechodovou funkci pro trojici (q,a,X). Tomu odpovídá přechod (q,a,X), který se použije. Jelikož automat již je ve stavu q, stav zůstává stejný, čtecí hlava se na vstupu posune na další symbol a na zásobník se vloží znak A. Nově je automat v konfiguraci (q,aabbb,A). Tento postup se opakuje, dokud se nepřečte celý vstup, viz tabulka~\ref{tab:DemonstationOfPDA}. Po skončení výpočtu zůstal zásobník prázdný, je tedy slovo přijato. 
+Když automat začne výpočet, přečte první znak ze vstupu, tedy symbol a, ze zásobníku se odebere symbol X a řídící jednotka je ve stavu q. Automat tedy hledá přechod pro trojici $(q,a,X)$. Tomu odpovídá přechod $\delta(q,a,X) = (q,A)$, který se použije. Jelikož automat již je ve stavu q, stav zůstává stejný, čtecí hlava se na vstupu posune na další symbol a na zásobník se vloží znak A. Nově je automat v konfiguraci $(q,aabbb,A)$. Tento postup se opakuje, dokud se nepřečte celý vstup, viz tabulka~\ref{tab:DemonstationOfPDA}. Po skončení výpočtu zůstal zásobník prázdný, je tedy slovo přijato. 
 
-Pokud bychom měli vstup např.\ ``aaabb'', tedy bez třetího b, tak by výpočet vypadal obdobně, ale tabulka~\ref{tab:DemonstationOfPDA} by končila řádkem s konfigurací (q,$\epsilon$,A) a žádným přechodem. Měli bychom tedy přečtený celý vstup, ale na zásobníku by nám pořád zbýval jeden symbol, vstup by tedy nebyl přijat.
+Pokud bychom měli vstup např.\ ``aaabb'', tedy bez třetího b, tak by výpočet vypadal obdobně, ale tabulka~\ref{tab:DemonstationOfPDA} by končila řádkem s konfigurací (q,$\epsilon$,A) a žádným přechodem. Měli bychom tedy přečtený celý vstup, ale na zásobníku by nám pořád zbýval jeden symbol. Vstup by tedy nebyl přijat.
 
 % BIB: http://vishub.org/officedocs/13770.pdf strana 162
 \begin{table}[h]

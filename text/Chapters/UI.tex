@@ -1,14 +1,14 @@
 \chapter{Uživatelské rozhraní}
 
-Předchozí kapitola~\ref{chap:AppImplemetation} se zabývala převážně funkčností aplikace. V této kapitole se chci zaměřit na to, jak vypadá uživatelské rozhraní a jak aplikace funguje. Kapitola bude rozdělena do několika sekcí, kdy každá sekce se bude věnovat jedné stránce, tomu, co stránka obsahuje a jak se případně ovládá.
+Předchozí kapitola~\ref{chap:AppImplemetation} se zabývala převážně funkčností aplikace. V této kapitole se chci zaměřit na to, jak vypadá uživatelské rozhraní. Kapitola bude rozdělena do několika podkapitol, kdy každá z nich se bude věnovat jedné stránce a tomu, co stránka obsahuje a jak se případně ovládá.
 
 \section{Hlavní stránka}
 
-Když si uživatel zobrazí webovou stránku s aplikací, první, co uvidí, je hlavní nabídka. Ta je velice jednoduchá, protože obsahuje nadpis a tři tlačítka vycentrované na středu stránky, obrázek~\ref{fig:UIMainPage}. Každé z techto tlačítek přepne uživatele na stránky, které budou popsané v dalších sekcích této kapitoly:
+Když si uživatel zobrazí webovou stránku s aplikací, tak první, co uvidí, je hlavní nabídka. Ta je velice jednoduchá, protože obsahuje pouze nadpis a tři tlačítka vycentrované na středu stránky, obrázek~\ref{fig:UIMainPage}. Každé z techto tlačítek přepne uživatele na stránky, které budou popsané v dalších podkapitolách:
 \begin{itemize}
-    \item Tlačítko new --- Stránka pro tvorbu zásobníkového automatu, sekce~\ref{sec:PDABuilder}
-    \item Tlačítko upload --- Formulář pro nahrávání zásobníkových automatů, sekce~\ref{sec:UploadForm}
-    \item Tlačítko saved --- Výpis úložiště, sekce~\ref{sec:SimulatorPage}
+    \item Tlačítko new --- Stránka pro tvorbu zásobníkového automatu, podkapitola~\ref{sec:PDABuilder}
+    \item Tlačítko upload --- Formulář pro nahrávání zásobníkových automatů, podkapitola~\ref{sec:UploadForm}
+    \item Tlačítko saved --- Výpis úložiště, podkapitola~\ref{sec:SimulatorPage}
 \end{itemize}
 
 \begin{figure}[h]
@@ -21,7 +21,7 @@ Když si uživatel zobrazí webovou stránku s aplikací, první, co uvidí, je 
 
 Po kliknutí na tlačítko new v hlavní nabídce se otevře stránka pro tvorbu zásobníkového automatu. Tato stránka se skládá z několika formulářů a HTML input prvků. 
 
-Jako první je textové pole pro specifikaci názvu automatu. Tento název se pak zobrazuje ve výpisu automatů z úložiště. Dále následuje formulář pro přidávání stavů. Stavy se přidávají po jednom a jejich délka není omezená.D8le následují formuláře pro definování vstupní a zásobníkové abecedy. Symboly se opět přidávají po jednom a jejich délka je omezena na jeden znak. Vstupní pole pro název a formulář pro přidávaní stavů lze vidět na obrázku~\ref{fig:BuilderPart1} včetně chybové hlášky.
+Jako první je textové pole pro specifikaci názvu automatu. Tento název se pak zobrazuje ve výpisu automatů z úložiště. Dále následuje formulář pro přidávání stavů. Stavy se přidávají po jednom a jejich délka není omezená. Dále následují formuláře pro definování vstupní a zásobníkové abecedy. Symboly se opět přidávají po jednom a jejich délka je omezena na jeden znak. Vstupní pole pro název a formulář pro přidávaní stavů lze vidět na obrázku~\ref{fig:BuilderPart1} včetně chybové hlášky.
 
 \begin{figure}[h]
     \centering
@@ -29,7 +29,7 @@ Jako první je textové pole pro specifikaci názvu automatu. Tento název se pa
     \caption{Název a formulář pro přidávání stavů}\label{fig:BuilderPart1}
 \end{figure}
 
-Po těchto třech formulářích následují dva seznamy pro výběr počátečního stavu a počátečního zásobníkového symbolu. Po těchto dvou seznamech následuj část pro určení, zda zásobníkový automat bude přijímat prázdným zásobníkem nebo přijímací stavy. To závisí na tom, zda uživatel zaškrtne zaškrtávacího pole. Pokud zůstane nezaškrtnuté, musí uživatel vybrat alespoň jeden ze stavů níže jako přijímací. Seznam počátečních zásobníkových symbolů a zaškrtávací pole je na obrázku~\ref{fig:BuilderPart2}.
+Po těchto třech formulářích následují dva seznamy pro výběr počátečního stavu a počátečního zásobníkového symbolu. Dále následuje část pro určení, zda zásobníkový automat bude přijímat prázdným zásobníkem nebo přijímací stavy. To závisí na tom, zda uživatel zaškrtne zaškrtávacího pole. Pokud zůstane nezaškrtnuté, musí uživatel vybrat alespoň jeden ze stavů níže jako přijímací. Seznam počátečních zásobníkových symbolů a zaškrtávací pole je na obrázku~\ref{fig:BuilderPart2}.
 
 \begin{figure}[h]
     \centering
@@ -37,7 +37,7 @@ Po těchto třech formulářích následují dva seznamy pro výběr počátečn
     \caption{Seznam počátečních zásobníkových symbolů a zaškrtávací pole pro určení typu zásobníkového automatu}\label{fig:BuilderPart2}
 \end{figure}
 
-Poslední část pak slouží k definování přechodů přechodové funkce. Její funkce již byla popsána v sekci~\ref{sec:PDABuilderImplementation}. Jak tato část vypadá lze vidět na obrázku~\ref{fig:FilledTransition}. Pak již následují jen tlačítka na navrácení na hlavní stránku a uložené zásobníkového automatu.
+Poslední část pak slouží k definování přechodů přechodové funkce. Její funkce již byla popsána v podkapitole~\ref{sec:PDABuilderImplementation}. Jak tato část vypadá lze vidět na obrázku~\ref{fig:FilledTransition}. Pak již následují jen tlačítka na navrácení na hlavní stránku a uložené zásobníkového automatu.
 
 \section{Formulář pro nahrávání zásobníkových automatů}\label{sec:UploadForm}
 
@@ -53,7 +53,7 @@ Druhým tlačítkem v hlavní nabídce se uživatel dostane na stránku s formul
 
 Třetím tlačítkem v hlavní nabídce si uživatel může zobrazit seznam všech automatů, které jsou uložené v úložišti. Vzhled této stránky je na obrázku~\ref{fig:Storage}. Nad samotnou tabulkou je nadpis a tlačítko pro návrat do hlavní nabídky. Samotná tabulka pak má 6 sloupců a každý řádek odpovídá jednomu automatu v úložišti.
 
-První sloupec obsahuje název automatu, dalších 5 sloupců pak obsahuje tlačítka. První tlačítko zobrazí stránku, na které je tabulka s informacemi o automatu. Druhé tlačítko přepne uživatele na stránku pro tvorbu zásobníkového automatu, kde může uživatel automat zeditovat. Třetí tlačítko přepne uživatel na stránku simulátoru, která je popsána v podkapitole~\ref{sec:SimulatorPage}, a nastaví tam konkrétní zásobníkový automat. Čtvrté tlačítko pak slouží pro stažení automatu jako soubor typu JSON.@ Poslední tlačítko pak slouží pro vymazání automatu z úložiště.
+První sloupec obsahuje název automatu, dalších 5 sloupců pak obsahuje tlačítka. První tlačítko zobrazí stránku, na které je tabulka s informacemi o automatu. Druhé tlačítko přepne uživatele na stránku pro tvorbu zásobníkového automatu, kde může uživatel automat zeditovat. Třetí tlačítko přepne uživatel na stránku simulátoru, která je popsána v podkapitole~\ref{sec:SimulatorPage}, a nastaví tam konkrétní zásobníkový automat. Čtvrté tlačítko pak slouží pro stažení automatu jako soubor typu JSON.\ Poslední tlačítko pak slouží pro vymazání automatu z úložiště.
 
 \begin{figure}[h]
     \centering
@@ -71,7 +71,7 @@ Poslední stránkou této aplikace je stránka samotného simulátoru. Na tuto s
     \item Vybráním automatu z úložiště
 \end{itemize}
 
-Při zobrazení této stránky je jako první otevře modální okno pro zadání vstupu, které je na obrázku~\ref{fig:TapeInput}. Po potvrzení vstupu se okno schová a uživatel vidí již samotný simulátor. Na obrázku~\ref{fig:Simulator} lze vidět stránku v průběhu simulace.
+Při zobrazení této stránky se jako první otevře modální okno pro zadání vstupu, které je na obrázku~\ref{fig:TapeInput}. Po potvrzení vstupu se okno schová a uživatel vidí již samotný simulátor. Na obrázku~\ref{fig:Simulator} lze vidět stránku v průběhu simulace.
 
 \begin{figure}[h]
     \centering
@@ -79,7 +79,7 @@ Při zobrazení této stránky je jako první otevře modální okno pro zadán�
     \caption{Okno pro zadání vstupu}\label{fig:TapeInput}
 \end{figure}
 
-Samotný simulátor se pak skládá z několika částí. V horní částí je řádek, který symbolizuje vstupní pásku se symboly. Symboly s tmavším pozadím je symbol, který bude přečten jako další. Nalevo od něj jsou již přečtené symboly a napravo symboly ještě nepřečtené. Na pravé straně se pak nachází zásobník. Symbol, který se nachází nejvýše a má tmavší pozadí, je symbol na vrcholu zásobníku, takže bude přečten v dalším kroku. 
+Samotný simulátor se pak skládá z několika částí. V horní částí je řádek, který symbolizuje vstupní pásku se symboly. Symbol s tmavším pozadím je symbol, který bude přečten jako další. Nalevo od něj jsou již přečtené symboly a napravo symboly ještě nepřečtené. Na pravé straně se pak nachází zásobník. Symbol, který se nachází nejvýše a má tmavší pozadí, je symbol na vrcholu zásobníku, takže bude přečten v dalším kroku. 
 
 Na levé straně stránky se nachází tři oblasti seřazené ve sloupci. První oblast, která se nachází nejvýše, zobrazuje aktuální stav, ve kterém se nachází řídící jednotka. Ve druhé oblasti, která je na obrázku~\ref{fig:Simulator} prázdná, se zobrazují možnosti volby dalšího přechodu u nedeterministických zásobníkových automatů. Příklad volby je na obrázku~\ref{fig:TransitionFunctionChoosing}. Třetí část pak obsahuje ovládací prvky simulátoru. Tlačítko Close simulation ukončí simulaci a vrátí uživatele do hlavní nabídky. Set new tape otevře modální okno pro zadání vstupu, stejně jako při prvním otevření stránky.
 Šipky pak slouží k samotnému ovládání simulace. Šipky na krajích slouží ke spuštění automatické simulace, šipky uvnitř pak slouží k manuálnímu krokování. Tlačítko uprostřed slouží k pozastavení simulace. Posledním ovládacím prvkem je posuvník, který slouží k nastavení času mezi jednotlivými kroky při automatické simulaci.
