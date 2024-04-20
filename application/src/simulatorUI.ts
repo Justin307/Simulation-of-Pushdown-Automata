@@ -15,6 +15,7 @@ export class SimulatorUI{
     tapeForm?: HTMLDivElement;
     result?: HTMLDivElement;
     resultText?: HTMLParagraphElement;
+    speedControl?: HTMLInputElement;
 
     tapePosition: number = 0;
 
@@ -41,6 +42,7 @@ export class SimulatorUI{
         this.tapeForm = document.getElementById("tapeFormModal") as HTMLDivElement;
         this.result = document.getElementById("simulatorResultDiv") as HTMLDivElement;
         this.resultText = document.getElementById("simulatorResultContent") as HTMLParagraphElement;
+        this.speedControl = document.getElementById("speed-control") as HTMLInputElement;
     }
 
     setAutomata(automata: PushdownAutomata): void{
@@ -66,7 +68,7 @@ export class SimulatorUI{
                 }
             }
         });
-        document.getElementById("speed-control")?.addEventListener('input', (event: InputEvent) => {
+        this.speedControl?.addEventListener('input', (event: InputEvent) => {
             this.speed = parseInt((event.target as HTMLInputElement).value);
         });
         document.getElementById("buttonNextAuto")?.addEventListener("click", () => {
@@ -356,6 +358,7 @@ export class SimulatorUI{
 
         this.result.style.display = "none";
 
+        this.speedControl.value = "1000";
     }
 
     setTape(tape: string): void{

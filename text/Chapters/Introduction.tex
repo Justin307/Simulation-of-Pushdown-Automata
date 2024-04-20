@@ -1,7 +1,7 @@
 \chapter{Úvod}    
-    Chomského hierarchie popisuje 4 druhy gramatik a jazyků --- regulární, bezkontextové, kontextové a neomezené. Pokud pracujeme s regulárními jazyky, tak nám pro výpočet stačí konečné automaty, ať už deterministické nebo nedeterministické. Pokud bychom ale chtěli pracovat s bezkontextovými jazyky, tak nám konečný automat nestačil. Pro bezkontextové jazyky tedy musíme použít zásobníkový automat, který má oproti konečným automatům navíc zásobník pro ukládaní dat. Právě zásobníkovými automaty se táto práce zabývá, přesněji simulátorem zásobníkových automatů
+    Chomského hierarchie popisuje 4 druhy gramatik a jazyků --- regulární, bezkontextové, kontextové a neomezené. Pokud pracujeme s regulárními jazyky, nejnižší z těchto 4 tříd, tak nám pro výpočet stačí konečné automaty, ať už deterministické nebo nedeterministické. Pokud bychom ale chtěli pracovat s bezkontextovými jazyky, tak by nám konečný automat nestačil. Pro bezkontextové jazyky tedy musíme použít zásobníkový automat, který má oproti konečným automatům navíc zásobník pro ukládaní dat. Právě zásobníkovými automaty se táto práce zabývá, přesněji simulací jejich činností.
 
-    Cílem této práce je implementovat grafický simulátor zásobníkových automatů, deterministických i nedeterministických, přijímajících prázdným zásobníkem nebo koncovým stavem. 
+    Cílem této práce je implementovat grafický simulátor zásobníkových automatů, deterministických i nedeterministických, přijímajících prázdným zásobníkem i přijímacími stavy. 
     
     Aplikace bude umožňovat:
 
@@ -13,6 +13,5 @@
         \item Provést nad automatem simulaci pro uživatelem zadaný vstup
     \end{itemize}
 
-    % TODO: Upravit/dopsat obsah práce
-    Práce bude rozdělená do několika částí. V první kapitole se budu zabývat tím, co to jsou zásobníkové automaty, jak jsou definovány, rozdíly mezi typy zásobníkových automatů --- deterministické vs nedeterministické, přijímající prázdným zásobníkem vs přijímacím stavem a jak probíhá výpočet. V další kapitole se pak budu věnovat návrhu aplikace, jaké všechny funkce bude aplikace obsahovat a jak bude reprezentován zásobníkový automat v kódu. Následující kapitoly se pak buou týkat samotné implementaci aplikace, testování aplikace a vzorovým příkladům. V poslední kapitole % TODO: Dopsat...
+    Práce bude rozdělená do několika kapitol. Kapitola~\ref{chap:PushdownAutomata} se bude zabývat tím, co to jsou zásobníkové automaty, jak jsou definovány, rozdíly mezi typy zásobníkových automatů --- deterministické a nedeterministické, přijímající prázdným zásobníkem a přijímacím stavem a jak probíhá výpočet. Kapitola~\ref{chap:AppSpecifications} se pak bude věnovat tomu, co se od aplikace očekává a jaké jsou požadavky. Kapitola~\ref{chap:AppImplemetation} bude obsahovat popis technologií, které budou využity a samotnou implementaci funkcionalit. Následující kapitola~\ref{chap:UI} se pak bude zabývat uživatelským rozhraním a jeho ovládáním. Kapitola~\ref{chap:Inputs} bude obsahovat popis vstupních souborů obsahujících definice zásobníkových automatů. V předposlední kapitol7~\ref{chap:ExistingApps} budou zmíněny některé již existující aplikace řešící stejné téma a v poslední kapitole~\ref{chap:Conclusion} bude nakonec shrnutá celá práce a její výsledek.
 \endinput

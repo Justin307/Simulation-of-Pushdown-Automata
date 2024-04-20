@@ -26,5 +26,10 @@
 \contentsline {section}{\numberline {5.3}Formulář pro nahrávání zásobníkových automatů}{29}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Výpis úložiště}{29}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Simulátor}{30}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Závěr}{32}{chapter.6}%
-\contentsline {chapter}{Přílohy}{32}{chapter.6}%
+\contentsline {chapter}{\numberline {6}Vzorové vstupy a jejich struktura}{32}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Existující aplikace}{34}{chapter.7}%
+\contentsline {section}{\numberline {7.1}YAAS --- Yet Another Automata Simulator}{34}{section.7.1}%
+\contentsline {section}{\numberline {7.2}DauteRR --- Pushdown Automaton}{34}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Bakalářsá práce}{34}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Závěr}{36}{chapter.8}%
+\contentsline {chapter}{Přílohy}{36}{chapter.8}%

@@ -14,6 +14,7 @@ export declare class SimulatorUI {
     tapeForm?: HTMLDivElement;
     result?: HTMLDivElement;
     resultText?: HTMLParagraphElement;
+    speedControl?: HTMLInputElement;
     tapePosition: number;
     isChoosing: boolean;
     isRunnig: boolean;

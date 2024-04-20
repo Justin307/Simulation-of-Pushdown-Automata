@@ -1,0 +1,35 @@
+\chapter{Vzorové vstupy a jejich struktura}\label{chap:Inputs}
+
+Součástí zadání této práce bylo i vytvoření vzorových vstupů, které by ukázal funkčnost aplikace. V této bude nejprve ukázáno, jak vypadá struktura vstupních souborů nahrávaných do aplikace a následně budou popsány vzorové vstupy.
+
+Vstupní soubory jsou ve formátu JSON, což je javascriptový objektový zápis. Jelikož se z toho souboru v aplikaci vytváří objekt, musí soubor dodržovat přesně zápis odpovídající třídy PushdownAutomata, zdrojový kód~\ref{src:PushdownAutomataDefinition}, a typům v ní použitých, zdrojové kódy~\ref{src:PushdownAutomataTypes}~a~\ref{src:PushdownAutomataTransitionFunction}.
+
+Ve složce \textit{data} jsou uloženy vzorové zásobníkové automaty, které byly použity pro testování aplikace a zároveň slouží pro ukázku činnosti. Níže je seznam zásobníkových automatů, jejich popis a příklady vstupů, které přijímají.
+
+\begin{itemize}
+    \item \textbf{error\_testing.json}
+        \begin{itemize}
+            \item Tento soubor je určen pro testování kontroly chybné definice zásobníkového automatu při nahrávání souboru.
+        \end{itemize}
+    % BIB: https://www.cs.vsb.cz/sawa/uti/slides/uti-05-cz.pdf
+    \item \textbf{anbn.json}
+        \begin{itemize}
+            \item Tento automat přijímá jazyk $a^nb^n, n \ge 1$.
+            \item Přijímané vstupy: ab, aabb, aaabbb, \ldots
+            \item Nepřijímané vstupy: a, b, aa, bb, \ldots
+        \end{itemize}
+    \item \textbf{brackets\_and\_parentheses.json}
+        \begin{itemize}
+            \item Tento automat slouží ke kontrole správného uzávorkování
+            \item Přijímané vstupy: (), [], \{\}, ([[((\{\{[\{()\}]\}\}))]]), \ldots
+            \item Nepřijímané vstupy: )(, [\}, ([\{, \ldots
+        \end{itemize}
+    \item \textbf{palindrome.json}
+        \begin{itemize}
+            \item Automat přijímá binární čísla, která jsou palindromy
+            \item Přijímané vstupy: 0, 1, 00, 11, 101, 1010101, \ldots
+            \item Nepřijímané vstupy: 01, 10, 001, 01010101, \ldots
+        \end{itemize}
+\end{itemize}
+
+\endinput
