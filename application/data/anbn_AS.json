@@ -1,0 +1,141 @@
+{
+  "states": [
+    {
+      "value": "q1"
+    },
+    {
+      "value": "q2"
+    },
+    {
+      "value": "qack"
+    }
+  ],
+  "inputSymbols": [
+    {
+      "isEpsilon": false,
+      "value": "a"
+    },
+    {
+      "isEpsilon": false,
+      "value": "b"
+    }
+  ],
+  "stackSymbols": [
+    {
+      "value": "O"
+    },
+    {
+      "value": "I"
+    }
+  ],
+  "initialState": {
+    "value": "q1"
+  },
+  "initialStackSymbol": {
+    "value": "O"
+  },
+  "acceptingState": [
+    {
+      "value": "qack"
+    }
+  ],
+  "transitionFunction": [
+    {
+      "fromState": {
+        "value": "q1"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "a"
+      },
+      "startSymbol": {
+        "value": "I"
+      },
+      "toState": {
+        "value": "q1"
+      },
+      "pushedSymbols": [
+        {
+          "value": "I"
+        },
+        {
+          "value": "I"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "q1"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "b"
+      },
+      "startSymbol": {
+        "value": "I"
+      },
+      "toState": {
+        "value": "q2"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "q1"
+      },
+      "startSymbol": {
+        "value": "O"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "a"
+      },
+      "toState": {
+        "value": "q1"
+      },
+      "pushedSymbols": [
+        {
+          "value": "I"
+        },
+        {
+          "value": "O"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "q2"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "b"
+      },
+      "startSymbol": {
+        "value": "I"
+      },
+      "toState": {
+        "value": "q2"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "q2"
+      },
+      "startSymbol": {
+        "value": "O"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "qack"
+      },
+      "pushedSymbols": [
+        {
+          "value": "O"
+        }
+      ]
+    }
+  ]
+}

@@ -30,6 +30,48 @@
 \contentsline {chapter}{\numberline {7}Existující aplikace}{34}{chapter.7}%
 \contentsline {section}{\numberline {7.1}YAAS --- Yet Another Automata Simulator}{34}{section.7.1}%
 \contentsline {section}{\numberline {7.2}DauteRR --- Pushdown Automaton}{34}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Bakalářsá práce}{34}{section.7.3}%
+\contentsline {section}{\numberline {7.3}Bakalářská práce 2022/2023}{34}{section.7.3}%
 \contentsline {chapter}{\numberline {8}Závěr}{36}{chapter.8}%
-\contentsline {chapter}{Přílohy}{36}{chapter.8}%
+\contentsline {chapter}{Literatura}{37}{chapter*.23}%
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 

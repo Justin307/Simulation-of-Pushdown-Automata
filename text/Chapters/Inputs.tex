@@ -4,31 +4,43 @@ Součástí zadání této práce bylo i vytvoření vzorových vstupů, které 
 
 Vstupní soubory jsou ve formátu JSON, což je javascriptový objektový zápis. Jelikož se z toho souboru v aplikaci vytváří objekt, musí soubor dodržovat přesně zápis odpovídající třídy PushdownAutomata, zdrojový kód~\ref{src:PushdownAutomataDefinition}, a typům v ní použitých, zdrojové kódy~\ref{src:PushdownAutomataTypes}~a~\ref{src:PushdownAutomataTransitionFunction}.
 
-Ve složce \textit{data} jsou uloženy vzorové zásobníkové automaty, které byly použity pro testování aplikace a zároveň slouží pro ukázku činnosti. Níže je seznam zásobníkových automatů, jejich popis a příklady vstupů, které přijímají.
+Ve složce \textit{data} jsou uloženy vzorové zásobníkové automaty, které byly použity pro testování aplikace a zároveň slouží pro ukázku činnosti. Níže je seznam zásobníkových automatů, jejich popis a příklady vstupů, které přijímají a nepřijímají.
 
 \begin{itemize}
-    \item \textbf{error\_testing.json}
+    \item Error testing
         \begin{itemize}
             \item Tento soubor je určen pro testování kontroly chybné definice zásobníkového automatu při nahrávání souboru.
+            \item Soubor: error\_testing.json
         \end{itemize}
     % BIB: https://www.cs.vsb.cz/sawa/uti/slides/uti-05-cz.pdf
-    \item \textbf{anbn.json}
+    \item $a^{n}b^{n}$
         \begin{itemize}
             \item Tento automat přijímá jazyk $a^nb^n, n \ge 1$.
             \item Přijímané vstupy: ab, aabb, aaabbb, \ldots
             \item Nepřijímané vstupy: a, b, aa, bb, \ldots
+            \item Soubor:
+                \begin{itemize}
+                    \item anbn\_AS.json --- přijímá přijímacím stavem
+                    \item anbn\_ES.json --- přijímá prázdným zásobníkem
+                \end{itemize}
         \end{itemize}
-    \item \textbf{brackets\_and\_parentheses.json}
+    \item Uzávorkování
         \begin{itemize}
             \item Tento automat slouží ke kontrole správného uzávorkování
             \item Přijímané vstupy: (), [], \{\}, ([[((\{\{[\{()\}]\}\}))]]), \ldots
             \item Nepřijímané vstupy: )(, [\}, ([\{, \ldots
+            \item Soubor: brackets\_and\_parentheses.json
         \end{itemize}
-    \item \textbf{palindrome.json}
+    \item Palindromy
         \begin{itemize}
             \item Automat přijímá binární čísla, která jsou palindromy
             \item Přijímané vstupy: 0, 1, 00, 11, 101, 1010101, \ldots
             \item Nepřijímané vstupy: 01, 10, 001, 01010101, \ldots
+            \item Soubor: 
+            \begin{itemize}
+                \item palindrome\_AS.json --- přijímá přijímacím stavem
+                \item palindrome\_ES.json --- přijímá prázdným zásobníkem
+            \end{itemize}
         \end{itemize}
 \end{itemize}
 

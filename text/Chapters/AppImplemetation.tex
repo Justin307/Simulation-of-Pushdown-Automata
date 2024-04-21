@@ -4,9 +4,7 @@ Na předchozích stránkách teto práce byly popsány zásobníkové automaty a
 
 \section{Technologie}
 
-% BIB: https://www.itnetwork.cz/javascript/typescript/uvod-do-typescriptu
-% BIB: https://www.ackee.cz/blog/moderni-web-development-webpack
-Jelikož se jedná o webovou aplikaci, využíval jsem při vývoji webové technologie. Pro rozložení a strukturu stránky jsem použil značkovací jazyk HTML.\ Pro stylování používám CSS framework Tailwind\footnote{https://tailwindcss.com/}, který na rozdíl od jiných frameworků, jako třeba Bootstrap, neobsahuje třídy pro stylování celých komponent, ale spíše třídy pro jednotlivé vlastnosti, např.~barva pozadí, barva textu, margin a padding jednotlivých strana velikostí, atd. Funkcionality aplikace píšu v jazyce Typescript\footnote{https://www.typescriptlang.org/}, což je nástavbu jazyka Javascript, která přidává statické typování, rozhraní a další věci. Ve výsledku je veškerý typescriptový kód překládán do Javascriptu pomocí nástroje Webpack\footnote{https://webpack.js.org/}, který dokáže sbalit jednotlivé moduly a udělat z nich balíčky vhodnější pro prohlížeč. Ze všech mých typescriptových souborů je vytvořen jeden javascriptový soubor, který obsahuje veškerou funkcionalitu aplikace. Výsledkem aplikace jsou tedy tři soubory --- index.html, output.css a app-bundle.js.
+Jelikož se jedná o webovou aplikaci, využíval jsem při vývoji webové technologie. Pro rozložení a strukturu stránky jsem použil značkovací jazyk HTML.\ Pro stylování používám CSS framework Tailwind\footnote{https://tailwindcss.com/}, který na rozdíl od jiných frameworků, jako třeba Bootstrap, neobsahuje třídy pro stylování celých komponent, ale spíše třídy pro jednotlivé vlastnosti, např.~barva pozadí, barva textu, margin a padding jednotlivých strana velikostí, atd. Funkcionality aplikace píšu v jazyce Typescript\footnote{https://www.typescriptlang.org/}, což je nástavbu jazyka Javascript, která přidává statické typování, rozhraní a další věci.\cite{Kvapil2018} Ve výsledku je veškerý typescriptový kód překládán do Javascriptu pomocí nástroje Webpack\footnote{https://webpack.js.org/}, který dokáže sbalit jednotlivé moduly a udělat z nich balíčky vhodnější pro prohlížeč.\cite{Janca2017} Ze všech mých typescriptových souborů je vytvořen jeden javascriptový soubor, který obsahuje veškerou funkcionalitu aplikace. Výsledkem aplikace jsou tedy tři soubory --- index.html, output.css a app-bundle.js.
 
 \section{Reprezentace zásobníkových automatů v kódu}
 
@@ -28,7 +26,7 @@ Abych mohl se zásobníkovými automaty pracovat v aplikaci, musel jsem mít zp�
 
 První tři atributy definují jednotlivé množiny symbolů a stavů, se kterými automat pracuje. Jsou pro ně vytvořeny nové datové typy, zdrojový kód~\ref{src:PushdownAutomataTypes}. Všechny tyto typy obsahují atribut value, který obsahuje samotnou hodnotu. Typ InputSymbol navíc obsahuje ještě atribut isEpsilon, který je využíván u přechodových funkcí a umožňuje přechod bez přečtení symbolu ze vstupu.
 
-\begin{lstlisting}[label=src:PushdownAutomataTypes, caption={Datové typ State, StackSymbol, InputSymbol}]
+\begin{lstlisting}[label=src:PushdownAutomataTypes, caption={Datové typy State, StackSymbol, InputSymbol}]
     type State = {
         value: string;
     }
@@ -45,7 +43,7 @@ Dále následují dva atributy definující výchozí konfiguraci automatu --- i
 
 Posledním atributem je transitionFunction. Ten obsahuje pole všech přechodů, které jsou reprezentované opět svým typem TransitionFunction, zdrojový kód~\ref{src:TransitionFunctionType}. Ten se skládá z 5 atributů --- počátečního stavu, symbolu na zásobníku, symbolu na vstupní pásce, nového stavu a množiny zásobníkových symbolů, které budou přidány na zásobník, v tomto pořadí.
 
-\begin{lstlisting}[label=src:PushdownAutomataTransitionFunction, caption={Datové typ TransitionFunction}]
+\begin{lstlisting}[label=src:PushdownAutomataTransitionFunction, caption={Datový typ TransitionFunction}]
     type TransitionFunction = {
         fromState: State;
         startSymbol: StackSymbol;
@@ -110,7 +108,7 @@ Pokud uživatel zmáčkne tlačítko pro krok dozadu, jako první se zkontroluj,
 Na začátku kapitoly jsem zmínil, že mi mezi ovládacími prvky a zásobníkem zůstalo prázdné místo, obrázek~\ref{fig:SimulatorPageDesign}. Toto místo jsem využil pro zobrazování dvou informací. První je tabulka zobrazující definici aktuálně používaného automatu. Druhou je pak historie použitých přechodových funkcí, které se v průběhu simulace použily. V případě mobilního zobrazení stránky jsou tyto informace schovány v modálním okně, které lze otevřít tlačítkem.
 
 \section{Úložiště}
-V kapitole~\ref{chap:AppSpecifications} bylo specifikováno, že si aplikace bude ukládat veškeré automaty, aby se k nim mohl uživatel kdykoliv vrátit. K tomu aplikace využívá Local Storage.\footnote{https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage}. Local storage je úložiště v prohlížeči, které umožňuje ukládat data na straně klienta. Tyto data jsou ukládaná ve formě key-value, kdy pro každý klíč existuje jedna hodnota. Na rozdíl od session storage, kdy dochází k vymazání dat po opuštění stránky, zde data zůstávají i po opuštění stránky nebo zavření prohlížeče.
+V kapitole~\ref{chap:AppSpecifications} bylo specifikováno, že si aplikace bude ukládat veškeré automaty, aby se k nim mohl uživatel kdykoliv vrátit. K tomu aplikace využívá Local Storage.\footnote{https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage}. Local storage je úložiště v prohlížeči, které umožňuje ukládat data na straně klienta. Tyto data jsou ukládaná ve formě key-value, kdy pro každý klíč existuje jedna hodnota. Na rozdíl od session storage, kdy dochází k vymazání dat po opuštění stránky, zde data zůstávají i po opuštění stránky nebo zavření prohlížeče.\cite{Obaseki2020}
 
 V mé aplikaci jsem si pro práci s tímto úložištěm udělal třídu Storage, zkrácený zápis lze vidět ve zdrojovém kódu~\ref{src:StorageClass}. Jelikož Local Storage umožňuje ukládat klíče a hodnoty pouze jako textové řetězce, udělal jsem si nejprve metody save, která hodnotu převede na text a uloží ji do úložiště, a load, která pro zadaný klíč načte hodnotu z úložiště a převede ji z textu zpět na zadaný datový typ nebo objekt. Pro převody používám javascriptové funkce $JSON.stringify()$ a $JSON.parse()$. Dále jsem si vytvořil metodu saveAutomata, která si nejprve ověří, zda už neexistuje v úložišti záznam se stejným klíčem pomocí metody keyExist. Pokud existuje, zeptá se uživatele, zda tento záznam může přepsat. Následně pomocí metody save uloží automat. Metoda loadAutomata si načte pro zadaný klíč automat z úložiště funkcí load, nastaví mu správný prototype a vrátí ho návratovou hodnotou. 
 

@@ -2379,9 +2379,19 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
-    <bcf:datasource type="file" datatype="bibtex" glob="false">biblatex-examples.bib</bcf:datasource>
+    <bcf:datasource type="file" datatype="bibtex" glob="false">bibliografie.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+    <bcf:citekey order="1" intorder="1">Sipserc2006</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">Dale2024</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">Kozen1997</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">Kozen1997</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">Kvapil2018</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">Janca2017</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">Obaseki2020</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">Buzatto2023</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">Rodriguez2018</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">Bednarz2023</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

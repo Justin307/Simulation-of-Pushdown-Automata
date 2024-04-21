@@ -114,7 +114,9 @@ export class SimulatorUI{
             this.checkTapeInputValidity(tapeInput);
         });
         document.getElementById("closeSimulatorButton")?.addEventListener("click", () => {
-            
+            if(!confirm("Are you sure you want to close the simulator and go back to main menu?")){
+                return;
+            }
             changePage(PageEnum.MENU);
             if(this.timeout){
                 clearTimeout(this.timeout);

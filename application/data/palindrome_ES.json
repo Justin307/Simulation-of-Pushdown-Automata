@@ -1,0 +1,354 @@
+{
+  "states": [
+    {
+      "value": "Qleft"
+    },
+    {
+      "value": "Qright"
+    }
+  ],
+  "inputSymbols": [
+    {
+      "isEpsilon": false,
+      "value": "0"
+    },
+    {
+      "isEpsilon": false,
+      "value": "1"
+    }
+  ],
+  "stackSymbols": [
+    {
+      "value": "0"
+    },
+    {
+      "value": "1"
+    },
+    {
+      "value": "V"
+    }
+  ],
+  "initialState": {
+    "value": "Qleft"
+  },
+  "initialStackSymbol": {
+    "value": "V"
+  },
+  "acceptingState": null,
+  "transitionFunction": [
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "0"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "0"
+      },
+      "toState": {
+        "value": "Qleft"
+      },
+      "pushedSymbols": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "0"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "0"
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": [
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "0"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "1"
+      },
+      "toState": {
+        "value": "Qleft"
+      },
+      "pushedSymbols": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "0"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "1"
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": [
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "0"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": [
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "1"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "0"
+      },
+      "toState": {
+        "value": "Qleft"
+      },
+      "pushedSymbols": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "1"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "0"
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": [
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "1"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "1"
+      },
+      "toState": {
+        "value": "Qleft"
+      },
+      "pushedSymbols": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "1"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "1"
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": [
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "1"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": [
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "V"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "0"
+      },
+      "toState": {
+        "value": "Qleft"
+      },
+      "pushedSymbols": [
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "V"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "0"
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "V"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "1"
+      },
+      "toState": {
+        "value": "Qleft"
+      },
+      "pushedSymbols": [
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "Qleft"
+      },
+      "startSymbol": {
+        "value": "V"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "1"
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "Qright"
+      },
+      "startSymbol": {
+        "value": "0"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "0"
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "Qright"
+      },
+      "startSymbol": {
+        "value": "1"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "1"
+      },
+      "toState": {
+        "value": "Qright"
+      },
+      "pushedSymbols": []
+    }
+  ]
+}
