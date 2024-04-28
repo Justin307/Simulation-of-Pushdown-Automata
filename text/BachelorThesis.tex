@@ -6,6 +6,9 @@
 \usepackage{dcolumn} % sloupce tabulky s ciselnymi hodnotami
 \usepackage{subfig} % makra pro "podobrazky" a "podtabulky"
 \usepackage[cpp]{diplomalst}
+\usepackage{amsmath}
+\usepackage{dirtree}
+\usepackage[htt]{hyphenat}
 \renewcommand{\lstlistlistingname}{Seznam zdrojových kódů}
 \renewcommand{\lstlistingname}{Zdrojový kód}
 
@@ -25,13 +28,13 @@
 \Acknowledgement{Rád bych na tomto místě poděkoval doc. Ing. Zdeňku Sawovi, Ph.D. za veškerou pomoc a konzultace při tvorbě této bakalářksé práce.}
 
 % SETTING: Abstrakt
-\CzechAbstract{Tématem a cílem této bakalářké práce je vytvořit aplikaci pro simulaci zásobníkových automatů. Výsledkem je webová aplikace umožňující simulovat výpočet zásobníkových automatů, tvorbu vlastních zásobníkových automatů v aplikaci nebo nahrání souboru se zásobníkovým automatem. Veškeré zásobníkové automaty se ukládají do úložiště prolížeče a součástí práce jsou i vzorové zásobníkové automaty. Aplikace je napsána v jazycích TypeScript a HTML a frameworku Tailwind.}
+\CzechAbstract{Tématem a cílem této bakalářké práce bylo vytvořit aplikaci pro simulaci zásobníkových automatů. Výsledkem je webová aplikace umožňující simulovat výpočet zásobníkových automatů, tvorbu vlastních zásobníkových automatů v aplikaci nebo nahrání souboru se zásobníkovým automatem. Veškeré zásobníkové automaty se ukládají do úložiště prolížeče a součástí práce jsou i vzorové zásobníkové automaty. Aplikace je napsána v jazycích TypeScript a HTML a frameworku Tailwind.}
 
 % SETTING: Klíčová slova
 \CzechKeywords{bakalářská práce, simulace, zásobníkový automat, webová aplikace, TypeScript, HTML, Tailwind}
 
 % SETTING: Abstract
-\EnglishAbstract{The topúic and aim of this bachelor thesis is to create an application for the simulation of pushdown automata. The result is a web application that allows the simulation of the computation of pushdown automata, the creation of custom pushdown automata in the application or uploading the file with the pushdown automata. All pushdown automata are stored in the browser's storage and the work also includes sample pushdown automata. The application is written in TypeScript and HTML languages and the Tailwind framework.}
+\EnglishAbstract{The topic and aim of this bachelor thesis was to create an application for the simulation of pushdown automata. The result is a web application that allows the simulation of the computation of pushdown automata, the creation of custom pushdown automata in the application or uploading the file with the pushdown automata. All pushdown automata are stored in the browser's storage and the work also includes sample pushdown automata. The application is written in TypeScript and HTML languages and the Tailwind framework.}
 
 % SETTING: Keywords
 \EnglishKeywords{bachelor thesis, simulation, pushdown automaton, web application, TypeScript, HTML, Tailwind}
@@ -44,14 +47,13 @@
 \AddAcronym{JSON}{JavaScript Object Notation}
 \AddAcronym{LIFO}{Last in --- First out (Poslední dovnitř --- První ven)}
 \AddAcronym{PDA}{Pushdown automata (Zásobníkový automat)}
-\AddAcronym{$\epsilon$}{Epsilon}
+\AddAcronym{$\varepsilon$}{Epsilon}
 
 % SETTING: Bibliografie
 \addbibresource{bibliografie.bib}
 
 % Novy druh tabulkoveho sloupce, ve kterem jsou cisla zarovnana podle desetinne carky
 \newcolumntype{d}[1]{D{,}{,}{#1}}
-
 
 % Zacatek dokumentu
 \begin{document}
@@ -79,11 +81,11 @@
 % NOTE: Místo pro linkování kapitol
 \input{Chapters/Introduction.tex}
 \input{Chapters/PushdownAutomata.tex}
+\input{Chapters/ExistingApps.tex}
 \input{Chapters/AppSpecifications.tex}
 \input{Chapters/AppImplemetation.tex}
 \input{Chapters/UI.tex}
 \input{Chapters/Inputs.tex}
-\input{Chapters/ExistingApps.tex}
 \input{Chapters/Conclusion.tex}
 
 % Seznam literatury
@@ -91,6 +93,9 @@
 
 % NOTE: Přílohy
 % Prilohy
-% \appendix
+\appendix
+
+\input{Chapters/Appendix.tex}
+
 
 \end{document}

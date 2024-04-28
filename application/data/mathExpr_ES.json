@@ -1,0 +1,328 @@
+{
+  "states": [
+    {
+      "value": "q"
+    }
+  ],
+  "inputSymbols": [
+    {
+      "isEpsilon": false,
+      "value": "a"
+    },
+    {
+      "isEpsilon": false,
+      "value": "+"
+    },
+    {
+      "isEpsilon": false,
+      "value": "-"
+    },
+    {
+      "isEpsilon": false,
+      "value": "*"
+    },
+    {
+      "isEpsilon": false,
+      "value": "/"
+    },
+    {
+      "isEpsilon": false,
+      "value": "("
+    },
+    {
+      "isEpsilon": false,
+      "value": ")"
+    }
+  ],
+  "stackSymbols": [
+    {
+      "value": "S"
+    },
+    {
+      "value": "a"
+    },
+    {
+      "value": "+"
+    },
+    {
+      "value": "-"
+    },
+    {
+      "value": "*"
+    },
+    {
+      "value": "/"
+    },
+    {
+      "value": "("
+    },
+    {
+      "value": ")"
+    }
+  ],
+  "initialState": {
+    "value": "q"
+  },
+  "initialStackSymbol": {
+    "value": "S"
+  },
+  "acceptingState": null,
+  "transitionFunction": [
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "("
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "("
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": ")"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": ")"
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "*"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "*"
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "+"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "+"
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "-"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "-"
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "/"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "/"
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": []
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "S"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": [
+        {
+          "value": "("
+        },
+        {
+          "value": "S"
+        },
+        {
+          "value": ")"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "S"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": [
+        {
+          "value": "S"
+        },
+        {
+          "value": "*"
+        },
+        {
+          "value": "S"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "S"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": [
+        {
+          "value": "S"
+        },
+        {
+          "value": "+"
+        },
+        {
+          "value": "S"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "S"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": [
+        {
+          "value": "S"
+        },
+        {
+          "value": "-"
+        },
+        {
+          "value": "S"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "S"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": [
+        {
+          "value": "S"
+        },
+        {
+          "value": "/"
+        },
+        {
+          "value": "S"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "S"
+      },
+      "inputSymbol": {
+        "isEpsilon": true
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": [
+        {
+          "value": "a"
+        }
+      ]
+    },
+    {
+      "fromState": {
+        "value": "q"
+      },
+      "startSymbol": {
+        "value": "a"
+      },
+      "inputSymbol": {
+        "isEpsilon": false,
+        "value": "a"
+      },
+      "toState": {
+        "value": "q"
+      },
+      "pushedSymbols": []
+    }
+  ]
+}

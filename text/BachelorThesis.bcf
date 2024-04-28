@@ -2386,12 +2386,16 @@
     <bcf:citekey order="2" intorder="1">Dale2024</bcf:citekey>
     <bcf:citekey order="3" intorder="1">Kozen1997</bcf:citekey>
     <bcf:citekey order="4" intorder="1">Kozen1997</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">Kvapil2018</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">Janca2017</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">Obaseki2020</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">Buzatto2023</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">Rodriguez2018</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">Bednarz2023</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">Buzatto2023</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">Rodriguez2018</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">Bednarz2023</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">Tailwind</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">Typescript</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">Kvapil2018</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">Webpack</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">Janca2017</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">LocalStorage</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">Obaseki2020</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

@@ -6,67 +6,92 @@
 \babel@toc {czech}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Grafické zobrazení zásobníkového automatu}}{13}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Grafické zobrazení zásobníkového automatu}}{14}{figure.caption.6}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces YAAS v průběhu simulace.}}{18}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Bakalářská práce 2022/2023}}{18}{figure.caption.9}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Návrh simulátoru}}{20}{figure.caption.10}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Třídní diagram tříd simulátoru}}{24}{figure.caption.11}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Ovládací tlačítka simulátoru}}{24}{figure.caption.12}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Volba následujícího přechodu}}{25}{figure.caption.13}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Vyplněný přechod na stránce tvorby zásobníkového automatu}}{28}{figure.caption.14}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Ukázka chybových hlášek kontroly zásobníkového automatu}}{29}{figure.caption.15}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Hlavní stránka}}{31}{figure.caption.16}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Název a formulář pro přidávání stavů}}{31}{figure.caption.17}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Seznam počátečních zásobníkových symbolů a zaškrtávací pole pro určení typu zásobníkového automatu}}{32}{figure.caption.18}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Formulář pro nahrání zásobníkového automatu ze souboru}}{32}{figure.caption.19}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Výpis automatů v úložišti}}{33}{figure.caption.20}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Okno pro zadání vstupu}}{33}{figure.caption.21}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Okno pro zadání vstupu}}{34}{figure.caption.22}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Návrh simulátoru}}{20}{figure.caption.8}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Třídní diagram tříd simulátoru}}{21}{figure.caption.9}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Ovládací tlačítka simulátoru}}{22}{figure.caption.10}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Volba přechodových funkcí}}{22}{figure.caption.11}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Vyplněný přechod na stránce tvorby zásobníkového automatu}}{25}{figure.caption.12}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Ukázka chybových hlášek kontroly zásobníkového automatu}}{26}{figure.caption.13}%
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Hlavní stránka}}{27}{figure.caption.14}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Název a formulář pro přidávání stavů}}{28}{figure.caption.15}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Seznam počátečních zásobníkových symbolů a zaškrtávací pole pro určení typu zásobníkového automatu}}{28}{figure.caption.16}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Formulář pro nahrání zásobníkového automatu ze souboru}}{29}{figure.caption.17}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Výpis automatů v úložišti}}{30}{figure.caption.18}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Okno pro zadání vstupu}}{30}{figure.caption.19}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Okno pro zadání vstupu}}{31}{figure.caption.20}%
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces YAAS v průbehu simulace.}}{35}{figure.caption.21}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Bakalářská práce 2022/2023}}{35}{figure.caption.22}%
-\addvspace {10\p@ }
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 
-\babel@toc {czech}{}\relax 

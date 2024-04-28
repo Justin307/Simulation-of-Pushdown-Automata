@@ -105,99 +105,6 @@
       \field{title}{Automata and Computability}
       \field{year}{1997}
     \endentry
-    \entry{Kvapil2018}{online}{}
-      \name{author}{1}{}{%
-        {{hash=839b3e08c6bd95e56075a5e4f11662ea}{%
-           family={Kvapil},
-           familyi={K\bibinitperiod},
-           given={Jiří},
-           giveni={J\bibinitperiod}}}%
-      }
-      \strng{namehash}{839b3e08c6bd95e56075a5e4f11662ea}
-      \strng{fullhash}{839b3e08c6bd95e56075a5e4f11662ea}
-      \strng{bibnamehash}{839b3e08c6bd95e56075a5e4f11662ea}
-      \strng{authorbibnamehash}{839b3e08c6bd95e56075a5e4f11662ea}
-      \strng{authornamehash}{839b3e08c6bd95e56075a5e4f11662ea}
-      \strng{authorfullhash}{839b3e08c6bd95e56075a5e4f11662ea}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Lekce 1 - Úvod do TypeScriptu}
-      \field{urlday}{21}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{year}{2018}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://www.itnetwork.cz/javascript/typescript/uvod-do-typescriptu
-      \endverb
-      \verb{url}
-      \verb https://www.itnetwork.cz/javascript/typescript/uvod-do-typescriptu
-      \endverb
-    \endentry
-    \entry{Janca2017}{online}{}
-      \name{author}{1}{}{%
-        {{hash=c2cd7761bd45c355c2f705bc02ea6c5d}{%
-           family={Janča},
-           familyi={J\bibinitperiod},
-           given={Marek},
-           giveni={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{c2cd7761bd45c355c2f705bc02ea6c5d}
-      \strng{fullhash}{c2cd7761bd45c355c2f705bc02ea6c5d}
-      \strng{bibnamehash}{c2cd7761bd45c355c2f705bc02ea6c5d}
-      \strng{authorbibnamehash}{c2cd7761bd45c355c2f705bc02ea6c5d}
-      \strng{authornamehash}{c2cd7761bd45c355c2f705bc02ea6c5d}
-      \strng{authorfullhash}{c2cd7761bd45c355c2f705bc02ea6c5d}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Webpack - moderní Web Development}
-      \field{urlday}{21}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{year}{2017}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://www.ackee.cz/blog/moderni-web-development-webpack
-      \endverb
-      \verb{url}
-      \verb https://www.ackee.cz/blog/moderni-web-development-webpack
-      \endverb
-    \endentry
-    \entry{Obaseki2020}{online}{}
-      \name{author}{1}{}{%
-        {{hash=b9342a31e4dcf9918309eb69dd4f27b4}{%
-           family={Obaseki},
-           familyi={O\bibinitperiod},
-           given={Nosa},
-           giveni={N\bibinitperiod}}}%
-      }
-      \strng{namehash}{b9342a31e4dcf9918309eb69dd4f27b4}
-      \strng{fullhash}{b9342a31e4dcf9918309eb69dd4f27b4}
-      \strng{bibnamehash}{b9342a31e4dcf9918309eb69dd4f27b4}
-      \strng{authorbibnamehash}{b9342a31e4dcf9918309eb69dd4f27b4}
-      \strng{authornamehash}{b9342a31e4dcf9918309eb69dd4f27b4}
-      \strng{authorfullhash}{b9342a31e4dcf9918309eb69dd4f27b4}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{LocalStorage in JavaScript: A complete guide}
-      \field{urlday}{21}
-      \field{urlmonth}{4}
-      \field{urlyear}{2024}
-      \field{year}{2020}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://blog.logrocket.com/localstorage-javascript-complete-guide/
-      \endverb
-      \verb{url}
-      \verb https://blog.logrocket.com/localstorage-javascript-complete-guide/
-      \endverb
-    \endentry
     \entry{Buzatto2023}{online}{}
       \name{author}{1}{}{%
         {{hash=b72dbafc90aaddc980240429ee456512}{%
@@ -212,8 +119,8 @@
       \strng{authorbibnamehash}{b72dbafc90aaddc980240429ee456512}
       \strng{authornamehash}{b72dbafc90aaddc980240429ee456512}
       \strng{authorfullhash}{b72dbafc90aaddc980240429ee456512}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{YAAS}
@@ -243,8 +150,8 @@
       \strng{authorbibnamehash}{a962fd94498e01e398851d75a68a1091}
       \strng{authornamehash}{a962fd94498e01e398851d75a68a1091}
       \strng{authorfullhash}{a962fd94498e01e398851d75a68a1091}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{PushdownAutomaton}
@@ -274,8 +181,8 @@
       \strng{authorbibnamehash}{e2876d17edab6999d59f7fe695e7fb10}
       \strng{authornamehash}{e2876d17edab6999d59f7fe695e7fb10}
       \strng{authorfullhash}{e2876d17edab6999d59f7fe695e7fb10}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Simulace zásobníkových automatů}
@@ -289,6 +196,163 @@
       \endverb
       \verb{url}
       \verb https://dspace.vsb.cz/handle/10084/151687
+      \endverb
+    \endentry
+    \entry{Tailwind}{online}{}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labeltitlesource}{title}
+      \field{title}{Tailwind}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://tailwindcss.com/
+      \endverb
+      \verb{url}
+      \verb https://tailwindcss.com/
+      \endverb
+    \endentry
+    \entry{Typescript}{online}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labeltitlesource}{title}
+      \field{title}{Typescript}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.typescriptlang.org/
+      \endverb
+      \verb{url}
+      \verb https://www.typescriptlang.org/
+      \endverb
+    \endentry
+    \entry{Kvapil2018}{online}{}
+      \name{author}{1}{}{%
+        {{hash=839b3e08c6bd95e56075a5e4f11662ea}{%
+           family={Kvapil},
+           familyi={K\bibinitperiod},
+           given={Jiří},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{839b3e08c6bd95e56075a5e4f11662ea}
+      \strng{fullhash}{839b3e08c6bd95e56075a5e4f11662ea}
+      \strng{bibnamehash}{839b3e08c6bd95e56075a5e4f11662ea}
+      \strng{authorbibnamehash}{839b3e08c6bd95e56075a5e4f11662ea}
+      \strng{authornamehash}{839b3e08c6bd95e56075a5e4f11662ea}
+      \strng{authorfullhash}{839b3e08c6bd95e56075a5e4f11662ea}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Lekce 1 - Úvod do TypeScriptu}
+      \field{urlday}{21}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.itnetwork.cz/javascript/typescript/uvod-do-typescriptu
+      \endverb
+      \verb{url}
+      \verb https://www.itnetwork.cz/javascript/typescript/uvod-do-typescriptu
+      \endverb
+    \endentry
+    \entry{Webpack}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{Webpack}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://webpack.js.org/
+      \endverb
+      \verb{url}
+      \verb https://webpack.js.org/
+      \endverb
+    \endentry
+    \entry{Janca2017}{online}{}
+      \name{author}{1}{}{%
+        {{hash=c2cd7761bd45c355c2f705bc02ea6c5d}{%
+           family={Janča},
+           familyi={J\bibinitperiod},
+           given={Marek},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{c2cd7761bd45c355c2f705bc02ea6c5d}
+      \strng{fullhash}{c2cd7761bd45c355c2f705bc02ea6c5d}
+      \strng{bibnamehash}{c2cd7761bd45c355c2f705bc02ea6c5d}
+      \strng{authorbibnamehash}{c2cd7761bd45c355c2f705bc02ea6c5d}
+      \strng{authornamehash}{c2cd7761bd45c355c2f705bc02ea6c5d}
+      \strng{authorfullhash}{c2cd7761bd45c355c2f705bc02ea6c5d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Webpack - moderní Web Development}
+      \field{urlday}{21}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ackee.cz/blog/moderni-web-development-webpack
+      \endverb
+      \verb{url}
+      \verb https://www.ackee.cz/blog/moderni-web-development-webpack
+      \endverb
+    \endentry
+    \entry{LocalStorage}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{LocalStorage}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+      \endverb
+      \verb{url}
+      \verb https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+      \endverb
+    \endentry
+    \entry{Obaseki2020}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9342a31e4dcf9918309eb69dd4f27b4}{%
+           family={Obaseki},
+           familyi={O\bibinitperiod},
+           given={Nosa},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9342a31e4dcf9918309eb69dd4f27b4}
+      \strng{fullhash}{b9342a31e4dcf9918309eb69dd4f27b4}
+      \strng{bibnamehash}{b9342a31e4dcf9918309eb69dd4f27b4}
+      \strng{authorbibnamehash}{b9342a31e4dcf9918309eb69dd4f27b4}
+      \strng{authornamehash}{b9342a31e4dcf9918309eb69dd4f27b4}
+      \strng{authorfullhash}{b9342a31e4dcf9918309eb69dd4f27b4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{LocalStorage in JavaScript: A complete guide}
+      \field{urlday}{21}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://blog.logrocket.com/localstorage-javascript-complete-guide/
+      \endverb
+      \verb{url}
+      \verb https://blog.logrocket.com/localstorage-javascript-complete-guide/
       \endverb
     \endentry
   \enddatalist

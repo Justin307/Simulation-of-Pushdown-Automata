@@ -100,42 +100,21 @@ class PushdownAutomata{
 
 ## Otázky na schůzku
 
-- Tisk textu BP?
-- počet stran - počítá se i úvod a závěr?
+- Oponent?
+- Kdyby budou posudky?
 
 ## Poznámky ze schůzky
 
 - Simulator
     - v historii vypisovat konfigurace, viz. foto mobil
-    - End simulation -> Close simulation
-
-- Storage
-    - Delete -> ask to delete
-    - Open -> Show
-    - Open <-> Edit
     - Spojit hlavní obrazovku a saved
 
-- Form
-    - Accepting state - skrytí chybové hlášky a nemožnost výběru accepting state
-
 - Text
-    - kapitoly + sekce (více nedělit)
-    - Uvod - co, jak, proč, shrnutí kapitol - obecné uvedení do problematiky
-    - (max) 1/3 - teoretický rozbor, co to je automat, jak probíhá výpočet, existující software (BP z minulého roku, software na github)
-    - analýza/návrh, ulm diagram, návrh tříd, ...
-    - kapitola věnovaná implementaci, technologie, knihovny, trochu části kódu, ...
-    - pohled uživatele, uživatelské rozhraní, vzorové automaty, spuštění aplikace
-    - závěr (stručný) - často se opakují věci, konkrétní výsledek práce, co je přínos
-
-- Text
-    - kapitola 3
-        - Specifikace -> Analýzy a návrh
-            - Specifikace aplikace
-        - Technologie přesunout do implementace
-            - Popsat třeba více tailwind
-    - kapitola 4
+    - Analýz**a** a návrh & Implementace
+        - Ve kterých prohlížečích a verzích byla apliakce testována
+    - Vzorové příklady
+        - Převedená bezkontext gramatika
         
-    - na začátek porovnání s dalšími programy jako nová kapitola
 
 ## Odkazy
 

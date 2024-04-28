@@ -1,8 +1,8 @@
 \chapter{Vzorové vstupy a jejich struktura}\label{chap:Inputs}
 
-Součástí zadání této práce bylo i vytvoření vzorových vstupů, které by ukázal funkčnost aplikace. V této bude nejprve ukázáno, jak vypadá struktura vstupních souborů nahrávaných do aplikace a následně budou popsány vzorové vstupy.
+Součástí zadání této práce bylo i vytvoření vzorových vstupů (zásobníkových automatů), které by ukázaly funkčnost aplikace. V této kapitole je nejprve ukázáno, jak vypadá struktura vstupních souborů nahrávaných do aplikace a následně jsou popsány vzorové vstupy.
 
-Vstupní soubory jsou ve formátu JSON, což je javascriptový objektový zápis. Jelikož se z toho souboru v aplikaci vytváří objekt, musí soubor dodržovat přesně zápis odpovídající třídy PushdownAutomata, zdrojový kód~\ref{src:PushdownAutomataDefinition}, a typům v ní použitých, zdrojové kódy~\ref{src:PushdownAutomataTypes}~a~\ref{src:PushdownAutomataTransitionFunction}.
+Vstupní soubory jsou ve formátu JSON, což je javascriptový objektový zápis. Jelikož se z toho souboru v aplikaci vytváří objekt, musí soubor dodržovat přesně zápis odpovídající třídy \texttt{PushdownAutomata}, zdrojový kód~\ref{src:PushdownAutomataDefinition}, a typům v ní použitých, zdrojové kódy~\ref{src:PushdownAutomataTypes}~a~\ref{src:PushdownAutomataTransitionFunctionType}.
 
 Ve složce \textit{data} jsou uloženy vzorové zásobníkové automaty, které byly použity pro testování aplikace a zároveň slouží pro ukázku činnosti. Níže je seznam zásobníkových automatů, jejich popis a příklady vstupů, které přijímají a nepřijímají.
 
@@ -10,37 +10,44 @@ Ve složce \textit{data} jsou uloženy vzorové zásobníkové automaty, které 
     \item Error testing
         \begin{itemize}
             \item Tento soubor je určen pro testování kontroly chybné definice zásobníkového automatu při nahrávání souboru.
-            \item Soubor: error\_testing.json
+            \item Soubor: \texttt{error\_testing.json}
         \end{itemize}
-    % BIB: https://www.cs.vsb.cz/sawa/uti/slides/uti-05-cz.pdf
     \item $a^{n}b^{n}$
         \begin{itemize}
             \item Tento automat přijímá jazyk $a^nb^n, n \ge 1$.
-            \item Přijímané vstupy: ab, aabb, aaabbb, \ldots
-            \item Nepřijímané vstupy: a, b, aa, bb, \ldots
+            \item Přijímané vstupy: $ab$, $aabb$, $aaabbb$, \ldots
+            \item Nepřijímané vstupy: $a$, $b$, $aa$, $bb$, \ldots
             \item Soubor:
                 \begin{itemize}
-                    \item anbn\_AS.json --- přijímá přijímacím stavem
-                    \item anbn\_ES.json --- přijímá prázdným zásobníkem
+                    \item \texttt{anbn\_AS.json} --- přijímá přijímacím stavem
+                    \item \texttt{anbn\_ES.json} --- přijímá prázdným zásobníkem
                 \end{itemize}
         \end{itemize}
     \item Uzávorkování
         \begin{itemize}
             \item Tento automat slouží ke kontrole správného uzávorkování
-            \item Přijímané vstupy: (), [], \{\}, ([[((\{\{[\{()\}]\}\}))]]), \ldots
-            \item Nepřijímané vstupy: )(, [\}, ([\{, \ldots
-            \item Soubor: brackets\_and\_parentheses.json
+            \item Přijímané vstupy: $()$, $[]$, $\{\}$, $([[((\{\{[\{()\}]\}\}))]])$, \ldots
+            \item Nepřijímané vstupy: $)($, $[\}$, $([\{$, \ldots
+            \item Soubor: \texttt{brackets\_and\_parentheses.json}
         \end{itemize}
     \item Palindromy
         \begin{itemize}
             \item Automat přijímá binární čísla, která jsou palindromy
-            \item Přijímané vstupy: 0, 1, 00, 11, 101, 1010101, \ldots
-            \item Nepřijímané vstupy: 01, 10, 001, 01010101, \ldots
+            \item Přijímané vstupy: $0$, $1$, $00$, $11$, $101$, $1010101$, \ldots
+            \item Nepřijímané vstupy: $01$, $10$, $001$, $01010101$, \ldots
             \item Soubor: 
             \begin{itemize}
-                \item palindrome\_AS.json --- přijímá přijímacím stavem
-                \item palindrome\_ES.json --- přijímá prázdným zásobníkem
+                \item \texttt{palindrome\_AS.json} --- přijímá přijímacím stavem
+                \item \texttt{palindrome\_ES.json} --- přijímá prázdným zásobníkem
             \end{itemize}
+        \end{itemize}
+    \item Matematické příklady
+        \begin{itemize}
+            \item Automat přijímá korektní matematické příklady obsahující znaménka $+$ $-$ $*$ $/$, závorky a písmeno $a$
+            \item Rozpoznává bezkontextovou gramatice: $S \rightarrow a | S + S | S - S | S * S | S / S | ( S )$
+            \item Přijímané vstupy: $a$, $a+a$, $a+a-a$, $a*(a+(a/a))-a$, \ldots
+            \item Nepřijímané vstupy: $-$, $-a$, $a+-a$, $a*aa$, \ldots
+            \item Soubor: \texttt{mathExpr\_ES.json}
         \end{itemize}
 \end{itemize}
 
