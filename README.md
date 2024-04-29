@@ -2,6 +2,10 @@
 
 Tato webová aplikace slouží k simulaci činnosti zásobníkových automatů.
 
+## Github 
+
+https://github.com/Justin307/Simulation-of-Pushdown-Automata
+
 ## Funkce aplikace
 
 - Vytvoření zásobníkového automatu
