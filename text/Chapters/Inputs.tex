@@ -2,7 +2,7 @@
 
 Součástí zadání této práce bylo i vytvoření vzorových vstupů (zásobníkových automatů), které by ukázaly funkčnost aplikace. V této kapitole je nejprve ukázáno, jak vypadá struktura vstupních souborů nahrávaných do aplikace a následně jsou popsány vzorové vstupy.
 
-Vstupní soubory jsou ve formátu JSON, což je javascriptový objektový zápis. Jelikož se z toho souboru v aplikaci vytváří objekt, musí soubor dodržovat přesně zápis odpovídající třídy \texttt{PushdownAutomata}, zdrojový kód~\ref{src:PushdownAutomataDefinition}, a typům v ní použitých, zdrojové kódy~\ref{src:PushdownAutomataTypes}~a~\ref{src:PushdownAutomataTransitionFunctionType}.
+Vstupní soubory jsou ve formátu JSON, což je javascriptový objektový zápis. Jelikož se z toho souboru v aplikaci vytváří objekt, musí soubor dodržovat přesně zápis odpovídající třídy \texttt{PushdownAutomata} (zdrojový kód~\ref{src:PushdownAutomataDefinition}) a typům v ní použitých (zdrojové kódy~\ref{src:PushdownAutomataTypes}~a~\ref{src:PushdownAutomataTransitionFunctionType}).
 
 Ve složce \textit{data} jsou uloženy vzorové zásobníkové automaty, které byly použity pro testování aplikace a zároveň slouží pro ukázku činnosti. Níže je seznam zásobníkových automatů, jejich popis a příklady vstupů, které přijímají a nepřijímají.
 
@@ -23,6 +23,7 @@ Ve složce \textit{data} jsou uloženy vzorové zásobníkové automaty, které 
                     \item \texttt{anbn\_ES.json} --- přijímá prázdným zásobníkem
                 \end{itemize}
         \end{itemize}
+        \newpage
     \item Uzávorkování
         \begin{itemize}
             \item Tento automat slouží ke kontrole správného uzávorkování
@@ -41,7 +42,7 @@ Ve složce \textit{data} jsou uloženy vzorové zásobníkové automaty, které 
                 \item \texttt{palindrome\_ES.json} --- přijímá prázdným zásobníkem
             \end{itemize}
         \end{itemize}
-    \item Matematické příklady
+    \item Aritmetické výrazy
         \begin{itemize}
             \item Automat přijímá korektní matematické příklady obsahující znaménka $+$ $-$ $*$ $/$, závorky a písmeno $a$
             \item Rozpoznává bezkontextovou gramatice: $S \rightarrow a | S + S | S - S | S * S | S / S | ( S )$

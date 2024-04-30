@@ -17,7 +17,7 @@
 \contentsline {chapter}{\numberline {3}Existující aplikace}{17}{chapter.3}%
 \contentsline {section}{\numberline {3.1}YAAS --- Yet Another Automata Simulator}{17}{section.3.1}%
 \contentsline {section}{\numberline {3.2}DauteRR --- Pushdown Automaton}{17}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Bakalářská práce 2022/2023}{17}{section.3.3}%
+\contentsline {section}{\numberline {3.3}Bakalářská práce z roku 2022/2023}{17}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Shrnutí}{18}{section.3.4}%
 \contentsline {chapter}{\numberline {4}Analýzy a návrh}{19}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Analýza}{19}{section.4.1}%
